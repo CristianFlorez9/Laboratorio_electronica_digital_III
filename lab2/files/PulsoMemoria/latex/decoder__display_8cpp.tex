@@ -1,0 +1,276 @@
+\doxysection{Referencia del archivo decoder\+\_\+display.\+cpp}
+\hypertarget{decoder__display_8cpp}{}\label{decoder__display_8cpp}\index{decoder\_display.cpp@{decoder\_display.cpp}}
+
+
+Implementación del controlador y multiplexado para displays de 7 segmentos.  
+
+
+{\ttfamily \+\#include "{}decoder\+\_\+display.\+h"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{apagar\+\_\+todo\+\_\+seguro}} ()
+\begin{DoxyCompactList}\small\item\em Desactiva todos los habilitadores y apaga todos los segmentos de forma segura. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}{mostrar\+\_\+numero}} (int num)
+\begin{DoxyCompactList}\small\item\em Escribe la combinación de pines correspondiente a un dígito (0-\/9) en los segmentos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058}{configurar\+\_\+display}} (const int pines\+\_\+segmento\+[7]\+, const int pines\+\_\+digitos\+[4]\+)
+\begin{DoxyCompactList}\small\item\em Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc}{actualizar\+\_\+display}} (int nivel, int vidas, int tiempo, unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\+\_\+seg}} \+[7]
+\item 
+static int \doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\+\_\+en}} \+[4]
+\item 
+static int \doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\+\_\+activo}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}{aux\+\_\+tiempo\+\_\+display}} = 0
+\item 
+static const bool \doxymbox{\hyperlink{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4}{numeros}} \+[10]\+\+[7]
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación del controlador y multiplexado para displays de 7 segmentos. 
+
+
+
+Definición en el archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+\label{decoder__display_8cpp_doc-func-members}
+\Hypertarget{decoder__display_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc}\index{decoder\_display.cpp@{decoder\_display.cpp}!actualizar\_display@{actualizar\_display}}
+\index{actualizar\_display@{actualizar\_display}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{actualizar\_display()}{actualizar\_display()}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc} 
+void actualizar\+\_\+display (\begin{DoxyParamCaption}\item[{int}]{nivel}{, }\item[{int}]{vidas}{, }\item[{int}]{tiempo}{, }\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo. 
+
+Realiza el multiplexado de los displays para actualizar nivel, vidas y tiempo.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em nivel} & Valor del nivel actual a mostrar en el dígito correspondiente. \\
+\hline
+{\em vidas} & Cantidad de vidas restantes a mostrar en el dígito correspondiente. \\
+\hline
+{\em tiempo} & Valor de tiempo (0-\/99) a multiplexar en las unidades y decenas. \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em nivel} & Valor del nivel actual (0-\/9). \\
+\hline
+{\em vidas} & Cantidad de vidas restantes (0-\/9). \\
+\hline
+{\em tiempo} & Valor del tiempo acumulado (0-\/99). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{65}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00012}{aux\+\_\+tiempo\+\_\+display}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00011}{digito\+\_\+activo}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{mostrar\+\_\+numero()}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00010}{pines\+\_\+en}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00228}{mostrar\+\_\+en\+\_\+displays()}}.
+
+\Hypertarget{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}\index{decoder\_display.cpp@{decoder\_display.cpp}!apagar\_todo\_seguro@{apagar\_todo\_seguro}}
+\index{apagar\_todo\_seguro@{apagar\_todo\_seguro}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{apagar\_todo\_seguro()}{apagar\_todo\_seguro()}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee} 
+void apagar\+\_\+todo\+\_\+seguro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Desactiva todos los habilitadores y apaga todos los segmentos de forma segura. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{101}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00010}{pines\+\_\+en}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00009}{pines\+\_\+seg}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}}.
+
+\Hypertarget{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058}\index{decoder\_display.cpp@{decoder\_display.cpp}!configurar\_display@{configurar\_display}}
+\index{configurar\_display@{configurar\_display}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{configurar\_display()}{configurar\_display()}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058} 
+void configurar\+\_\+display (\begin{DoxyParamCaption}\item[{const int}]{pines\+\_\+segmento}{\+[7], }\item[{const int}]{pines\+\_\+digitos}{\+[4]}\end{DoxyParamCaption})}
+
+
+
+Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores. 
+
+Inicializa los pines GPIO asignados a los segmentos y dígitos del display.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pines\+\_\+segmento} & Arreglo de 7 enteros con los pines asignados a los segmentos (a-\/g). \\
+\hline
+{\em pines\+\_\+digitos} & Arreglo de 4 enteros con los pines asignados a los enables/\+cátodos de los dígitos.\\
+\hline
+\end{DoxyParams}
+Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pines\+\_\+segmento} & Arreglo de 7 pines para los segmentos (a-\/g). \\
+\hline
+{\em pines\+\_\+digitos} & Arreglo de 4 pines para los habilitadores de cada dígito. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{44}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00010}{pines\+\_\+en}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00009}{pines\+\_\+seg}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}.
+
+\Hypertarget{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}\index{decoder\_display.cpp@{decoder\_display.cpp}!mostrar\_numero@{mostrar\_numero}}
+\index{mostrar\_numero@{mostrar\_numero}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{mostrar\_numero()}{mostrar\_numero()}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25} 
+void mostrar\+\_\+numero (\begin{DoxyParamCaption}\item[{int}]{num}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Escribe la combinación de pines correspondiente a un dígito (0-\/9) en los segmentos. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em num} & Valor numérico a representar.\\
+\hline
+{\em num} & Valor numérico a representar (será restringido entre 0 y 9). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{115}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{mostrar\+\_\+numero()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00015}{numeros}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00009}{pines\+\_\+seg}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{mostrar\+\_\+numero()}}.
+
+
+
+\label{decoder__display_8cpp_doc-var-members}
+\Hypertarget{decoder__display_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}\index{decoder\_display.cpp@{decoder\_display.cpp}!aux\_tiempo\_display@{aux\_tiempo\_display}}
+\index{aux\_tiempo\_display@{aux\_tiempo\_display}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{aux\_tiempo\_display}{aux\_tiempo\_display}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01} 
+unsigned long aux\+\_\+tiempo\+\_\+display = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00012}{12}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}}.
+
+\Hypertarget{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}\index{decoder\_display.cpp@{decoder\_display.cpp}!digito\_activo@{digito\_activo}}
+\index{digito\_activo@{digito\_activo}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{digito\_activo}{digito\_activo}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7} 
+int digito\+\_\+activo = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00011}{11}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}}.
+
+\Hypertarget{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4}\index{decoder\_display.cpp@{decoder\_display.cpp}!numeros@{numeros}}
+\index{numeros@{numeros}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{numeros}{numeros}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4} 
+const bool numeros\+[10]\+\+[7]\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Valor inicial:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \{0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 1\},\ }
+\DoxyCodeLine{\ \ \{1,\ 0,\ 0,\ 1,\ 1,\ 1,\ 1\},\ }
+\DoxyCodeLine{\ \ \{0,\ 0,\ 1,\ 0,\ 0,\ 1,\ 0\},\ }
+\DoxyCodeLine{\ \ \{0,\ 0,\ 0,\ 0,\ 1,\ 1,\ 0\},\ }
+\DoxyCodeLine{\ \ \{1,\ 0,\ 0,\ 1,\ 1,\ 0,\ 0\},\ }
+\DoxyCodeLine{\ \ \{0,\ 1,\ 0,\ 0,\ 1,\ 0,\ 0\},\ }
+\DoxyCodeLine{\ \ \{0,\ 1,\ 0,\ 0,\ 0,\ 0,\ 0\},\ }
+\DoxyCodeLine{\ \ \{0,\ 0,\ 0,\ 1,\ 1,\ 1,\ 1\},\ }
+\DoxyCodeLine{\ \ \{0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0\},\ }
+\DoxyCodeLine{\ \ \{0,\ 0,\ 0,\ 0,\ 1,\ 0,\ 0\}\ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00015}{15}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{mostrar\+\_\+numero()}}.
+
+\Hypertarget{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}\index{decoder\_display.cpp@{decoder\_display.cpp}!pines\_en@{pines\_en}}
+\index{pines\_en@{pines\_en}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{pines\_en}{pines\_en}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0} 
+int pines\+\_\+en\+[4]\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00010}{10}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}}.
+
+\Hypertarget{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}\index{decoder\_display.cpp@{decoder\_display.cpp}!pines\_seg@{pines\_seg}}
+\index{pines\_seg@{pines\_seg}!decoder\_display.cpp@{decoder\_display.cpp}}
+\doxysubsubsection{\texorpdfstring{pines\_seg}{pines\_seg}}
+{\footnotesize\ttfamily \label{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453} 
+int pines\+\_\+seg\+[7]\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{decoder__display_8cpp_source_l00009}{9}} del archivo \doxymbox{\hyperlink{decoder__display_8cpp_source}{decoder\+\_\+display.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{decoder__display_8cpp_source_l00101}{apagar\+\_\+todo\+\_\+seguro()}}, \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}} y \doxymbox{\hyperlink{decoder__display_8cpp_source_l00115}{mostrar\+\_\+numero()}}.
+

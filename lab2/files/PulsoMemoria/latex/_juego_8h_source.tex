@@ -1,0 +1,59 @@
+\doxysection{Juego.\+h}
+\hypertarget{_juego_8h_source}{}\label{_juego_8h_source}\doxymbox{\hyperlink{_juego_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00008}00008\ \textcolor{preprocessor}{\#ifndef\ JUEGO\_H}}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00009}00009\ \textcolor{preprocessor}{\#define\ JUEGO\_H}}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00017}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{00017}}\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{EstadoJuego}}\ \{}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00018}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{00018}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00019}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{00019}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}},\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00020}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{00020}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00021}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d}{00021}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d}{NIVEL\_COMPLETO}},\ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00022}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9}{00022}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9}{NIVEL\_FALLIDO}},\ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00023}\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b}{00023}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b}{FIN}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00024}00024\ \};}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00030}\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{00030}}\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{ResultadoBoton}}\ \{}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00031}\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{00031}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{CORRECTO\_CONTINUA}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00032}\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec}{00032}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec}{CORRECTO\_NIVEL\_COMPLETO}},\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00033}\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7}{00033}}\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7}{INCORRECTO}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00034}00034\ \};}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00041}00041\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba}{inicio\_reset}}();}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00047}00047\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{EstadoJuego}}\ \doxymbox{\hyperlink{_juego_8cpp_a792971472830783ecaf74257e3efccc3}{verificacion\_estado}}();}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00055}00055\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8cpp_a1f0567276fcfad2242f248c36ff4c3c6}{cambio\_estado\_tiempo}}(}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00056}00056\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_transcurrido}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00057}00057\ );}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00067}00067\ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{ResultadoBoton}}\ \doxymbox{\hyperlink{_juego_8cpp_aa6276150eb7502e5ad6ab62dff0d5fb8}{procesar\_boton}}(}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00068}00068\ \ \ \textcolor{keywordtype}{int}\ boton\_presionado,}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00069}00069\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_transcurrido}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00070}00070\ );}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00077}00077\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8cpp_a0e779258125f6d2ac1930f60565f2bcb}{iniciar\_partida}}(}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00078}00078\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_transcurrido}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00079}00079\ );}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00087}00087\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8cpp_aef9eaeca04949d05c2b3a60dd2506ed7}{obtener\_porcentaje\_tiempo}}(}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00088}00088\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_transcurrido}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00089}00089\ );}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00095}00095\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}{obtener\_nivel}}();}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00101}00101\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a}{obtener\_vidas}}();}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00107}00107\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8cpp_a03c1a29b71a247db26aad261cf99f3f7}{obtener\_tiempo\_acumulado}}();}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00115}00115\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8cpp_a15260acbf9d713eca35f58f035579d75}{obtener\_led\_actual\_presentacion}}(}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00116}00116\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_transcurrido}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00117}00117\ );}
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_juego_8h_source_l00119}00119\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

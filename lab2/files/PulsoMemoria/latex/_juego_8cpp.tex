@@ -1,0 +1,666 @@
+\doxysection{Referencia del archivo Juego.\+cpp}
+\hypertarget{_juego_8cpp}{}\label{_juego_8cpp}\index{Juego.cpp@{Juego.cpp}}
+
+
+Implementación del núcleo de la máquina de estados y reglas del juego Simon Says.  
+
+
+{\ttfamily \+\#include "{}Juego.\+h"{}}\newline
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{_juego_8cpp_aa727eb182403ef8e182568e82783a1c7}{generar\+\_\+siguiente\+\_\+elemento}} ()
+\begin{DoxyCompactList}\small\item\em Genera de forma aleatoria el siguiente LED de la secuencia. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{_juego_8cpp_ae5f7811c14d1767ceee7310a0a420514}{calcular\+\_\+tiempo\+\_\+presentacion}} ()
+\begin{DoxyCompactList}\small\item\em Calcula la duración total de la fase de presentación y el tiempo disponible para que el usuario responda. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{_juego_8cpp_a842e292b733f509e11039caa702bbc55}{acumular\+\_\+tiempo}} (unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Suma el tiempo consumido durante el turno actual al acumulador global. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba}{inicio\+\_\+reset}} ()
+\begin{DoxyCompactList}\small\item\em Reinicia completamente el sistema del juego a su estado de reposo inicial. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} \doxymbox{\hyperlink{_juego_8cpp_a792971472830783ecaf74257e3efccc3}{verificacion\+\_\+estado}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el estado actual en el que se encuentra la máquina de estados del juego. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8cpp_a1f0567276fcfad2242f248c36ff4c3c6}{cambio\+\_\+estado\+\_\+tiempo}} (unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} \doxymbox{\hyperlink{_juego_8cpp_aa6276150eb7502e5ad6ab62dff0d5fb8}{procesar\+\_\+boton}} (int boton\+\_\+presionado, unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario ({\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}}). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8cpp_a0e779258125f6d2ac1930f60565f2bcb}{iniciar\+\_\+partida}} (unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Arranca una nueva partida del juego a partir de una interacción del usuario. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8cpp_aef9eaeca04949d05c2b3a60dd2506ed7}{obtener\+\_\+porcentaje\+\_\+tiempo}} (unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Calcula el porcentaje de tiempo restante del límite permitido para el turno actual. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}{obtener\+\_\+nivel}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el nivel actual en el que se encuentra el jugador. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a}{obtener\+\_\+vidas}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene la cantidad de vidas restantes del jugador. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8cpp_a03c1a29b71a247db26aad261cf99f3f7}{obtener\+\_\+tiempo\+\_\+acumulado}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el tiempo total acumulado que le ha tomado al jugador responder durante el juego. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8cpp_a15260acbf9d713eca35f58f035579d75}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion}} (unsigned long tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Determina qué LED debe estar encendido durante la fase de presentación de la secuencia. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} \doxymbox{\hyperlink{_juego_8cpp_a44164300089a942af1e5a079a2e8fee2}{estado\+\_\+actual}} = \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}
+\item 
+static \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} \doxymbox{\hyperlink{_juego_8cpp_a12281ad7610795a513d78b54963a909e}{estado\+\_\+botones}} = \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{CORRECTO\+\_\+\+CONTINUA}}
+\item 
+static int \doxymbox{\hyperlink{_juego_8cpp_ab9e023fb93d89d6d5b00e52adcaea1a9}{secuencia\+\_\+leds}} \+[9]
+\item 
+static int \doxymbox{\hyperlink{_juego_8cpp_a6eba765bbeb34afc8bb6f0db5bdc0ac5}{nivel\+\_\+actual}} = 1
+\item 
+static int \doxymbox{\hyperlink{_juego_8cpp_ad742903c7f4c72d558becbaeb67fd3b3}{vidas}} = 3
+\item 
+static int \doxymbox{\hyperlink{_juego_8cpp_a775fe3a13384a45e6805cf1be97a8a42}{contador\+\_\+botones}} = 0
+\item 
+static int \doxymbox{\hyperlink{_juego_8cpp_ae75bbab859185167fa3e08f6695f9f91}{tiempo\+\_\+acumulado}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_ac4db4b6a291a60368de83f073c85475e}{tiempo\+\_\+presentacion\+\_\+actual}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_ac90838cfd365ab96a9da42e5ca275fa1}{tiempo\+\_\+ingreso}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_a84e02e8fa6e10157f0e0f6578e63e1ec}{aux\+\_\+tiempo\+\_\+ingreso}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_a8900281d4c3842069890a93a28cc7766}{aux\+\_\+tiempo\+\_\+presentacion}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_a4c7ec28c74090abeaf716a54cf2292ad}{inicio\+\_\+respuesta}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_a6efa1ff3b1070f03b09e41e2c4db9bb2}{tiempo\+\_\+respuesta\+\_\+usuario}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_a40cf5501c52c3d06c56c8ee23de93409}{tiempo\+\_\+nivel\+\_\+completo}} = 0
+\item 
+static unsigned long \doxymbox{\hyperlink{_juego_8cpp_ac55e05077124eef66eccf33b69e3bd8f}{tiempo\+\_\+nivel\+\_\+fallido}} = 0
+\item 
+static const unsigned long \doxymbox{\hyperlink{_juego_8cpp_add72575182c7f11a8603cde7d624ce43}{DURACION\+\_\+\+VICTORIA}} = 1000
+\item 
+static const unsigned long \doxymbox{\hyperlink{_juego_8cpp_a68710a37924512b453fe86fedb1beb02}{DURACION\+\_\+\+FALLO}} = 450
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación del núcleo de la máquina de estados y reglas del juego Simon Says. 
+
+
+
+Definición en el archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+\label{_juego_8cpp_doc-func-members}
+\Hypertarget{_juego_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{_juego_8cpp_a842e292b733f509e11039caa702bbc55}\index{Juego.cpp@{Juego.cpp}!acumular\_tiempo@{acumular\_tiempo}}
+\index{acumular\_tiempo@{acumular\_tiempo}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{acumular\_tiempo()}{acumular\_tiempo()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a842e292b733f509e11039caa702bbc55} 
+void acumular\+\_\+tiempo (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Suma el tiempo consumido durante el turno actual al acumulador global. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{91}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00020}{aux\+\_\+tiempo\+\_\+ingreso}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00016}{tiempo\+\_\+acumulado}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ae5f7811c14d1767ceee7310a0a420514}\index{Juego.cpp@{Juego.cpp}!calcular\_tiempo\_presentacion@{calcular\_tiempo\_presentacion}}
+\index{calcular\_tiempo\_presentacion@{calcular\_tiempo\_presentacion}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{calcular\_tiempo\_presentacion()}{calcular\_tiempo\_presentacion()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ae5f7811c14d1767ceee7310a0a420514} 
+void calcular\+\_\+tiempo\+\_\+presentacion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calcula la duración total de la fase de presentación y el tiempo disponible para que el usuario responda. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{47}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{tiempo\+\_\+ingreso}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00018}{tiempo\+\_\+presentacion\+\_\+actual}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}.
+
+\Hypertarget{_juego_8cpp_a1f0567276fcfad2242f248c36ff4c3c6}\index{Juego.cpp@{Juego.cpp}!cambio\_estado\_tiempo@{cambio\_estado\_tiempo}}
+\index{cambio\_estado\_tiempo@{cambio\_estado\_tiempo}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{cambio\_estado\_tiempo()}{cambio\_estado\_tiempo()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a1f0567276fcfad2242f248c36ff4c3c6} 
+void cambio\+\_\+estado\+\_\+tiempo (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. 
+
+Transita entre estados como {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}} -\/\texorpdfstring{$>$}{>} {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}} o {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d}{NIVEL\+\_\+\+COMPLETO}} -\/\texorpdfstring{$>$}{>} {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}} una vez que se cumplen los tiempos preestablecidos. 
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos ({\ttfamily millis()}). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{126}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00020}{aux\+\_\+tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00021}{aux\+\_\+tiempo\+\_\+presentacion}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00015}{contador\+\_\+botones}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00030}{DURACION\+\_\+\+FALLO}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00029}{DURACION\+\_\+\+VICTORIA}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8h_source_l00023}{FIN}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00023}{inicio\+\_\+respuesta}}, \doxymbox{\hyperlink{_juego_8h_source_l00020}{INPUTS}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8h_source_l00021}{NIVEL\+\_\+\+COMPLETO}}, \doxymbox{\hyperlink{_juego_8h_source_l00022}{NIVEL\+\_\+\+FALLIDO}}, \doxymbox{\hyperlink{_juego_8h_source_l00019}{PRESENTACION}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00026}{tiempo\+\_\+nivel\+\_\+completo}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00027}{tiempo\+\_\+nivel\+\_\+fallido}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00018}{tiempo\+\_\+presentacion\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00024}{tiempo\+\_\+respuesta\+\_\+usuario}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00014}{vidas}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_juego_8cpp_aa727eb182403ef8e182568e82783a1c7}\index{Juego.cpp@{Juego.cpp}!generar\_siguiente\_elemento@{generar\_siguiente\_elemento}}
+\index{generar\_siguiente\_elemento@{generar\_siguiente\_elemento}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{generar\_siguiente\_elemento()}{generar\_siguiente\_elemento()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_aa727eb182403ef8e182568e82783a1c7} 
+void generar\+\_\+siguiente\+\_\+elemento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Genera de forma aleatoria el siguiente LED de la secuencia. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{35}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00012}{secuencia\+\_\+leds}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}.
+
+\Hypertarget{_juego_8cpp_a0e779258125f6d2ac1930f60565f2bcb}\index{Juego.cpp@{Juego.cpp}!iniciar\_partida@{iniciar\_partida}}
+\index{iniciar\_partida@{iniciar\_partida}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{iniciar\_partida()}{iniciar\_partida()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a0e779258125f6d2ac1930f60565f2bcb} 
+void iniciar\+\_\+partida (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Arranca una nueva partida del juego a partir de una interacción del usuario. 
+
+Prepara la primera secuencia, reinicia variables de juego y cambia el estado a {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}}. 
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos ({\ttfamily millis()}). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{311}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00021}{aux\+\_\+tiempo\+\_\+presentacion}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8h_source_l00019}{PRESENTACION}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba}\index{Juego.cpp@{Juego.cpp}!inicio\_reset@{inicio\_reset}}
+\index{inicio\_reset@{inicio\_reset}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{inicio\_reset()}{inicio\_reset()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba} 
+void inicio\+\_\+reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reinicia completamente el sistema del juego a su estado de reposo inicial. 
+
+Restablece variables de juego como nivel, vidas, tiempos acumulados y posiciona la máquina de estados en {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}. 
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{102}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00020}{aux\+\_\+tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00021}{aux\+\_\+tiempo\+\_\+presentacion}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00015}{contador\+\_\+botones}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8h_source_l00018}{INICIO}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00023}{inicio\+\_\+respuesta}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00016}{tiempo\+\_\+acumulado}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00026}{tiempo\+\_\+nivel\+\_\+completo}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00027}{tiempo\+\_\+nivel\+\_\+fallido}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00018}{tiempo\+\_\+presentacion\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00024}{tiempo\+\_\+respuesta\+\_\+usuario}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00014}{vidas}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00009}{setup()}}.
+
+\Hypertarget{_juego_8cpp_a15260acbf9d713eca35f58f035579d75}\index{Juego.cpp@{Juego.cpp}!obtener\_led\_actual\_presentacion@{obtener\_led\_actual\_presentacion}}
+\index{obtener\_led\_actual\_presentacion@{obtener\_led\_actual\_presentacion}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{obtener\_led\_actual\_presentacion()}{obtener\_led\_actual\_presentacion()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a15260acbf9d713eca35f58f035579d75} 
+int obtener\+\_\+led\+\_\+actual\+\_\+presentacion (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Determina qué LED debe estar encendido durante la fase de presentación de la secuencia. 
+
+Calcula cuál paso de la secuencia debe mostrarse según el tiempo transcurrido desde el inicio del nivel. 
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos ({\ttfamily millis()}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Índice del LED a encender (0 a 3), o -\/1 si el tiempo corresponde a un espacio de apagado (pausa entre notas). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{358}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00021}{aux\+\_\+tiempo\+\_\+presentacion}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8h_source_l00019}{PRESENTACION}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00012}{secuencia\+\_\+leds}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00018}{tiempo\+\_\+presentacion\+\_\+actual}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}.
+
+\Hypertarget{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}\index{Juego.cpp@{Juego.cpp}!obtener\_nivel@{obtener\_nivel}}
+\index{obtener\_nivel@{obtener\_nivel}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{obtener\_nivel()}{obtener\_nivel()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8} 
+int obtener\+\_\+nivel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el nivel actual en el que se encuentra el jugador. 
+
+\begin{DoxyReturn}{Devuelve}
+int Número del nivel actual (por ejemplo, de 1 en adelante). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00346}{346}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00346}{obtener\+\_\+nivel()}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00346}{obtener\+\_\+nivel()}}.
+
+\Hypertarget{_juego_8cpp_aef9eaeca04949d05c2b3a60dd2506ed7}\index{Juego.cpp@{Juego.cpp}!obtener\_porcentaje\_tiempo@{obtener\_porcentaje\_tiempo}}
+\index{obtener\_porcentaje\_tiempo@{obtener\_porcentaje\_tiempo}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{obtener\_porcentaje\_tiempo()}{obtener\_porcentaje\_tiempo()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_aef9eaeca04949d05c2b3a60dd2506ed7} 
+int obtener\+\_\+porcentaje\+\_\+tiempo (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Calcula el porcentaje de tiempo restante del límite permitido para el turno actual. 
+
+Se utiliza principalmente para ajustar la frecuencia de parpadeo del LED de pálpito. 
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos ({\ttfamily millis()}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Porcentaje de tiempo restante (entre 0 y 100). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{326}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00020}{aux\+\_\+tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8h_source_l00020}{INPUTS}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{obtener\+\_\+porcentaje\+\_\+tiempo()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{tiempo\+\_\+ingreso}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{obtener\+\_\+porcentaje\+\_\+tiempo()}}.
+
+\Hypertarget{_juego_8cpp_a03c1a29b71a247db26aad261cf99f3f7}\index{Juego.cpp@{Juego.cpp}!obtener\_tiempo\_acumulado@{obtener\_tiempo\_acumulado}}
+\index{obtener\_tiempo\_acumulado@{obtener\_tiempo\_acumulado}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{obtener\_tiempo\_acumulado()}{obtener\_tiempo\_acumulado()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a03c1a29b71a247db26aad261cf99f3f7} 
+int obtener\+\_\+tiempo\+\_\+acumulado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el tiempo total acumulado que le ha tomado al jugador responder durante el juego. 
+
+\begin{DoxyReturn}{Devuelve}
+int Tiempo acumulado expresado en segundos. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00354}{354}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00354}{obtener\+\_\+tiempo\+\_\+acumulado()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00016}{tiempo\+\_\+acumulado}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00354}{obtener\+\_\+tiempo\+\_\+acumulado()}}.
+
+\Hypertarget{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a}\index{Juego.cpp@{Juego.cpp}!obtener\_vidas@{obtener\_vidas}}
+\index{obtener\_vidas@{obtener\_vidas}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{obtener\_vidas()}{obtener\_vidas()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a} 
+int obtener\+\_\+vidas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la cantidad de vidas restantes del jugador. 
+
+\begin{DoxyReturn}{Devuelve}
+int Número de vidas actual. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00350}{350}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00350}{obtener\+\_\+vidas()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00014}{vidas}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00350}{obtener\+\_\+vidas()}}.
+
+\Hypertarget{_juego_8cpp_aa6276150eb7502e5ad6ab62dff0d5fb8}\index{Juego.cpp@{Juego.cpp}!procesar\_boton@{procesar\_boton}}
+\index{procesar\_boton@{procesar\_boton}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{procesar\_boton()}{procesar\_boton()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_aa6276150eb7502e5ad6ab62dff0d5fb8} 
+\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} procesar\+\_\+boton (\begin{DoxyParamCaption}\item[{int}]{boton\+\_\+presionado}{, }\item[{unsigned long}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario ({\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}}). 
+
+Compara el índice del botón presionado con el elemento correspondiente de la secuencia aleatoria, gestiona aciertos, desaciertos y acumula el tiempo transcurrido en el intento. 
+\begin{DoxyParams}{Parámetros}
+{\em boton\+\_\+presionado} & Índice del botón que activó el jugador (0 a 3). \\
+\hline
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos ({\ttfamily millis()}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton} Indica el resultado de la pulsación ({\ttfamily \doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{CORRECTO\+\_\+\+CONTINUA}}, {\ttfamily \doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec}{CORRECTO\+\_\+\+NIVEL\+\_\+\+COMPLETO}}, o {\ttfamily \doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7}{INCORRECTO}}). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{214}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00015}{contador\+\_\+botones}}, \doxymbox{\hyperlink{_juego_8h_source_l00031}{CORRECTO\+\_\+\+CONTINUA}}, \doxymbox{\hyperlink{_juego_8h_source_l00032}{CORRECTO\+\_\+\+NIVEL\+\_\+\+COMPLETO}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00010}{estado\+\_\+botones}}, \doxymbox{\hyperlink{_juego_8h_source_l00023}{FIN}}, \doxymbox{\hyperlink{_juego_8h_source_l00033}{INCORRECTO}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00023}{inicio\+\_\+respuesta}}, \doxymbox{\hyperlink{_juego_8h_source_l00020}{INPUTS}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{nivel\+\_\+actual}}, \doxymbox{\hyperlink{_juego_8h_source_l00021}{NIVEL\+\_\+\+COMPLETO}}, \doxymbox{\hyperlink{_juego_8h_source_l00022}{NIVEL\+\_\+\+FALLIDO}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00012}{secuencia\+\_\+leds}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{tiempo\+\_\+ingreso}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00026}{tiempo\+\_\+nivel\+\_\+completo}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00027}{tiempo\+\_\+nivel\+\_\+fallido}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00024}{tiempo\+\_\+respuesta\+\_\+usuario}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00014}{vidas}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_a792971472830783ecaf74257e3efccc3}\index{Juego.cpp@{Juego.cpp}!verificacion\_estado@{verificacion\_estado}}
+\index{verificacion\_estado@{verificacion\_estado}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{verificacion\_estado()}{verificacion\_estado()}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a792971472830783ecaf74257e3efccc3} 
+\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} verificacion\+\_\+estado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el estado actual en el que se encuentra la máquina de estados del juego. 
+
+\begin{DoxyReturn}{Devuelve}
+\doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego} El estado actual ({\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}, {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}}, {\ttfamily \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}}, etc.). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00122}{122}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{estado\+\_\+actual}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00122}{verificacion\+\_\+estado()}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00122}{verificacion\+\_\+estado()}}.
+
+
+
+\label{_juego_8cpp_doc-var-members}
+\Hypertarget{_juego_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{_juego_8cpp_a84e02e8fa6e10157f0e0f6578e63e1ec}\index{Juego.cpp@{Juego.cpp}!aux\_tiempo\_ingreso@{aux\_tiempo\_ingreso}}
+\index{aux\_tiempo\_ingreso@{aux\_tiempo\_ingreso}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{aux\_tiempo\_ingreso}{aux\_tiempo\_ingreso}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a84e02e8fa6e10157f0e0f6578e63e1ec} 
+unsigned long aux\+\_\+tiempo\+\_\+ingreso = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00020}{20}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{obtener\+\_\+porcentaje\+\_\+tiempo()}}.
+
+\Hypertarget{_juego_8cpp_a8900281d4c3842069890a93a28cc7766}\index{Juego.cpp@{Juego.cpp}!aux\_tiempo\_presentacion@{aux\_tiempo\_presentacion}}
+\index{aux\_tiempo\_presentacion@{aux\_tiempo\_presentacion}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{aux\_tiempo\_presentacion}{aux\_tiempo\_presentacion}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a8900281d4c3842069890a93a28cc7766} 
+unsigned long aux\+\_\+tiempo\+\_\+presentacion = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00021}{21}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}.
+
+\Hypertarget{_juego_8cpp_a775fe3a13384a45e6805cf1be97a8a42}\index{Juego.cpp@{Juego.cpp}!contador\_botones@{contador\_botones}}
+\index{contador\_botones@{contador\_botones}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{contador\_botones}{contador\_botones}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a775fe3a13384a45e6805cf1be97a8a42} 
+int contador\+\_\+botones = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00015}{15}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_a68710a37924512b453fe86fedb1beb02}\index{Juego.cpp@{Juego.cpp}!DURACION\_FALLO@{DURACION\_FALLO}}
+\index{DURACION\_FALLO@{DURACION\_FALLO}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{DURACION\_FALLO}{DURACION\_FALLO}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a68710a37924512b453fe86fedb1beb02} 
+const unsigned long DURACION\+\_\+\+FALLO = 450\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00030}{30}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}.
+
+\Hypertarget{_juego_8cpp_add72575182c7f11a8603cde7d624ce43}\index{Juego.cpp@{Juego.cpp}!DURACION\_VICTORIA@{DURACION\_VICTORIA}}
+\index{DURACION\_VICTORIA@{DURACION\_VICTORIA}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{DURACION\_VICTORIA}{DURACION\_VICTORIA}}
+{\footnotesize\ttfamily \label{_juego_8cpp_add72575182c7f11a8603cde7d624ce43} 
+const unsigned long DURACION\+\_\+\+VICTORIA = 1000\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00029}{29}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}.
+
+\Hypertarget{_juego_8cpp_a44164300089a942af1e5a079a2e8fee2}\index{Juego.cpp@{Juego.cpp}!estado\_actual@{estado\_actual}}
+\index{estado\_actual@{estado\_actual}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{estado\_actual}{estado\_actual}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a44164300089a942af1e5a079a2e8fee2} 
+\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} estado\+\_\+actual = \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00009}{9}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00311}{iniciar\+\_\+partida()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{obtener\+\_\+porcentaje\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00122}{verificacion\+\_\+estado()}}.
+
+\Hypertarget{_juego_8cpp_a12281ad7610795a513d78b54963a909e}\index{Juego.cpp@{Juego.cpp}!estado\_botones@{estado\_botones}}
+\index{estado\_botones@{estado\_botones}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{estado\_botones}{estado\_botones}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a12281ad7610795a513d78b54963a909e} 
+\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} estado\+\_\+botones = \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{CORRECTO\+\_\+\+CONTINUA}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00010}{10}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_a4c7ec28c74090abeaf716a54cf2292ad}\index{Juego.cpp@{Juego.cpp}!inicio\_respuesta@{inicio\_respuesta}}
+\index{inicio\_respuesta@{inicio\_respuesta}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{inicio\_respuesta}{inicio\_respuesta}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a4c7ec28c74090abeaf716a54cf2292ad} 
+unsigned long inicio\+\_\+respuesta = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00023}{23}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_a6eba765bbeb34afc8bb6f0db5bdc0ac5}\index{Juego.cpp@{Juego.cpp}!nivel\_actual@{nivel\_actual}}
+\index{nivel\_actual@{nivel\_actual}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{nivel\_actual}{nivel\_actual}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a6eba765bbeb34afc8bb6f0db5bdc0ac5} 
+int nivel\+\_\+actual = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00013}{13}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00346}{obtener\+\_\+nivel()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ab9e023fb93d89d6d5b00e52adcaea1a9}\index{Juego.cpp@{Juego.cpp}!secuencia\_leds@{secuencia\_leds}}
+\index{secuencia\_leds@{secuencia\_leds}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{secuencia\_leds}{secuencia\_leds}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ab9e023fb93d89d6d5b00e52adcaea1a9} 
+int secuencia\+\_\+leds\+[9]\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00012}{12}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00035}{generar\+\_\+siguiente\+\_\+elemento()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ae75bbab859185167fa3e08f6695f9f91}\index{Juego.cpp@{Juego.cpp}!tiempo\_acumulado@{tiempo\_acumulado}}
+\index{tiempo\_acumulado@{tiempo\_acumulado}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_acumulado}{tiempo\_acumulado}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ae75bbab859185167fa3e08f6695f9f91} 
+int tiempo\+\_\+acumulado = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00016}{16}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00091}{acumular\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00354}{obtener\+\_\+tiempo\+\_\+acumulado()}}.
+
+\Hypertarget{_juego_8cpp_ac90838cfd365ab96a9da42e5ca275fa1}\index{Juego.cpp@{Juego.cpp}!tiempo\_ingreso@{tiempo\_ingreso}}
+\index{tiempo\_ingreso@{tiempo\_ingreso}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_ingreso}{tiempo\_ingreso}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ac90838cfd365ab96a9da42e5ca275fa1} 
+unsigned long tiempo\+\_\+ingreso = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00019}{19}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00326}{obtener\+\_\+porcentaje\+\_\+tiempo()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_a40cf5501c52c3d06c56c8ee23de93409}\index{Juego.cpp@{Juego.cpp}!tiempo\_nivel\_completo@{tiempo\_nivel\_completo}}
+\index{tiempo\_nivel\_completo@{tiempo\_nivel\_completo}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_nivel\_completo}{tiempo\_nivel\_completo}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a40cf5501c52c3d06c56c8ee23de93409} 
+unsigned long tiempo\+\_\+nivel\+\_\+completo = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00026}{26}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ac55e05077124eef66eccf33b69e3bd8f}\index{Juego.cpp@{Juego.cpp}!tiempo\_nivel\_fallido@{tiempo\_nivel\_fallido}}
+\index{tiempo\_nivel\_fallido@{tiempo\_nivel\_fallido}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_nivel\_fallido}{tiempo\_nivel\_fallido}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ac55e05077124eef66eccf33b69e3bd8f} 
+unsigned long tiempo\+\_\+nivel\+\_\+fallido = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00027}{27}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ac4db4b6a291a60368de83f073c85475e}\index{Juego.cpp@{Juego.cpp}!tiempo\_presentacion\_actual@{tiempo\_presentacion\_actual}}
+\index{tiempo\_presentacion\_actual@{tiempo\_presentacion\_actual}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_presentacion\_actual}{tiempo\_presentacion\_actual}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ac4db4b6a291a60368de83f073c85475e} 
+unsigned long tiempo\+\_\+presentacion\+\_\+actual = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00018}{18}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00047}{calcular\+\_\+tiempo\+\_\+presentacion()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00358}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion()}}.
+
+\Hypertarget{_juego_8cpp_a6efa1ff3b1070f03b09e41e2c4db9bb2}\index{Juego.cpp@{Juego.cpp}!tiempo\_respuesta\_usuario@{tiempo\_respuesta\_usuario}}
+\index{tiempo\_respuesta\_usuario@{tiempo\_respuesta\_usuario}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_respuesta\_usuario}{tiempo\_respuesta\_usuario}}
+{\footnotesize\ttfamily \label{_juego_8cpp_a6efa1ff3b1070f03b09e41e2c4db9bb2} 
+unsigned long tiempo\+\_\+respuesta\+\_\+usuario = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00024}{24}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+
+\Hypertarget{_juego_8cpp_ad742903c7f4c72d558becbaeb67fd3b3}\index{Juego.cpp@{Juego.cpp}!vidas@{vidas}}
+\index{vidas@{vidas}!Juego.cpp@{Juego.cpp}}
+\doxysubsubsection{\texorpdfstring{vidas}{vidas}}
+{\footnotesize\ttfamily \label{_juego_8cpp_ad742903c7f4c72d558becbaeb67fd3b3} 
+int vidas = 3\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_juego_8cpp_source_l00014}{14}} del archivo \doxymbox{\hyperlink{_juego_8cpp_source}{Juego.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_juego_8cpp_source_l00126}{cambio\+\_\+estado\+\_\+tiempo()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00102}{inicio\+\_\+reset()}}, \doxymbox{\hyperlink{_juego_8cpp_source_l00350}{obtener\+\_\+vidas()}} y \doxymbox{\hyperlink{_juego_8cpp_source_l00214}{procesar\+\_\+boton()}}.
+

@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pulso Memoria: Referencia del archivo Juego.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pulso Memoria
+   </div>
+   <div id="projectbrief">Juego de memoria con secuencia luminosa - Arduino en Raspberry Pi Pico 1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_juego_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo Juego.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Declaración del núcleo de la lógica, máquina de estados y control del juego Simon Says.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+</div>
+<p><a href="_juego_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumeraciones</h2></td></tr>
+<tr class="memitem:a5c2e4a3bf7e1b133e4333adc27490e67" id="r_a5c2e4a3bf7e1b133e4333adc27490e67"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67">EstadoJuego</a> { <br />
+&#160;&#160;<a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354">INICIO</a>
+, <a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae">PRESENTACION</a>
+, <a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6">INPUTS</a>
+, <a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d">NIVEL_COMPLETO</a>
+, <br />
+&#160;&#160;<a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9">NIVEL_FALLIDO</a>
+, <a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b">FIN</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a5c2e4a3bf7e1b133e4333adc27490e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define los estados posibles de la máquina de estados del juego.  <a href="#a5c2e4a3bf7e1b133e4333adc27490e67">Más...</a><br /></td></tr>
+<tr class="memitem:a64af93f1628837c6ad3089008f83ac40" id="r_a64af93f1628837c6ad3089008f83ac40"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40">ResultadoBoton</a> { <a class="el" href="#a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0">CORRECTO_CONTINUA</a>
+, <a class="el" href="#a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec">CORRECTO_NIVEL_COMPLETO</a>
+, <a class="el" href="#a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7">INCORRECTO</a>
+ }</td></tr>
+<tr class="memdesc:a64af93f1628837c6ad3089008f83ac40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define el resultado obtenido tras procesar una entrada de botón durante el juego.  <a href="#a64af93f1628837c6ad3089008f83ac40">Más...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ada66d50d8a89d18dfe9707e9799ffcba" id="r_ada66d50d8a89d18dfe9707e9799ffcba"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ada66d50d8a89d18dfe9707e9799ffcba">inicio_reset</a> ()</td></tr>
+<tr class="memdesc:ada66d50d8a89d18dfe9707e9799ffcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinicia completamente el sistema del juego a su estado de reposo inicial.  <br /></td></tr>
+<tr class="memitem:a792971472830783ecaf74257e3efccc3" id="r_a792971472830783ecaf74257e3efccc3"><td class="memItemLeft"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67">EstadoJuego</a>&#160;</td><td class="memItemRight"><a class="el" href="#a792971472830783ecaf74257e3efccc3">verificacion_estado</a> ()</td></tr>
+<tr class="memdesc:a792971472830783ecaf74257e3efccc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene el estado actual en el que se encuentra la máquina de estados del juego.  <br /></td></tr>
+<tr class="memitem:a1f0567276fcfad2242f248c36ff4c3c6" id="r_a1f0567276fcfad2242f248c36ff4c3c6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1f0567276fcfad2242f248c36ff4c3c6">cambio_estado_tiempo</a> (unsigned long tiempo_transcurrido)</td></tr>
+<tr class="memdesc:a1f0567276fcfad2242f248c36ff4c3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controla las transiciones automáticas de estado basadas en el tiempo transcurrido.  <br /></td></tr>
+<tr class="memitem:aa6276150eb7502e5ad6ab62dff0d5fb8" id="r_aa6276150eb7502e5ad6ab62dff0d5fb8"><td class="memItemLeft"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40">ResultadoBoton</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa6276150eb7502e5ad6ab62dff0d5fb8">procesar_boton</a> (int boton_presionado, unsigned long tiempo_transcurrido)</td></tr>
+<tr class="memdesc:aa6276150eb7502e5ad6ab62dff0d5fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (<span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6" title="Espera y valida la respuesta del usuario a través de los botones.">INPUTS</a></span>).  <br /></td></tr>
+<tr class="memitem:a0e779258125f6d2ac1930f60565f2bcb" id="r_a0e779258125f6d2ac1930f60565f2bcb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0e779258125f6d2ac1930f60565f2bcb">iniciar_partida</a> (unsigned long tiempo_transcurrido)</td></tr>
+<tr class="memdesc:a0e779258125f6d2ac1930f60565f2bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arranca una nueva partida del juego a partir de una interacción del usuario.  <br /></td></tr>
+<tr class="memitem:aef9eaeca04949d05c2b3a60dd2506ed7" id="r_aef9eaeca04949d05c2b3a60dd2506ed7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aef9eaeca04949d05c2b3a60dd2506ed7">obtener_porcentaje_tiempo</a> (unsigned long tiempo_transcurrido)</td></tr>
+<tr class="memdesc:aef9eaeca04949d05c2b3a60dd2506ed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el porcentaje de tiempo restante del límite permitido para el turno actual.  <br /></td></tr>
+<tr class="memitem:ac54e6bc99137891416b42b3e4f52f4a8" id="r_ac54e6bc99137891416b42b3e4f52f4a8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac54e6bc99137891416b42b3e4f52f4a8">obtener_nivel</a> ()</td></tr>
+<tr class="memdesc:ac54e6bc99137891416b42b3e4f52f4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene el nivel actual en el que se encuentra el jugador.  <br /></td></tr>
+<tr class="memitem:a05187359b1b0e5de6acf322c1c25cf7a" id="r_a05187359b1b0e5de6acf322c1c25cf7a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a05187359b1b0e5de6acf322c1c25cf7a">obtener_vidas</a> ()</td></tr>
+<tr class="memdesc:a05187359b1b0e5de6acf322c1c25cf7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene la cantidad de vidas restantes del jugador.  <br /></td></tr>
+<tr class="memitem:a03c1a29b71a247db26aad261cf99f3f7" id="r_a03c1a29b71a247db26aad261cf99f3f7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a03c1a29b71a247db26aad261cf99f3f7">obtener_tiempo_acumulado</a> ()</td></tr>
+<tr class="memdesc:a03c1a29b71a247db26aad261cf99f3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene el tiempo total acumulado que le ha tomado al jugador responder durante el juego.  <br /></td></tr>
+<tr class="memitem:a15260acbf9d713eca35f58f035579d75" id="r_a15260acbf9d713eca35f58f035579d75"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a15260acbf9d713eca35f58f035579d75">obtener_led_actual_presentacion</a> (unsigned long tiempo_transcurrido)</td></tr>
+<tr class="memdesc:a15260acbf9d713eca35f58f035579d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determina qué LED debe estar encendido durante la fase de presentación de la secuencia.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Declaración del núcleo de la lógica, máquina de estados y control del juego Simon Says. </p>
+<p>Este módulo gestiona las reglas del juego, la secuencia aleatoria, la validación de las entradas del usuario, el seguimiento del tiempo consumido, el nivel y las vidas. </p>
+
+<p class="definition">Definición en el archivo <a class="el" href="_juego_8h_source.html">Juego.h</a>.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentación de enumeraciones</h2>
+<a id="a5c2e4a3bf7e1b133e4333adc27490e67" name="a5c2e4a3bf7e1b133e4333adc27490e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c2e4a3bf7e1b133e4333adc27490e67">&#9670;&#160;</a></span>EstadoJuego</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67">EstadoJuego</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define los estados posibles de la máquina de estados del juego. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354" name="a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354"></a>INICIO&#160;</td><td class="fielddoc"><p>Estado de reposo o espera a que se presione Start. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae" name="a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae"></a>PRESENTACION&#160;</td><td class="fielddoc"><p>Muestra la secuencia aleatoria de LEDs correspondiente al nivel actual. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6" name="a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6"></a>INPUTS&#160;</td><td class="fielddoc"><p>Espera y valida la respuesta del usuario a través de los botones. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d" name="a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d"></a>NIVEL_COMPLETO&#160;</td><td class="fielddoc"><p>Pausa de éxito tras replicar correctamente la secuencia actual. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9" name="a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9"></a>NIVEL_FALLIDO&#160;</td><td class="fielddoc"><p>Pausa de fallo cuando el usuario se equivoca o se agota el tiempo. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b" name="a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b"></a>FIN&#160;</td><td class="fielddoc"><p>Fin de la partida por perder todas las vidas o completar el juego. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8h_source.html#l00017">17</a> del archivo <a class="el" href="_juego_8h_source.html">Juego.h</a>.</p>
+
+</div>
+</div>
+<a id="a64af93f1628837c6ad3089008f83ac40" name="a64af93f1628837c6ad3089008f83ac40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64af93f1628837c6ad3089008f83ac40">&#9670;&#160;</a></span>ResultadoBoton</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a64af93f1628837c6ad3089008f83ac40">ResultadoBoton</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define el resultado obtenido tras procesar una entrada de botón durante el juego. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0" name="a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0"></a>CORRECTO_CONTINUA&#160;</td><td class="fielddoc"><p>El botón fue correcto, pero faltan más pasos en la secuencia. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec" name="a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec"></a>CORRECTO_NIVEL_COMPLETO&#160;</td><td class="fielddoc"><p>El botón fue correcto y se completó exitosamente toda la secuencia del nivel. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7" name="a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7"></a>INCORRECTO&#160;</td><td class="fielddoc"><p>El botón presionado no coincidía con el esperado en la secuencia. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8h_source.html#l00030">30</a> del archivo <a class="el" href="_juego_8h_source.html">Juego.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a1f0567276fcfad2242f248c36ff4c3c6" name="a1f0567276fcfad2242f248c36ff4c3c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f0567276fcfad2242f248c36ff4c3c6">&#9670;&#160;</a></span>cambio_estado_tiempo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cambio_estado_tiempo </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_transcurrido</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. </p>
+<p>Transita entre estados como <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae" title="Muestra la secuencia aleatoria de LEDs correspondiente al nivel actual.">PRESENTACION</a></span> -&gt; <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6" title="Espera y valida la respuesta del usuario a través de los botones.">INPUTS</a></span> o <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d" title="Pausa de éxito tras replicar correctamente la secuencia actual.">NIVEL_COMPLETO</a></span> -&gt; <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae" title="Muestra la secuencia aleatoria de LEDs correspondiente al nivel actual.">PRESENTACION</a></span> una vez que se cumplen los tiempos preestablecidos. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tiempo_transcurrido</td><td>Estampa de tiempo actual del sistema en milisegundos (<span class="tt">millis()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00126">126</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00091">acumular_tiempo()</a>, <a class="el" href="_juego_8cpp_source.html#l00020">aux_tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00021">aux_tiempo_presentacion</a>, <a class="el" href="_juego_8cpp_source.html#l00047">calcular_tiempo_presentacion()</a>, <a class="el" href="_juego_8cpp_source.html#l00126">cambio_estado_tiempo()</a>, <a class="el" href="_juego_8cpp_source.html#l00015">contador_botones</a>, <a class="el" href="_juego_8cpp_source.html#l00030">DURACION_FALLO</a>, <a class="el" href="_juego_8cpp_source.html#l00029">DURACION_VICTORIA</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8h_source.html#l00023">FIN</a>, <a class="el" href="_juego_8cpp_source.html#l00035">generar_siguiente_elemento()</a>, <a class="el" href="_juego_8cpp_source.html#l00023">inicio_respuesta</a>, <a class="el" href="_juego_8h_source.html#l00020">INPUTS</a>, <a class="el" href="_juego_8cpp_source.html#l00013">nivel_actual</a>, <a class="el" href="_juego_8h_source.html#l00021">NIVEL_COMPLETO</a>, <a class="el" href="_juego_8h_source.html#l00022">NIVEL_FALLIDO</a>, <a class="el" href="_juego_8h_source.html#l00019">PRESENTACION</a>, <a class="el" href="_juego_8cpp_source.html#l00019">tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00026">tiempo_nivel_completo</a>, <a class="el" href="_juego_8cpp_source.html#l00027">tiempo_nivel_fallido</a>, <a class="el" href="_juego_8cpp_source.html#l00018">tiempo_presentacion_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00024">tiempo_respuesta_usuario</a> y <a class="el" href="_juego_8cpp_source.html#l00014">vidas</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_juego_8cpp_source.html#l00126">cambio_estado_tiempo()</a> y <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a>.</p>
+
+</div>
+</div>
+<a id="a0e779258125f6d2ac1930f60565f2bcb" name="a0e779258125f6d2ac1930f60565f2bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e779258125f6d2ac1930f60565f2bcb">&#9670;&#160;</a></span>iniciar_partida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void iniciar_partida </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_transcurrido</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arranca una nueva partida del juego a partir de una interacción del usuario. </p>
+<p>Prepara la primera secuencia, reinicia variables de juego y cambia el estado a <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae" title="Muestra la secuencia aleatoria de LEDs correspondiente al nivel actual.">PRESENTACION</a></span>. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tiempo_transcurrido</td><td>Estampa de tiempo actual del sistema en milisegundos (<span class="tt">millis()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00311">311</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00021">aux_tiempo_presentacion</a>, <a class="el" href="_juego_8cpp_source.html#l00047">calcular_tiempo_presentacion()</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00035">generar_siguiente_elemento()</a>, <a class="el" href="_juego_8cpp_source.html#l00311">iniciar_partida()</a>, <a class="el" href="_juego_8cpp_source.html#l00102">inicio_reset()</a> y <a class="el" href="_juego_8h_source.html#l00019">PRESENTACION</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_juego_8cpp_source.html#l00311">iniciar_partida()</a> y <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a>.</p>
+
+</div>
+</div>
+<a id="ada66d50d8a89d18dfe9707e9799ffcba" name="ada66d50d8a89d18dfe9707e9799ffcba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada66d50d8a89d18dfe9707e9799ffcba">&#9670;&#160;</a></span>inicio_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inicio_reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reinicia completamente el sistema del juego a su estado de reposo inicial. </p>
+<p>Restablece variables de juego como nivel, vidas, tiempos acumulados y posiciona la máquina de estados en <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354" title="Estado de reposo o espera a que se presione Start.">INICIO</a></span>. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00102">102</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00020">aux_tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00021">aux_tiempo_presentacion</a>, <a class="el" href="_juego_8cpp_source.html#l00015">contador_botones</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8h_source.html#l00018">INICIO</a>, <a class="el" href="_juego_8cpp_source.html#l00102">inicio_reset()</a>, <a class="el" href="_juego_8cpp_source.html#l00023">inicio_respuesta</a>, <a class="el" href="_juego_8cpp_source.html#l00013">nivel_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00016">tiempo_acumulado</a>, <a class="el" href="_juego_8cpp_source.html#l00019">tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00026">tiempo_nivel_completo</a>, <a class="el" href="_juego_8cpp_source.html#l00027">tiempo_nivel_fallido</a>, <a class="el" href="_juego_8cpp_source.html#l00018">tiempo_presentacion_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00024">tiempo_respuesta_usuario</a> y <a class="el" href="_juego_8cpp_source.html#l00014">vidas</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_juego_8cpp_source.html#l00311">iniciar_partida()</a>, <a class="el" href="_juego_8cpp_source.html#l00102">inicio_reset()</a>, <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_pulso_memoria_8ino_source.html#l00009">setup()</a>.</p>
+
+</div>
+</div>
+<a id="a15260acbf9d713eca35f58f035579d75" name="a15260acbf9d713eca35f58f035579d75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15260acbf9d713eca35f58f035579d75">&#9670;&#160;</a></span>obtener_led_actual_presentacion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obtener_led_actual_presentacion </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_transcurrido</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determina qué LED debe estar encendido durante la fase de presentación de la secuencia. </p>
+<p>Calcula cuál paso de la secuencia debe mostrarse según el tiempo transcurrido desde el inicio del nivel. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tiempo_transcurrido</td><td>Estampa de tiempo actual del sistema en milisegundos (<span class="tt">millis()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int Índice del LED a encender (0 a 3), o -1 si el tiempo corresponde a un espacio de apagado (pausa entre notas). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00358">358</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00021">aux_tiempo_presentacion</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00013">nivel_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00358">obtener_led_actual_presentacion()</a>, <a class="el" href="_juego_8h_source.html#l00019">PRESENTACION</a>, <a class="el" href="_juego_8cpp_source.html#l00012">secuencia_leds</a> y <a class="el" href="_juego_8cpp_source.html#l00018">tiempo_presentacion_actual</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00358">obtener_led_actual_presentacion()</a>.</p>
+
+</div>
+</div>
+<a id="ac54e6bc99137891416b42b3e4f52f4a8" name="ac54e6bc99137891416b42b3e4f52f4a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac54e6bc99137891416b42b3e4f52f4a8">&#9670;&#160;</a></span>obtener_nivel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obtener_nivel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene el nivel actual en el que se encuentra el jugador. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>int Número del nivel actual (por ejemplo, de 1 en adelante). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00346">346</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00013">nivel_actual</a> y <a class="el" href="_juego_8cpp_source.html#l00346">obtener_nivel()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00346">obtener_nivel()</a>.</p>
+
+</div>
+</div>
+<a id="aef9eaeca04949d05c2b3a60dd2506ed7" name="aef9eaeca04949d05c2b3a60dd2506ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef9eaeca04949d05c2b3a60dd2506ed7">&#9670;&#160;</a></span>obtener_porcentaje_tiempo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obtener_porcentaje_tiempo </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_transcurrido</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcula el porcentaje de tiempo restante del límite permitido para el turno actual. </p>
+<p>Se utiliza principalmente para ajustar la frecuencia de parpadeo del LED de pálpito. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tiempo_transcurrido</td><td>Estampa de tiempo actual del sistema en milisegundos (<span class="tt">millis()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int Porcentaje de tiempo restante (entre 0 y 100). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00326">326</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00020">aux_tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8h_source.html#l00020">INPUTS</a>, <a class="el" href="_juego_8cpp_source.html#l00326">obtener_porcentaje_tiempo()</a> y <a class="el" href="_juego_8cpp_source.html#l00019">tiempo_ingreso</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00326">obtener_porcentaje_tiempo()</a>.</p>
+
+</div>
+</div>
+<a id="a03c1a29b71a247db26aad261cf99f3f7" name="a03c1a29b71a247db26aad261cf99f3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03c1a29b71a247db26aad261cf99f3f7">&#9670;&#160;</a></span>obtener_tiempo_acumulado()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obtener_tiempo_acumulado </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene el tiempo total acumulado que le ha tomado al jugador responder durante el juego. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>int Tiempo acumulado expresado en segundos. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00354">354</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00354">obtener_tiempo_acumulado()</a> y <a class="el" href="_juego_8cpp_source.html#l00016">tiempo_acumulado</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00354">obtener_tiempo_acumulado()</a>.</p>
+
+</div>
+</div>
+<a id="a05187359b1b0e5de6acf322c1c25cf7a" name="a05187359b1b0e5de6acf322c1c25cf7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05187359b1b0e5de6acf322c1c25cf7a">&#9670;&#160;</a></span>obtener_vidas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obtener_vidas </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene la cantidad de vidas restantes del jugador. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>int Número de vidas actual. </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00350">350</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00350">obtener_vidas()</a> y <a class="el" href="_juego_8cpp_source.html#l00014">vidas</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00350">obtener_vidas()</a>.</p>
+
+</div>
+</div>
+<a id="aa6276150eb7502e5ad6ab62dff0d5fb8" name="aa6276150eb7502e5ad6ab62dff0d5fb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6276150eb7502e5ad6ab62dff0d5fb8">&#9670;&#160;</a></span>procesar_boton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40">ResultadoBoton</a> procesar_boton </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>boton_presionado</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_transcurrido</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (<span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6" title="Espera y valida la respuesta del usuario a través de los botones.">INPUTS</a></span>). </p>
+<p>Compara el índice del botón presionado con el elemento correspondiente de la secuencia aleatoria, gestiona aciertos, desaciertos y acumula el tiempo transcurrido en el intento. </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boton_presionado</td><td>Índice del botón que activó el jugador (0 a 3). </td></tr>
+    <tr><td class="paramname">tiempo_transcurrido</td><td>Estampa de tiempo actual del sistema en milisegundos (<span class="tt">millis()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd><a class="el" href="#a64af93f1628837c6ad3089008f83ac40" title="Define el resultado obtenido tras procesar una entrada de botón durante el juego.">ResultadoBoton</a> Indica el resultado de la pulsación (<span class="tt"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0" title="El botón fue correcto, pero faltan más pasos en la secuencia.">CORRECTO_CONTINUA</a></span>, <span class="tt"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec" title="El botón fue correcto y se completó exitosamente toda la secuencia del nivel.">CORRECTO_NIVEL_COMPLETO</a></span>, o <span class="tt"><a class="el" href="#a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7" title="El botón presionado no coincidía con el esperado en la secuencia.">INCORRECTO</a></span>). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00214">214</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00091">acumular_tiempo()</a>, <a class="el" href="_juego_8cpp_source.html#l00015">contador_botones</a>, <a class="el" href="_juego_8h_source.html#l00031">CORRECTO_CONTINUA</a>, <a class="el" href="_juego_8h_source.html#l00032">CORRECTO_NIVEL_COMPLETO</a>, <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a>, <a class="el" href="_juego_8cpp_source.html#l00010">estado_botones</a>, <a class="el" href="_juego_8h_source.html#l00023">FIN</a>, <a class="el" href="_juego_8h_source.html#l00033">INCORRECTO</a>, <a class="el" href="_juego_8cpp_source.html#l00023">inicio_respuesta</a>, <a class="el" href="_juego_8h_source.html#l00020">INPUTS</a>, <a class="el" href="_juego_8cpp_source.html#l00013">nivel_actual</a>, <a class="el" href="_juego_8h_source.html#l00021">NIVEL_COMPLETO</a>, <a class="el" href="_juego_8h_source.html#l00022">NIVEL_FALLIDO</a>, <a class="el" href="_juego_8cpp_source.html#l00214">procesar_boton()</a>, <a class="el" href="_juego_8cpp_source.html#l00012">secuencia_leds</a>, <a class="el" href="_juego_8cpp_source.html#l00019">tiempo_ingreso</a>, <a class="el" href="_juego_8cpp_source.html#l00026">tiempo_nivel_completo</a>, <a class="el" href="_juego_8cpp_source.html#l00027">tiempo_nivel_fallido</a>, <a class="el" href="_juego_8cpp_source.html#l00024">tiempo_respuesta_usuario</a> y <a class="el" href="_juego_8cpp_source.html#l00014">vidas</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00214">procesar_boton()</a>.</p>
+
+</div>
+</div>
+<a id="a792971472830783ecaf74257e3efccc3" name="a792971472830783ecaf74257e3efccc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792971472830783ecaf74257e3efccc3">&#9670;&#160;</a></span>verificacion_estado()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67">EstadoJuego</a> verificacion_estado </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene el estado actual en el que se encuentra la máquina de estados del juego. </p>
+<dl class="section return"><dt>Devuelve</dt><dd><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67" title="Define los estados posibles de la máquina de estados del juego.">EstadoJuego</a> El estado actual (<span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354" title="Estado de reposo o espera a que se presione Start.">INICIO</a></span>, <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae" title="Muestra la secuencia aleatoria de LEDs correspondiente al nivel actual.">PRESENTACION</a></span>, <span class="tt"><a class="el" href="#a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6" title="Espera y valida la respuesta del usuario a través de los botones.">INPUTS</a></span>, etc.). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_juego_8cpp_source.html#l00122">122</a> del archivo <a class="el" href="_juego_8cpp_source.html">Juego.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_juego_8cpp_source.html#l00009">estado_actual</a> y <a class="el" href="_juego_8cpp_source.html#l00122">verificacion_estado()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_pulso_memoria_8ino_source.html#l00015">loop()</a> y <a class="el" href="_juego_8cpp_source.html#l00122">verificacion_estado()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="_juego_8h.html">Juego.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

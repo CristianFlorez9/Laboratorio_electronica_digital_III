@@ -1,0 +1,247 @@
+\doxysection{Dispositivos.\+cpp}
+\hypertarget{_dispositivos_8cpp_source}{}\label{_dispositivos_8cpp_source}\doxymbox{\hyperlink{_dispositivos_8cpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_dispositivos_8h}{Dispositivos.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{decoder__display_8h}{decoder\_display.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}hardware/gpio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00010}00010\ \textcolor{comment}{//\ Pines\ de\ periféricos}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00011}\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{00011}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[4]\ =\ \{15,\ 14,\ 13,\ 12\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00012}\doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{00012}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{PINES\_BOTONES}}[4]\ =\ \{17,\ 18,\ 19,\ 20\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00013}\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{00013}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}}\ =\ 16;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00014}\doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{00014}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{PIN\_BOTON\_START}}\ =\ 26;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00016}00016\ \textcolor{comment}{//\ Display\ 7\ segmentos}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00017}\doxymbox{\hyperlink{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296}{00017}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296}{PINES\_SEGMENTOS}}[7]\ =\ \{27,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00018}\doxymbox{\hyperlink{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4}{00018}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4}{PINES\_ENABLES}}[4]\ \ \ =\ \{8,\ 9,\ 10,\ 11\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00020}00020\ \textcolor{comment}{//\ Configuración\ de\ antirrebote}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00021}\doxymbox{\hyperlink{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}{00021}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}{TIEMPO\_ANTIRREBOTE}}\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00023}00023\ \textcolor{comment}{//\ Variables\ para\ antirrebote\ de\ botones\ del\ juego}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00024}\doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{00024}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\_estable\_botones}}[4]\ \ \ \ \ \ =\ \{HIGH,\ HIGH,\ HIGH,\ HIGH\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00025}\doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{00025}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{lectura\_anterior\_botones}}[4]\ \ \ \ =\ \{HIGH,\ HIGH,\ HIGH,\ HIGH\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00026}\doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{00026}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{tiempo\_cambio\_botones}}[4]\ =\ \{0,\ 0,\ 0,\ 0\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00028}00028\ \textcolor{comment}{//\ Variables\ para\ antirrebote\ del\ botón\ START}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00029}\doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{00029}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\_estable\_start}}\ \ \ \ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00030}\doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{00030}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{lectura\_anterior\_start}}\ \ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00031}\doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{00031}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{tiempo\_cambio\_start}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00036}\doxymbox{\hyperlink{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477}{00036}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477}{inicializar\_dispositivos}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00037}00037\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00038}00038\ \ \ \ \ pinMode(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00039}00039\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00041}00041\ \ \ \ \ pinMode(\doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{PINES\_BOTONES}}[i],\ INPUT\_PULLUP);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00042}00042\ \ \ \ \ gpio\_set\_input\_hysteresis\_enabled(\doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{PINES\_BOTONES}}[i],\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00044}00044\ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\_estable\_botones}}[i]\ \ \ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00045}00045\ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{lectura\_anterior\_botones}}[i]\ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00046}00046\ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{tiempo\_cambio\_botones}}[i]\ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00047}00047\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00049}00049\ \ \ pinMode(\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}},\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00050}00050\ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00052}00052\ \ \ pinMode(\doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{PIN\_BOTON\_START}},\ INPUT\_PULLUP);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00053}00053\ \ \ gpio\_set\_input\_hysteresis\_enabled(\doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{PIN\_BOTON\_START}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00055}00055\ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\_estable\_start}}\ \ \ \ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00056}00056\ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{lectura\_anterior\_start}}\ \ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00057}00057\ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{tiempo\_cambio\_start}}\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00059}00059\ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058}{configurar\_display}}(\doxymbox{\hyperlink{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296}{PINES\_SEGMENTOS}},\ \doxymbox{\hyperlink{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4}{PINES\_ENABLES}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00066}\doxymbox{\hyperlink{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76}{00066}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76}{leer\_boton\_juego}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00067}00067\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00069}00069\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ lectura\_actual\ =\ digitalRead(\doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{PINES\_BOTONES}}[i]);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (lectura\_actual\ !=\ \doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{lectura\_anterior\_botones}}[i])\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00073}00073\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{tiempo\_cambio\_botones}}[i]\ \ \ \ =\ tiempo\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00074}00074\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{lectura\_anterior\_botones}}[i]\ =\ lectura\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (tiempo\_actual\ -\/\ \doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{tiempo\_cambio\_botones}}[i]\ >=\ \doxymbox{\hyperlink{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}{TIEMPO\_ANTIRREBOTE}})\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00078}00078\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\_estable\_botones}}[i]\ !=\ lectura\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\_estable\_botones}}[i]\ =\ lectura\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\_estable\_botones}}[i]\ ==\ LOW)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00084}00084\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00086}00086\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00088}00088\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00096}\doxymbox{\hyperlink{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198}{00096}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198}{leer\_boton\_start}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00097}00097\ \ \ \textcolor{keywordtype}{bool}\ lectura\_actual\ =\ digitalRead(\doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{PIN\_BOTON\_START}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00099}00099\ \ \ \textcolor{keywordflow}{if}\ (lectura\_actual\ !=\ \doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{lectura\_anterior\_start}})\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00100}00100\ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{tiempo\_cambio\_start}}\ =\ tiempo\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00101}00101\ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{lectura\_anterior\_start}}\ =\ lectura\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00102}00102\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00104}00104\ \ \ \textcolor{keywordflow}{if}\ (tiempo\_actual\ -\/\ \doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{tiempo\_cambio\_start}}\ >=\ \doxymbox{\hyperlink{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}{TIEMPO\_ANTIRREBOTE}})\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\_estable\_start}}\ !=\ lectura\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00106}00106\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\_estable\_start}}\ =\ lectura\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00108}00108\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00110}00110\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_presionado\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00111}00111\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ presionando\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00112}00112\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ evento\_2seg\_generado\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00114}00114\ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\_estable\_start}}\ ==\ LOW)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{if}\ (!presionando)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00117}00117\ \ \ \ \ \ \ presionando\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00118}00118\ \ \ \ \ \ \ evento\_2seg\_generado\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00119}00119\ \ \ \ \ \ \ tiempo\_presionado\ =\ tiempo\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00121}00121\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!evento\_2seg\_generado\ \&\&}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (tiempo\_actual\ -\/\ tiempo\_presionado\ >=\ 2000))\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00124}00124\ \ \ \ \ \ \ evento\_2seg\_generado\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00126}00126\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_presionado\_real\ =}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ tiempo\_actual\ -\/\ tiempo\_presionado;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00129}00129\ \ \ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00130}00130\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}START\ PRESIONADO"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00131}00131\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Tiempo\ medido:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00132}00132\ \ \ \ \ \ \ Serial.print(tiempo\_presionado\_real);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00133}00133\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ ms"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00135}00135\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Tiempo\ medido:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00136}00136\ \ \ \ \ \ \ Serial.print(tiempo\_presionado\_real\ /\ 1000.0,\ 3);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00137}00137\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ segundos"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00139}00139\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00142}00142\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (presionando)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00145}00145\ \ \ \ \ \ \ presionando\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00147}00147\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_presionado\_real\ =}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ tiempo\_actual\ -\/\ tiempo\_presionado;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00150}00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!evento\_2seg\_generado\ \&\&}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ tiempo\_presionado\_real\ <\ 2000)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ Serial.println();}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}START\ PRESIONADO"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Tiempo\ medido:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ Serial.print(tiempo\_presionado\_real);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ ms"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Tiempo\ medido:\ "{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ Serial.print(tiempo\_presionado\_real\ /\ 1000.0,\ 3);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ segundos"{}});}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00165}00165\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00166}00166\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00167}00167\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00169}00169\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00177}\doxymbox{\hyperlink{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc}{00177}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc}{encender\_led\_secuencia}}(\textcolor{keywordtype}{int}\ indice,\ \textcolor{keywordtype}{bool}\ estado)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00178}00178\ \ \ \textcolor{keywordflow}{if}\ (indice\ >=\ 0\ \&\&\ indice\ <\ 4)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00179}00179\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[indice],\ estado\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00180}00180\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00181}00181\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00186}\doxymbox{\hyperlink{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}{00186}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}{apagar\_todos\_leds}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00187}00187\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00188}00188\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00189}00189\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00190}00190\ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00191}00191\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00198}\doxymbox{\hyperlink{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a}{00198}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a}{actualizar\_palpito}}(\textcolor{keywordtype}{float}\ porcentaje\_tiempo,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00199}00199\ \ \ \textcolor{keywordflow}{if}\ (porcentaje\_tiempo\ <=\ 0.0f)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00200}00200\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}},\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00201}00201\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00202}00202\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00204}00204\ \ \ \textcolor{keywordflow}{if}\ (porcentaje\_tiempo\ >\ 1.0f)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00205}00205\ \ \ \ \ porcentaje\_tiempo\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00206}00206\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00208}00208\ \ \ \textcolor{keywordtype}{float}\ factor\ =\ (1.0f\ -\/\ porcentaje\_tiempo);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00209}00209\ \ \ \textcolor{keywordtype}{int}\ intervalo\ =\ 40\ +\ (int)(560.0f\ *\ (factor\ *\ factor));}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00211}00211\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ ultima\_conmutacion\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00212}00212\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ estado\_led\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00214}00214\ \ \ \textcolor{keywordflow}{if}\ (tiempo\_actual\ -\/\ ultima\_conmutacion\ >=\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})intervalo)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00215}00215\ \ \ \ \ ultima\_conmutacion\ =\ tiempo\_actual;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00216}00216\ \ \ \ \ estado\_led\ =\ !estado\_led;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00217}00217\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\_LED\_PALPITO}},\ estado\_led\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00218}00218\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00219}00219\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00228}\doxymbox{\hyperlink{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba}{00228}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba}{mostrar\_en\_displays}}(\textcolor{keywordtype}{int}\ nivel,\ \textcolor{keywordtype}{int}\ vidas,\ \textcolor{keywordtype}{int}\ tiempo,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00229}00229\ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc}{actualizar\_display}}(nivel,\ vidas,\ tiempo,\ tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00230}00230\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00236}\doxymbox{\hyperlink{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5}{00236}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5}{animacion\_entrada\_incorrecta}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00237}00237\ \ \ \textcolor{comment}{//\ 75\ ms\ encendido\ /\ 75\ ms\ apagado\ (150\ ms\ por\ ciclo).}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00238}00238\ \ \ \textcolor{comment}{//\ 6\ alternancias\ equivalen\ a\ 3\ parpadeos\ completos.}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00239}00239\ \ \ \textcolor{keywordtype}{int}\ ciclo\ =\ (tiempo\_actual\ /\ 75)\ \%\ 6;\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00240}00240\ \ \ \textcolor{keywordtype}{bool}\ estado\ =\ (ciclo\ \%\ 2\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00242}00242\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00243}00243\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ estado\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00244}00244\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00245}00245\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00251}\doxymbox{\hyperlink{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc}{00251}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc}{animacion\_secuencia\_correcta}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00252}00252\ \ \ (void)tiempo\_actual;\ \textcolor{comment}{//\ Se\ ignora\ para\ evitar\ advertencias\ de\ compilación}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00254}00254\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00255}00255\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ HIGH);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00256}00256\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00257}00257\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00263}\doxymbox{\hyperlink{_dispositivos_8cpp_af31204e5727deedf3f091a76fc5e2624}{00263}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_af31204e5727deedf3f091a76fc5e2624}{animacion\_tiempo\_agotado}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00264}00264\ \ \ \textcolor{keywordtype}{bool}\ estado\ =\ (tiempo\_actual\ /\ 100)\ \%\ 2\ ==\ 0;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00265}00265\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00266}00266\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ estado\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00267}00267\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00268}00268\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00274}\doxymbox{\hyperlink{_dispositivos_8cpp_ad16ed509677f5a4af5e7f087896a3172}{00274}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_ad16ed509677f5a4af5e7f087896a3172}{animacion\_perdida\_vida}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00275}00275\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00276}00276\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ HIGH);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00277}00277\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00278}00278\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00284}\doxymbox{\hyperlink{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}{00284}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}{animacion\_victoria\_nivel\_9}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00285}00285\ \ \ \textcolor{keywordtype}{int}\ secuencia[6]\ =\ \{0,\ 1,\ 2,\ 3,\ 2,\ 1\};}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00286}00286\ \ \ \textcolor{keywordtype}{int}\ paso\ =\ (tiempo\_actual\ /\ 100)\ \%\ 6;}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00287}00287\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00288}00288\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ (i\ ==\ secuencia[paso])\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00289}00289\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00290}00290\ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00296}\doxymbox{\hyperlink{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6}{00296}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6}{animacion\_game\_over}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00297}00297\ \ \ \textcolor{keywordtype}{int}\ leds\_activos\ =\ 4\ -\/\ ((tiempo\_actual\ /\ 200)\ \%\ 5);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00298}00298\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00299}00299\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\_LEDS}}[i],\ (i\ <\ leds\_activos)\ ?\ HIGH\ :\ LOW);}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00300}00300\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dispositivos_8cpp_source_l00301}00301\ \}}
+
+\end{DoxyCode}

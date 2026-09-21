@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pulso Memoria: Referencia del archivo decoder_display.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pulso Memoria
+   </div>
+   <div id="projectbrief">Juego de memoria con secuencia luminosa - Arduino en Raspberry Pi Pico 1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('decoder__display_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo decoder_display.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementación del controlador y multiplexado para displays de 7 segmentos.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="decoder__display_8h_source.html">decoder_display.h</a>&quot;</code><br />
+</div>
+<p><a href="decoder__display_8cpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a360164f2f817044c2f0ada0e62b684ee" id="r_a360164f2f817044c2f0ada0e62b684ee"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a360164f2f817044c2f0ada0e62b684ee">apagar_todo_seguro</a> ()</td></tr>
+<tr class="memdesc:a360164f2f817044c2f0ada0e62b684ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desactiva todos los habilitadores y apaga todos los segmentos de forma segura.  <br /></td></tr>
+<tr class="memitem:a120f8c6773356e882ef47643d1801a25" id="r_a120f8c6773356e882ef47643d1801a25"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a120f8c6773356e882ef47643d1801a25">mostrar_numero</a> (int num)</td></tr>
+<tr class="memdesc:a120f8c6773356e882ef47643d1801a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe la combinación de pines correspondiente a un dígito (0-9) en los segmentos.  <br /></td></tr>
+<tr class="memitem:afaad37a581220b87acda27534bdf0058" id="r_afaad37a581220b87acda27534bdf0058"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afaad37a581220b87acda27534bdf0058">configurar_display</a> (const int pines_segmento[7], const int pines_digitos[4])</td></tr>
+<tr class="memdesc:afaad37a581220b87acda27534bdf0058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores.  <br /></td></tr>
+<tr class="memitem:abc351e7cd6cf5b98c2da7b62b75bdabc" id="r_abc351e7cd6cf5b98c2da7b62b75bdabc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abc351e7cd6cf5b98c2da7b62b75bdabc">actualizar_display</a> (int nivel, int vidas, int tiempo, unsigned long tiempo_actual)</td></tr>
+<tr class="memdesc:abc351e7cd6cf5b98c2da7b62b75bdabc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac9059a14df0485d3ac979fb22edcf453" id="r_ac9059a14df0485d3ac979fb22edcf453"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="#ac9059a14df0485d3ac979fb22edcf453">pines_seg</a> [7]</td></tr>
+<tr class="memitem:abdd13d58467d584c1efcee9a55a200b0" id="r_abdd13d58467d584c1efcee9a55a200b0"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="#abdd13d58467d584c1efcee9a55a200b0">pines_en</a> [4]</td></tr>
+<tr class="memitem:a9356907aa842cc1732b8ae4a87bb48f7" id="r_a9356907aa842cc1732b8ae4a87bb48f7"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="#a9356907aa842cc1732b8ae4a87bb48f7">digito_activo</a> = 0</td></tr>
+<tr class="memitem:af597b447e38daf8673adf73e0a36cb01" id="r_af597b447e38daf8673adf73e0a36cb01"><td class="memItemLeft">static unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#af597b447e38daf8673adf73e0a36cb01">aux_tiempo_display</a> = 0</td></tr>
+<tr class="memitem:a1c803fe3e378104525d2ed9b9d2367a4" id="r_a1c803fe3e378104525d2ed9b9d2367a4"><td class="memItemLeft">static const bool&#160;</td><td class="memItemRight"><a class="el" href="#a1c803fe3e378104525d2ed9b9d2367a4">numeros</a> [10][7]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación del controlador y multiplexado para displays de 7 segmentos. </p>
+
+<p class="definition">Definición en el archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="abc351e7cd6cf5b98c2da7b62b75bdabc" name="abc351e7cd6cf5b98c2da7b62b75bdabc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc351e7cd6cf5b98c2da7b62b75bdabc">&#9670;&#160;</a></span>actualizar_display()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void actualizar_display </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nivel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vidas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>tiempo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>tiempo_actual</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo. </p>
+<p>Realiza el multiplexado de los displays para actualizar nivel, vidas y tiempo.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nivel</td><td>Valor del nivel actual a mostrar en el dígito correspondiente. </td></tr>
+    <tr><td class="paramname">vidas</td><td>Cantidad de vidas restantes a mostrar en el dígito correspondiente. </td></tr>
+    <tr><td class="paramname">tiempo</td><td>Valor de tiempo (0-99) a multiplexar en las unidades y decenas. </td></tr>
+    <tr><td class="paramname">tiempo_actual</td><td>Estampa de tiempo actual del sistema en milisegundos (millis()).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Refresca periódicamente por multiplexado los dígitos que muestran nivel, vidas y tiempo.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nivel</td><td>Valor del nivel actual (0-9). </td></tr>
+    <tr><td class="paramname">vidas</td><td>Cantidad de vidas restantes (0-9). </td></tr>
+    <tr><td class="paramname">tiempo</td><td>Valor del tiempo acumulado (0-99). </td></tr>
+    <tr><td class="paramname">tiempo_actual</td><td>Estampa de tiempo actual del sistema en milisegundos (millis()). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00065">65</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00012">aux_tiempo_display</a>, <a class="el" href="decoder__display_8cpp_source.html#l00011">digito_activo</a>, <a class="el" href="decoder__display_8cpp_source.html#l00115">mostrar_numero()</a> y <a class="el" href="decoder__display_8cpp_source.html#l00010">pines_en</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a> y <a class="el" href="_dispositivos_8cpp_source.html#l00228">mostrar_en_displays()</a>.</p>
+
+</div>
+</div>
+<a id="a360164f2f817044c2f0ada0e62b684ee" name="a360164f2f817044c2f0ada0e62b684ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a360164f2f817044c2f0ada0e62b684ee">&#9670;&#160;</a></span>apagar_todo_seguro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void apagar_todo_seguro </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Desactiva todos los habilitadores y apaga todos los segmentos de forma segura. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00101">101</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00010">pines_en</a> y <a class="el" href="decoder__display_8cpp_source.html#l00009">pines_seg</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a> y <a class="el" href="decoder__display_8cpp_source.html#l00044">configurar_display()</a>.</p>
+
+</div>
+</div>
+<a id="afaad37a581220b87acda27534bdf0058" name="afaad37a581220b87acda27534bdf0058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaad37a581220b87acda27534bdf0058">&#9670;&#160;</a></span>configurar_display()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void configurar_display </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>pines_segmento</em></span>[7], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>pines_digitos</em></span>[4]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores. </p>
+<p>Inicializa los pines GPIO asignados a los segmentos y dígitos del display.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pines_segmento</td><td>Arreglo de 7 enteros con los pines asignados a los segmentos (a-g). </td></tr>
+    <tr><td class="paramname">pines_digitos</td><td>Arreglo de 4 enteros con los pines asignados a los enables/cátodos de los dígitos.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Inicializa y configura los pines GPIO asignados a los segmentos y habilitadores.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pines_segmento</td><td>Arreglo de 7 pines para los segmentos (a-g). </td></tr>
+    <tr><td class="paramname">pines_digitos</td><td>Arreglo de 4 pines para los habilitadores de cada dígito. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00044">44</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00044">configurar_display()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00010">pines_en</a> y <a class="el" href="decoder__display_8cpp_source.html#l00009">pines_seg</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00044">configurar_display()</a> y <a class="el" href="_dispositivos_8cpp_source.html#l00036">inicializar_dispositivos()</a>.</p>
+
+</div>
+</div>
+<a id="a120f8c6773356e882ef47643d1801a25" name="a120f8c6773356e882ef47643d1801a25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a120f8c6773356e882ef47643d1801a25">&#9670;&#160;</a></span>mostrar_numero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostrar_numero </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Escribe la combinación de pines correspondiente a un dígito (0-9) en los segmentos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Valor numérico a representar.</td></tr>
+    <tr><td class="paramname">num</td><td>Valor numérico a representar (será restringido entre 0 y 9). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00115">115</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="decoder__display_8cpp_source.html#l00115">mostrar_numero()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00015">numeros</a> y <a class="el" href="decoder__display_8cpp_source.html#l00009">pines_seg</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a> y <a class="el" href="decoder__display_8cpp_source.html#l00115">mostrar_numero()</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="af597b447e38daf8673adf73e0a36cb01" name="af597b447e38daf8673adf73e0a36cb01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af597b447e38daf8673adf73e0a36cb01">&#9670;&#160;</a></span>aux_tiempo_display</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long aux_tiempo_display = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00012">12</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a>.</p>
+
+</div>
+</div>
+<a id="a9356907aa842cc1732b8ae4a87bb48f7" name="a9356907aa842cc1732b8ae4a87bb48f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9356907aa842cc1732b8ae4a87bb48f7">&#9670;&#160;</a></span>digito_activo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int digito_activo = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00011">11</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a>.</p>
+
+</div>
+</div>
+<a id="a1c803fe3e378104525d2ed9b9d2367a4" name="a1c803fe3e378104525d2ed9b9d2367a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c803fe3e378104525d2ed9b9d2367a4">&#9670;&#160;</a></span>numeros</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool numeros[10][7]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">                          = {</div>
+<div class="line">  {0, 0, 0, 0, 0, 0, 1}, </div>
+<div class="line">  {1, 0, 0, 1, 1, 1, 1}, </div>
+<div class="line">  {0, 0, 1, 0, 0, 1, 0}, </div>
+<div class="line">  {0, 0, 0, 0, 1, 1, 0}, </div>
+<div class="line">  {1, 0, 0, 1, 1, 0, 0}, </div>
+<div class="line">  {0, 1, 0, 0, 1, 0, 0}, </div>
+<div class="line">  {0, 1, 0, 0, 0, 0, 0}, </div>
+<div class="line">  {0, 0, 0, 1, 1, 1, 1}, </div>
+<div class="line">  {0, 0, 0, 0, 0, 0, 0}, </div>
+<div class="line">  {0, 0, 0, 0, 1, 0, 0}  </div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00015">15</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00115">mostrar_numero()</a>.</p>
+
+</div>
+</div>
+<a id="abdd13d58467d584c1efcee9a55a200b0" name="abdd13d58467d584c1efcee9a55a200b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd13d58467d584c1efcee9a55a200b0">&#9670;&#160;</a></span>pines_en</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pines_en[4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00010">10</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00065">actualizar_display()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a> y <a class="el" href="decoder__display_8cpp_source.html#l00044">configurar_display()</a>.</p>
+
+</div>
+</div>
+<a id="ac9059a14df0485d3ac979fb22edcf453" name="ac9059a14df0485d3ac979fb22edcf453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9059a14df0485d3ac979fb22edcf453">&#9670;&#160;</a></span>pines_seg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pines_seg[7]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="decoder__display_8cpp_source.html#l00009">9</a> del archivo <a class="el" href="decoder__display_8cpp_source.html">decoder_display.cpp</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="decoder__display_8cpp_source.html#l00101">apagar_todo_seguro()</a>, <a class="el" href="decoder__display_8cpp_source.html#l00044">configurar_display()</a> y <a class="el" href="decoder__display_8cpp_source.html#l00115">mostrar_numero()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="decoder__display_8cpp.html">decoder_display.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

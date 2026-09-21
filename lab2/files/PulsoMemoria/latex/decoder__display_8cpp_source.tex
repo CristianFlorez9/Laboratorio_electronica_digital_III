@@ -1,0 +1,97 @@
+\doxysection{decoder\+\_\+display.\+cpp}
+\hypertarget{decoder__display_8cpp_source}{}\label{decoder__display_8cpp_source}\doxymbox{\hyperlink{decoder__display_8cpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{decoder__display_8h}{decoder\_display.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00008}00008\ \textcolor{comment}{//\ Variables\ del\ display}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00009}\doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{00009}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\_seg}}[7];}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00010}\doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{00010}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\_en}}[4];}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00011}\doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{00011}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\_activo}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00012}\doxymbox{\hyperlink{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}{00012}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}{aux\_tiempo\_display}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00014}00014\ \textcolor{comment}{//\ Tabla\ de\ números\ para\ cátodo/ánodo\ común\ (matriz\ de\ segmentos\ a-\/g)}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00015}\doxymbox{\hyperlink{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4}{00015}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4}{numeros}}[10][7]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00016}00016\ \ \ \{0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 1\},\ \textcolor{comment}{//\ 0}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00017}00017\ \ \ \{1,\ 0,\ 0,\ 1,\ 1,\ 1,\ 1\},\ \textcolor{comment}{//\ 1}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00018}00018\ \ \ \{0,\ 0,\ 1,\ 0,\ 0,\ 1,\ 0\},\ \textcolor{comment}{//\ 2}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00019}00019\ \ \ \{0,\ 0,\ 0,\ 0,\ 1,\ 1,\ 0\},\ \textcolor{comment}{//\ 3}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00020}00020\ \ \ \{1,\ 0,\ 0,\ 1,\ 1,\ 0,\ 0\},\ \textcolor{comment}{//\ 4}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00021}00021\ \ \ \{0,\ 1,\ 0,\ 0,\ 1,\ 0,\ 0\},\ \textcolor{comment}{//\ 5}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00022}00022\ \ \ \{0,\ 1,\ 0,\ 0,\ 0,\ 0,\ 0\},\ \textcolor{comment}{//\ 6}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00023}00023\ \ \ \{0,\ 0,\ 0,\ 1,\ 1,\ 1,\ 1\},\ \textcolor{comment}{//\ 7}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00024}00024\ \ \ \{0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0\},\ \textcolor{comment}{//\ 8}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00025}00025\ \ \ \{0,\ 0,\ 0,\ 0,\ 1,\ 0,\ 0\}\ \ \textcolor{comment}{//\ 9}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00026}00026\ \};}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00031}00031\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{apagar\_todo\_seguro}}();}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00037}00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}{mostrar\_numero}}(\textcolor{keywordtype}{int}\ num);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00044}\doxymbox{\hyperlink{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058}{00044}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_afaad37a581220b87acda27534bdf0058}{configurar\_display}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pines\_segmento[7],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pines\_digitos[4])\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00045}00045\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00046}00046\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\_seg}}[i]\ =\ pines\_segmento[i];}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00047}00047\ \ \ \ \ pinMode(\doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\_seg}}[i],\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00048}00048\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00050}00050\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00051}00051\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\_en}}[i]\ =\ pines\_digitos[i];}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00052}00052\ \ \ \ \ pinMode(\doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\_en}}[i],\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00053}00053\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00055}00055\ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{apagar\_todo\_seguro}}();}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00065}\doxymbox{\hyperlink{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc}{00065}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_abc351e7cd6cf5b98c2da7b62b75bdabc}{actualizar\_display}}(\textcolor{keywordtype}{int}\ nivel,\ \textcolor{keywordtype}{int}\ vidas,\ \textcolor{keywordtype}{int}\ tiempo,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00066}00066\ \ \ \textcolor{keywordflow}{if}\ (tiempo\_actual\ -\/\ \doxymbox{\hyperlink{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}{aux\_tiempo\_display}}\ >=\ 3)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00067}00067\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_af597b447e38daf8673adf73e0a36cb01}{aux\_tiempo\_display}}\ =\ tiempo\_actual;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00069}00069\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{apagar\_todo\_seguro}}();}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{int}\ numero\_a\_mostrar\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\_activo}})\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00074}00074\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ numero\_a\_mostrar\ =\ tiempo\ \%\ 10;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00078}00078\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ numero\_a\_mostrar\ =\ tiempo\ /\ 10;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00082}00082\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ numero\_a\_mostrar\ =\ vidas;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00086}00086\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ numero\_a\_mostrar\ =\ nivel;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00091}00091\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}{mostrar\_numero}}(numero\_a\_mostrar);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00092}00092\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\_en}}[\doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\_activo}}],\ LOW);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00094}00094\ \ \ \ \ \doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\_activo}}\ =\ (\doxymbox{\hyperlink{decoder__display_8cpp_a9356907aa842cc1732b8ae4a87bb48f7}{digito\_activo}}\ +\ 1)\ \%\ 4;}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00095}00095\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00101}\doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{00101}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_a360164f2f817044c2f0ada0e62b684ee}{apagar\_todo\_seguro}}()\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00102}00102\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00103}00103\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{decoder__display_8cpp_abdd13d58467d584c1efcee9a55a200b0}{pines\_en}}[i],\ HIGH);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00104}00104\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00106}00106\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00107}00107\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\_seg}}[i],\ HIGH);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00108}00108\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00115}\doxymbox{\hyperlink{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}{00115}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{decoder__display_8cpp_a120f8c6773356e882ef47643d1801a25}{mostrar\_numero}}(\textcolor{keywordtype}{int}\ num)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00116}00116\ \ \ num\ =\ constrain(num,\ 0,\ 9);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00118}00118\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00119}00119\ \ \ \ \ digitalWrite(\doxymbox{\hyperlink{decoder__display_8cpp_ac9059a14df0485d3ac979fb22edcf453}{pines\_seg}}[i],\ \doxymbox{\hyperlink{decoder__display_8cpp_a1c803fe3e378104525d2ed9b9d2367a4}{numeros}}[num][i]);}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00120}00120\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{decoder__display_8cpp_source_l00121}00121\ \}}
+
+\end{DoxyCode}

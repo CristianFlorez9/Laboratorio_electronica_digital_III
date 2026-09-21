@@ -1,0 +1,735 @@
+\doxysection{Referencia del archivo Dispositivos.\+cpp}
+\hypertarget{_dispositivos_8cpp}{}\label{_dispositivos_8cpp}\index{Dispositivos.cpp@{Dispositivos.cpp}}
+
+
+Implementación del control de hardware, periféricos y animaciones visuales de la ASM.  
+
+
+{\ttfamily \+\#include "{}Dispositivos.\+h"{}}\newline
+{\ttfamily \+\#include "{}decoder\+\_\+display.\+h"{}}\newline
+{\ttfamily \+\#include "{}hardware/\+gpio.\+h"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477}{inicializar\+\_\+dispositivos}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa los pines GPIO y su estado por defecto. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76}{leer\+\_\+boton\+\_\+juego}} ()
+\begin{DoxyCompactList}\small\item\em Realiza la lectura antirrebote de los 4 botones de juego. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198}{leer\+\_\+boton\+\_\+start}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Evalúa la pulsación del botón START discriminando entre pulso corto y largo. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc}{encender\+\_\+led\+\_\+secuencia}} (int indice, bool estado)
+\begin{DoxyCompactList}\small\item\em Enciende o apaga un LED individual de la secuencia. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}{apagar\+\_\+todos\+\_\+leds}} ()
+\begin{DoxyCompactList}\small\item\em Apaga todos los LEDs principales y el indicador de pálpito. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a}{actualizar\+\_\+palpito}} (float porcentaje\+\_\+tiempo, unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Modula el parpadeo del LED de pálpito con aceleración cuadrática según el tiempo consumido. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba}{mostrar\+\_\+en\+\_\+displays}} (int nivel, int vidas, int tiempo, unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Llama a la rutina de multiplexado de los displays de 7 segmentos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5}{animacion\+\_\+entrada\+\_\+incorrecta}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Ejecuta un parpadeo síncrono de todos los LEDs 3 veces (Mala pulsación). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc}{animacion\+\_\+secuencia\+\_\+correcta}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Enciende todos los LEDs de forma continua (Nivel completado). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_af31204e5727deedf3f091a76fc5e2624}{animacion\+\_\+tiempo\+\_\+agotado}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Ejecuta un destello síncrono general en los 4 LEDs (Agotamiento del Tiempo). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_ad16ed509677f5a4af5e7f087896a3172}{animacion\+\_\+perdida\+\_\+vida}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Mantiene encendidos todos los LEDs de forma fija (Pérdida de Vida). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}{animacion\+\_\+victoria\+\_\+nivel\+\_\+9}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Ejecuta una marquesina vaivén en los LEDs al ganar el juego (Nivel 9 Completado). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6}{animacion\+\_\+game\+\_\+over}} (unsigned long tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Ejecuta el apagado descendente de LEDs al agotar todas las vidas (Game Over). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}{PINES\+\_\+\+LEDS}} \+[4] = \{15, 14, 13, 12\}
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}{PINES\+\_\+\+BOTONES}} \+[4] = \{17, 18, 19, 20\}
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}{PIN\+\_\+\+LED\+\_\+\+PALPITO}} = 16
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}{PIN\+\_\+\+BOTON\+\_\+\+START}} = 26
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296}{PINES\+\_\+\+SEGMENTOS}} \+[7] = \{27, 2, 3, 4, 5, 6, 7\}
+\item 
+static const int \doxymbox{\hyperlink{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4}{PINES\+\_\+\+ENABLES}} \+[4] = \{8, 9, 10, 11\}
+\item 
+static const unsigned long \doxymbox{\hyperlink{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}{TIEMPO\+\_\+\+ANTIRREBOTE}} = 50
+\item 
+static bool \doxymbox{\hyperlink{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}{estado\+\_\+estable\+\_\+botones}} \+[4] = \{HIGH, HIGH, HIGH, HIGH\}
+\item 
+static bool \doxymbox{\hyperlink{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}{lectura\+\_\+anterior\+\_\+botones}} \+[4] = \{HIGH, HIGH, HIGH, HIGH\}
+\item 
+static unsigned long \doxymbox{\hyperlink{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}{tiempo\+\_\+cambio\+\_\+botones}} \+[4] = \{0, 0, 0, 0\}
+\item 
+static bool \doxymbox{\hyperlink{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}{estado\+\_\+estable\+\_\+start}} = HIGH
+\item 
+static bool \doxymbox{\hyperlink{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}{lectura\+\_\+anterior\+\_\+start}} = HIGH
+\item 
+static unsigned long \doxymbox{\hyperlink{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}{tiempo\+\_\+cambio\+\_\+start}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación del control de hardware, periféricos y animaciones visuales de la ASM. 
+
+
+
+Definición en el archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+\label{_dispositivos_8cpp_doc-func-members}
+\Hypertarget{_dispositivos_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a}\index{Dispositivos.cpp@{Dispositivos.cpp}!actualizar\_palpito@{actualizar\_palpito}}
+\index{actualizar\_palpito@{actualizar\_palpito}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{actualizar\_palpito()}{actualizar\_palpito()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a} 
+void actualizar\+\_\+palpito (\begin{DoxyParamCaption}\item[{float}]{porcentaje\+\_\+tiempo}{, }\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Modula el parpadeo del LED de pálpito con aceleración cuadrática según el tiempo consumido. 
+
+Controla el parpadeo del LED de pálpito con aceleración cuadrática.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em porcentaje\+\_\+tiempo} & Valor en rango 0.\+0 (inicio) a 1.\+0 (tiempo agotado). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Modula el parpadeo del LED de pálpito con aceleración cuadrática según el tiempo consumido.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em porcentaje\+\_\+tiempo} & Valor flotante entre 0.\+0 (inicio) y 1.\+0 (tiempo agotado). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00198}{198}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00198}{actualizar\+\_\+palpito()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00013}{PIN\+\_\+\+LED\+\_\+\+PALPITO}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00198}{actualizar\+\_\+palpito()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_entrada\_incorrecta@{animacion\_entrada\_incorrecta}}
+\index{animacion\_entrada\_incorrecta@{animacion\_entrada\_incorrecta}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_entrada\_incorrecta()}{animacion\_entrada\_incorrecta()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5} 
+void animacion\+\_\+entrada\+\_\+incorrecta (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta un parpadeo síncrono de todos los LEDs 3 veces (Mala pulsación). 
+
+Executa la animación de parpadeo alternado cuando se presiona un botón incorrecto.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Ejecuta un parpadeo síncrono de todos los LEDs 3 veces (Mala pulsación).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00236}{236}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00236}{animacion\+\_\+entrada\+\_\+incorrecta()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00236}{animacion\+\_\+entrada\+\_\+incorrecta()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_game\_over@{animacion\_game\_over}}
+\index{animacion\_game\_over@{animacion\_game\_over}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_game\_over()}{animacion\_game\_over()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6} 
+void animacion\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta el apagado descendente de LEDs al agotar todas las vidas (Game Over). 
+
+Executa la animación de apagado progresivo al perder todas las vidas (Game Over).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Ejecuta el apagado descendente de LEDs al agotar todas las vidas (Game Over).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00296}{296}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00296}{animacion\+\_\+game\+\_\+over()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00296}{animacion\+\_\+game\+\_\+over()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_ad16ed509677f5a4af5e7f087896a3172}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_perdida\_vida@{animacion\_perdida\_vida}}
+\index{animacion\_perdida\_vida@{animacion\_perdida\_vida}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_perdida\_vida()}{animacion\_perdida\_vida()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_ad16ed509677f5a4af5e7f087896a3172} 
+void animacion\+\_\+perdida\+\_\+vida (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Mantiene encendidos todos los LEDs de forma fija (Pérdida de Vida). 
+
+Enciende todos los LEDs de forma fija para indicar la pérdida de una vida.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Mantiene encendidos todos los LEDs de forma fija (Pérdida de Vida).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00274}{274}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00274}{animacion\+\_\+perdida\+\_\+vida()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00274}{animacion\+\_\+perdida\+\_\+vida()}}.
+
+\Hypertarget{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_secuencia\_correcta@{animacion\_secuencia\_correcta}}
+\index{animacion\_secuencia\_correcta@{animacion\_secuencia\_correcta}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_secuencia\_correcta()}{animacion\_secuencia\_correcta()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc} 
+void animacion\+\_\+secuencia\+\_\+correcta (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Enciende todos los LEDs de forma continua (Nivel completado). 
+
+Executa la animación de barrido cuando el jugador acierta toda la secuencia.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Enciende todos los LEDs de forma continua (Nivel completado).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00251}{251}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00251}{animacion\+\_\+secuencia\+\_\+correcta()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00251}{animacion\+\_\+secuencia\+\_\+correcta()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_af31204e5727deedf3f091a76fc5e2624}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_tiempo\_agotado@{animacion\_tiempo\_agotado}}
+\index{animacion\_tiempo\_agotado@{animacion\_tiempo\_agotado}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_tiempo\_agotado()}{animacion\_tiempo\_agotado()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_af31204e5727deedf3f091a76fc5e2624} 
+void animacion\+\_\+tiempo\+\_\+agotado (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta un destello síncrono general en los 4 LEDs (Agotamiento del Tiempo). 
+
+Executa la animación de destello simultáneo cuando el tiempo expira.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Ejecuta un destello síncrono general en los 4 LEDs (Agotamiento del Tiempo).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00263}{263}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00263}{animacion\+\_\+tiempo\+\_\+agotado()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00263}{animacion\+\_\+tiempo\+\_\+agotado()}}.
+
+\Hypertarget{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}\index{Dispositivos.cpp@{Dispositivos.cpp}!animacion\_victoria\_nivel\_9@{animacion\_victoria\_nivel\_9}}
+\index{animacion\_victoria\_nivel\_9@{animacion\_victoria\_nivel\_9}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{animacion\_victoria\_nivel\_9()}{animacion\_victoria\_nivel\_9()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282} 
+void animacion\+\_\+victoria\+\_\+nivel\+\_\+9 (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta una marquesina vaivén en los LEDs al ganar el juego (Nivel 9 Completado). 
+
+Executa la animación de marquesina al completar el Nivel 9 (Victoria final).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Ejecuta una marquesina vaivén en los LEDs al ganar el juego (Nivel 9 Completado).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00284}{284}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00284}{animacion\+\_\+victoria\+\_\+nivel\+\_\+9()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00284}{animacion\+\_\+victoria\+\_\+nivel\+\_\+9()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}\index{Dispositivos.cpp@{Dispositivos.cpp}!apagar\_todos\_leds@{apagar\_todos\_leds}}
+\index{apagar\_todos\_leds@{apagar\_todos\_leds}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{apagar\_todos\_leds()}{apagar\_todos\_leds()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188} 
+void apagar\+\_\+todos\+\_\+leds (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Apaga todos los LEDs principales y el indicador de pálpito. 
+
+Apaga todos los LEDs del juego y el LED de pálpito.
+
+Apaga todos los LEDs principales y el indicador de pálpito. 
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00186}{186}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00186}{apagar\+\_\+todos\+\_\+leds()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00013}{PIN\+\_\+\+LED\+\_\+\+PALPITO}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00186}{apagar\+\_\+todos\+\_\+leds()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc}\index{Dispositivos.cpp@{Dispositivos.cpp}!encender\_led\_secuencia@{encender\_led\_secuencia}}
+\index{encender\_led\_secuencia@{encender\_led\_secuencia}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{encender\_led\_secuencia()}{encender\_led\_secuencia()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc} 
+void encender\+\_\+led\+\_\+secuencia (\begin{DoxyParamCaption}\item[{int}]{indice}{, }\item[{bool}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Enciende o apaga un LED individual de la secuencia. 
+
+Modifica el estado de un LED específico dentro de la secuencia.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em indice} & Número de LED (0-\/3). \\
+\hline
+{\em estado} & Estado lógico a escribir ({\ttfamily true} = HIGH, {\ttfamily false} = LOW).\\
+\hline
+\end{DoxyParams}
+Enciende o apaga un LED individual de la secuencia.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em indice} & Identificador del LED (0 a 3). \\
+\hline
+{\em estado} & {\ttfamily true} para encender, {\ttfamily false} para apagar. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00177}{177}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00177}{encender\+\_\+led\+\_\+secuencia()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00177}{encender\+\_\+led\+\_\+secuencia()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477}\index{Dispositivos.cpp@{Dispositivos.cpp}!inicializar\_dispositivos@{inicializar\_dispositivos}}
+\index{inicializar\_dispositivos@{inicializar\_dispositivos}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{inicializar\_dispositivos()}{inicializar\_dispositivos()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477} 
+void inicializar\+\_\+dispositivos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa los pines GPIO y su estado por defecto. 
+
+Configura los pines de entrada y salida, e inicializa el hardware.
+
+Inicializa los pines GPIO y su estado por defecto. 
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{36}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00044}{configurar\+\_\+display()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00024}{estado\+\_\+estable\+\_\+botones}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00029}{estado\+\_\+estable\+\_\+start}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00025}{lectura\+\_\+anterior\+\_\+botones}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00030}{lectura\+\_\+anterior\+\_\+start}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00014}{PIN\+\_\+\+BOTON\+\_\+\+START}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00013}{PIN\+\_\+\+LED\+\_\+\+PALPITO}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00012}{PINES\+\_\+\+BOTONES}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00018}{PINES\+\_\+\+ENABLES}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{PINES\+\_\+\+LEDS}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00017}{PINES\+\_\+\+SEGMENTOS}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00026}{tiempo\+\_\+cambio\+\_\+botones}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00031}{tiempo\+\_\+cambio\+\_\+start}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00009}{setup()}}.
+
+\Hypertarget{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76}\index{Dispositivos.cpp@{Dispositivos.cpp}!leer\_boton\_juego@{leer\_boton\_juego}}
+\index{leer\_boton\_juego@{leer\_boton\_juego}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{leer\_boton\_juego()}{leer\_boton\_juego()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76} 
+int leer\+\_\+boton\+\_\+juego (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Realiza la lectura antirrebote de los 4 botones de juego. 
+
+Lee el estado de los botones de la secuencia de juego.
+
+\begin{DoxyReturn}{Devuelve}
+Índice del botón presionado (0-\/3) o -\/1 si no hay pulso válido.
+\end{DoxyReturn}
+Realiza la lectura antirrebote de los 4 botones de juego.
+
+\begin{DoxyReturn}{Devuelve}
+Índice del botón presionado (0 a 3) o -\/1 si ninguno está presionado. 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{66}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00024}{estado\+\_\+estable\+\_\+botones}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00025}{lectura\+\_\+anterior\+\_\+botones}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00012}{PINES\+\_\+\+BOTONES}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00021}{TIEMPO\+\_\+\+ANTIRREBOTE}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00026}{tiempo\+\_\+cambio\+\_\+botones}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198}\index{Dispositivos.cpp@{Dispositivos.cpp}!leer\_boton\_start@{leer\_boton\_start}}
+\index{leer\_boton\_start@{leer\_boton\_start}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{leer\_boton\_start()}{leer\_boton\_start()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198} 
+int leer\+\_\+boton\+\_\+start (\begin{DoxyParamCaption}\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Evalúa la pulsación del botón START discriminando entre pulso corto y largo. 
+
+Evalúa la lectura del botón START gestionando el tiempo de pulsación.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Evento registrado (0 = Ninguno, 1 = Corto, 2 = Sostenido \texorpdfstring{$>$}{>}= 2s).
+\end{DoxyReturn}
+Evalúa la pulsación del botón START discriminando entre pulso corto y largo.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+0 = Sin pulsación, 1 = Pulsación corta, 2 = Pulsación sostenida (\texorpdfstring{$>$}{>}= 2 s). 
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{96}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00029}{estado\+\_\+estable\+\_\+start}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00030}{lectura\+\_\+anterior\+\_\+start}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00014}{PIN\+\_\+\+BOTON\+\_\+\+START}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00021}{TIEMPO\+\_\+\+ANTIRREBOTE}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00031}{tiempo\+\_\+cambio\+\_\+start}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}} y \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}}.
+
+\Hypertarget{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba}\index{Dispositivos.cpp@{Dispositivos.cpp}!mostrar\_en\_displays@{mostrar\_en\_displays}}
+\index{mostrar\_en\_displays@{mostrar\_en\_displays}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{mostrar\_en\_displays()}{mostrar\_en\_displays()}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba} 
+void mostrar\+\_\+en\+\_\+displays (\begin{DoxyParamCaption}\item[{int}]{nivel}{, }\item[{int}]{vidas}{, }\item[{int}]{tiempo}{, }\item[{unsigned long}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Llama a la rutina de multiplexado de los displays de 7 segmentos. 
+
+Actualiza la información desplegada en el display de 7 segmentos.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em nivel} & Nivel actual. \\
+\hline
+{\em vidas} & Vidas restantes. \\
+\hline
+{\em tiempo} & Tiempo acumulado. \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()).\\
+\hline
+\end{DoxyParams}
+Llama a la rutina de multiplexado de los displays de 7 segmentos.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em nivel} & Valor del nivel actual. \\
+\hline
+{\em vidas} & Cantidad de vidas restantes. \\
+\hline
+{\em tiempo} & Tiempo acumulado. \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos (millis()). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00228}{228}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Hace referencia a \doxymbox{\hyperlink{decoder__display_8cpp_source_l00065}{actualizar\+\_\+display()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00228}{mostrar\+\_\+en\+\_\+displays()}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_pulso_memoria_8ino_source_l00015}{loop()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00228}{mostrar\+\_\+en\+\_\+displays()}}.
+
+
+
+\label{_dispositivos_8cpp_doc-var-members}
+\Hypertarget{_dispositivos_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6}\index{Dispositivos.cpp@{Dispositivos.cpp}!estado\_estable\_botones@{estado\_estable\_botones}}
+\index{estado\_estable\_botones@{estado\_estable\_botones}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{estado\_estable\_botones}{estado\_estable\_botones}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_af520326e6e9c6632b0ed5033b533b9b6} 
+bool estado\+\_\+estable\+\_\+botones\+[4] = \{HIGH, HIGH, HIGH, HIGH\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00024}{24}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}}.
+
+\Hypertarget{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc}\index{Dispositivos.cpp@{Dispositivos.cpp}!estado\_estable\_start@{estado\_estable\_start}}
+\index{estado\_estable\_start@{estado\_estable\_start}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{estado\_estable\_start}{estado\_estable\_start}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a4e84263809ef7cea926eb9e398bd98bc} 
+bool estado\+\_\+estable\+\_\+start = HIGH\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00029}{29}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}.
+
+\Hypertarget{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2}\index{Dispositivos.cpp@{Dispositivos.cpp}!lectura\_anterior\_botones@{lectura\_anterior\_botones}}
+\index{lectura\_anterior\_botones@{lectura\_anterior\_botones}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{lectura\_anterior\_botones}{lectura\_anterior\_botones}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a1fec64084a7e3da81336a9a33e44cea2} 
+bool lectura\+\_\+anterior\+\_\+botones\+[4] = \{HIGH, HIGH, HIGH, HIGH\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00025}{25}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}}.
+
+\Hypertarget{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb}\index{Dispositivos.cpp@{Dispositivos.cpp}!lectura\_anterior\_start@{lectura\_anterior\_start}}
+\index{lectura\_anterior\_start@{lectura\_anterior\_start}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{lectura\_anterior\_start}{lectura\_anterior\_start}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a04262bf23a7c8c9aacff5b4b329adedb} 
+bool lectura\+\_\+anterior\+\_\+start = HIGH\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00030}{30}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}.
+
+\Hypertarget{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229}\index{Dispositivos.cpp@{Dispositivos.cpp}!PIN\_BOTON\_START@{PIN\_BOTON\_START}}
+\index{PIN\_BOTON\_START@{PIN\_BOTON\_START}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PIN\_BOTON\_START}{PIN\_BOTON\_START}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a45becf9108a5c7c598f737ab8d95c229} 
+const int PIN\+\_\+\+BOTON\+\_\+\+START = 26\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00014}{14}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}.
+
+\Hypertarget{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043}\index{Dispositivos.cpp@{Dispositivos.cpp}!PIN\_LED\_PALPITO@{PIN\_LED\_PALPITO}}
+\index{PIN\_LED\_PALPITO@{PIN\_LED\_PALPITO}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PIN\_LED\_PALPITO}{PIN\_LED\_PALPITO}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_ad8b974d40a5d1a62dae963cce3dd4043} 
+const int PIN\+\_\+\+LED\+\_\+\+PALPITO = 16\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00013}{13}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00198}{actualizar\+\_\+palpito()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00186}{apagar\+\_\+todos\+\_\+leds()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}.
+
+\Hypertarget{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9}\index{Dispositivos.cpp@{Dispositivos.cpp}!PINES\_BOTONES@{PINES\_BOTONES}}
+\index{PINES\_BOTONES@{PINES\_BOTONES}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PINES\_BOTONES}{PINES\_BOTONES}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_afbc9879ff524d41ffe30054d5cecd1a9} 
+const int PINES\+\_\+\+BOTONES\+[4] = \{17, 18, 19, 20\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00012}{12}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}}.
+
+\Hypertarget{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4}\index{Dispositivos.cpp@{Dispositivos.cpp}!PINES\_ENABLES@{PINES\_ENABLES}}
+\index{PINES\_ENABLES@{PINES\_ENABLES}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PINES\_ENABLES}{PINES\_ENABLES}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_adc024bb361f9c41f7dc478493e84e8d4} 
+const int PINES\+\_\+\+ENABLES\+[4] = \{8, 9, 10, 11\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00018}{18}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}.
+
+\Hypertarget{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748}\index{Dispositivos.cpp@{Dispositivos.cpp}!PINES\_LEDS@{PINES\_LEDS}}
+\index{PINES\_LEDS@{PINES\_LEDS}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PINES\_LEDS}{PINES\_LEDS}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a6573dfbdff4036b98ecaa64563294748} 
+const int PINES\+\_\+\+LEDS\+[4] = \{15, 14, 13, 12\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00011}{11}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00236}{animacion\+\_\+entrada\+\_\+incorrecta()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00296}{animacion\+\_\+game\+\_\+over()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00274}{animacion\+\_\+perdida\+\_\+vida()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00251}{animacion\+\_\+secuencia\+\_\+correcta()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00263}{animacion\+\_\+tiempo\+\_\+agotado()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00284}{animacion\+\_\+victoria\+\_\+nivel\+\_\+9()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00186}{apagar\+\_\+todos\+\_\+leds()}}, \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00177}{encender\+\_\+led\+\_\+secuencia()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}.
+
+\Hypertarget{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296}\index{Dispositivos.cpp@{Dispositivos.cpp}!PINES\_SEGMENTOS@{PINES\_SEGMENTOS}}
+\index{PINES\_SEGMENTOS@{PINES\_SEGMENTOS}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{PINES\_SEGMENTOS}{PINES\_SEGMENTOS}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a54547c09903ccbd72c2c41abf3e8e296} 
+const int PINES\+\_\+\+SEGMENTOS\+[7] = \{27, 2, 3, 4, 5, 6, 7\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00017}{17}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}}.
+
+\Hypertarget{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78}\index{Dispositivos.cpp@{Dispositivos.cpp}!TIEMPO\_ANTIRREBOTE@{TIEMPO\_ANTIRREBOTE}}
+\index{TIEMPO\_ANTIRREBOTE@{TIEMPO\_ANTIRREBOTE}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{TIEMPO\_ANTIRREBOTE}{TIEMPO\_ANTIRREBOTE}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_aae176ce245191a0278ccdd1d05440d78} 
+const unsigned long TIEMPO\+\_\+\+ANTIRREBOTE = 50\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00021}{21}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}.
+
+\Hypertarget{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc}\index{Dispositivos.cpp@{Dispositivos.cpp}!tiempo\_cambio\_botones@{tiempo\_cambio\_botones}}
+\index{tiempo\_cambio\_botones@{tiempo\_cambio\_botones}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_cambio\_botones}{tiempo\_cambio\_botones}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a21c2dcbad08b160bc3794e6cfdbe4afc} 
+unsigned long tiempo\+\_\+cambio\+\_\+botones\+[4] = \{0, 0, 0, 0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00026}{26}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00066}{leer\+\_\+boton\+\_\+juego()}}.
+
+\Hypertarget{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07}\index{Dispositivos.cpp@{Dispositivos.cpp}!tiempo\_cambio\_start@{tiempo\_cambio\_start}}
+\index{tiempo\_cambio\_start@{tiempo\_cambio\_start}!Dispositivos.cpp@{Dispositivos.cpp}}
+\doxysubsubsection{\texorpdfstring{tiempo\_cambio\_start}{tiempo\_cambio\_start}}
+{\footnotesize\ttfamily \label{_dispositivos_8cpp_a750d83dc356ab7681a256e0a176aad07} 
+unsigned long tiempo\+\_\+cambio\+\_\+start = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00031}{31}} del archivo \doxymbox{\hyperlink{_dispositivos_8cpp_source}{Dispositivos.\+cpp}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00036}{inicializar\+\_\+dispositivos()}} y \doxymbox{\hyperlink{_dispositivos_8cpp_source_l00096}{leer\+\_\+boton\+\_\+start()}}.
+

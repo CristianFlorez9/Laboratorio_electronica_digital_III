@@ -1,0 +1,97 @@
+\doxysection{Pulso\+Memoria.\+ino}
+\hypertarget{_pulso_memoria_8ino_source}{}\label{_pulso_memoria_8ino_source}\doxymbox{\hyperlink{_pulso_memoria_8ino}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_dispositivos_8h}{Dispositivos.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_juego_8h}{Juego.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00009}\doxymbox{\hyperlink{_pulso_memoria_8ino_a4fc01d736fe50cf5b977f755b675f11d}{00009}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_pulso_memoria_8ino_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00010}00010\ \ \ Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00011}00011\ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a29bfb810e621d6b38029995ff381b477}{inicializar\_dispositivos}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00012}00012\ \ \ \doxymbox{\hyperlink{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba}{inicio\_reset}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00015}\doxymbox{\hyperlink{_pulso_memoria_8ino_afe461d27b9c48d5921c00d521181f12f}{00015}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_pulso_memoria_8ino_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00016}00016\ \ \ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00017}00017\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tiempo\_actual\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00019}00019\ \ \ \textcolor{comment}{//\ Control\ de\ transiciones\ de\ estado\ dependientes\ de\ temporización}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00020}00020\ \ \ \doxymbox{\hyperlink{_juego_8cpp_a1f0567276fcfad2242f248c36ff4c3c6}{cambio\_estado\_tiempo}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00022}00022\ \ \ \textcolor{comment}{//\ Lectura\ y\ procesamiento\ de\ entradas\ de\ botones}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00023}00023\ \ \ \textcolor{keywordtype}{int}\ evento\_start\ =\ \doxymbox{\hyperlink{_dispositivos_8cpp_a693082d69e5e86f2c46d647039f5e198}{leer\_boton\_start}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00024}00024\ \ \ \textcolor{keywordflow}{if}\ (evento\_start\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_juego_8cpp_a792971472830783ecaf74257e3efccc3}{verificacion\_estado}}()\ ==\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}\ ||\ \doxymbox{\hyperlink{_juego_8cpp_a792971472830783ecaf74257e3efccc3}{verificacion\_estado}}()\ ==\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b}{FIN}})\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00026}00026\ \ \ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_a0e779258125f6d2ac1930f60565f2bcb}{iniciar\_partida}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00028}00028\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (evento\_start\ ==\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00029}00029\ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_ada66d50d8a89d18dfe9707e9799ffcba}{inicio\_reset}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00030}00030\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00032}00032\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{EstadoJuego}}\ estado\ =\ \doxymbox{\hyperlink{_juego_8cpp_a792971472830783ecaf74257e3efccc3}{verificacion\_estado}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00034}00034\ \ \ \textcolor{keywordflow}{if}\ (estado\ ==\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}})\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{int}\ boton\_juego\ =\ \doxymbox{\hyperlink{_dispositivos_8cpp_a22c4554e2dbe34a6c509a7933bf07a76}{leer\_boton\_juego}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (boton\_juego\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00037}00037\ \ \ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_aa6276150eb7502e5ad6ab62dff0d5fb8}{procesar\_boton}}(boton\_juego,\ tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00039}00039\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00041}00041\ \ \ \textcolor{comment}{//\ Manejo\ de\ señales\ visuales\ y\ animaciones\ según\ el\ estado}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00042}00042\ \ \ \textcolor{keywordflow}{switch}\ (estado)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}}:}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00044}00044\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}{apagar\_todos\_leds}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00045}00045\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}}:\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00048}00048\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ led\_activo\ =\ \doxymbox{\hyperlink{_juego_8cpp_a15260acbf9d713eca35f58f035579d75}{obtener\_led\_actual\_presentacion}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00049}00049\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00050}00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a8b045b7561b292bd68e142e89629c4bc}{encender\_led\_secuencia}}(i,\ i\ ==\ led\_activo);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00051}00051\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00052}00052\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}}:\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00056}00056\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ porcentaje\ =\ (float)\doxymbox{\hyperlink{_juego_8cpp_aef9eaeca04949d05c2b3a60dd2506ed7}{obtener\_porcentaje\_tiempo}}(tiempo\_actual)\ /\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00057}00057\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a291b91ecf9140dba8dc497ceea06b43a}{actualizar\_palpito}}(porcentaje,\ tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00058}00058\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d}{NIVEL\_COMPLETO}}:}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00063}00063\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}{obtener\_nivel}}()\ >=\ 9)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00064}00064\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}{animacion\_victoria\_nivel\_9}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00065}00065\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00066}00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_af4bd0516f447f48cdc560c3b3b6828cc}{animacion\_secuencia\_correcta}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00067}00067\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00068}00068\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00069}00069\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9}{NIVEL\_FALLIDO}}:}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00072}00072\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_ad0e1a75096cda3161e34306876d6e7c5}{animacion\_entrada\_incorrecta}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00073}00073\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b}{FIN}}:}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00076}00076\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}{obtener\_nivel}}()\ >=\ 9\ \&\&\ \doxymbox{\hyperlink{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a}{obtener\_vidas}}()\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00077}00077\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a7b328bee2ba050cf4efdbcaba5bbd282}{animacion\_victoria\_nivel\_9}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00078}00078\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00079}00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a17aabf9c932c9350a357e7077acf61d6}{animacion\_game\_over}}(tiempo\_actual);}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00080}00080\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00081}00081\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00084}00084\ \ \ \ \ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a638c325cb23ef814cf10665fecefe188}{apagar\_todos\_leds}}();}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00085}00085\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00086}00086\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00088}00088\ \ \ \textcolor{comment}{//\ 4.\ Multiplexado\ de\ displays\ (Nivel,\ Vidas\ y\ Tiempo\ acumulado)}}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00089}00089\ \ \ \doxymbox{\hyperlink{_dispositivos_8cpp_a4e3eba7d43182045821867e251246bba}{mostrar\_en\_displays}}(}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00090}00090\ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_ac54e6bc99137891416b42b3e4f52f4a8}{obtener\_nivel}}(),}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00091}00091\ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_a05187359b1b0e5de6acf322c1c25cf7a}{obtener\_vidas}}(),}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00092}00092\ \ \ \ \ \doxymbox{\hyperlink{_juego_8cpp_a03c1a29b71a247db26aad261cf99f3f7}{obtener\_tiempo\_acumulado}}(),}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00093}00093\ \ \ \ \ tiempo\_actual}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00094}00094\ \ \ );}
+\DoxyCodeLine{\Hypertarget{_pulso_memoria_8ino_source_l00095}00095\ \}}
+
+\end{DoxyCode}
