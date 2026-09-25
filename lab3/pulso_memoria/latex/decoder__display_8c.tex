@@ -1,0 +1,65 @@
+\doxysection{decoder\+\_\+display.\+c File Reference}
+\hypertarget{decoder__display_8c}{}\label{decoder__display_8c}\index{decoder\_display.c@{decoder\_display.c}}
+
+
+Implementación del controlador y multiplexado para displays de 7 segmentos.  
+
+
+{\ttfamily \+\#include "{}decoder\+\_\+display.\+h"{}}\newline
+{\ttfamily \+\#include "{}hardware/\+gpio.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{decoder__display_8c_a287619be472ee27a8ce7a1b2caf3a6ba}{configurar\+\_\+display}} (const uint8\+\_\+t pines\+\_\+segmento\+[7]\+, const uint8\+\_\+t pines\+\_\+digitos\+[4]\+)
+\begin{DoxyCompactList}\small\item\em Inicializa los pines GPIO asignados a los segmentos y dígitos del display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{decoder__display_8c_a3d6578010335ee030c58684dd5e7eb54}{actualizar\+\_\+display}} (int nivel, int vidas, int tiempo, uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Realiza el multiplexado de los displays para actualizar nivel, vidas y tiempo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del controlador y multiplexado para displays de 7 segmentos. 
+
+Los buses de segmentos y de habilitadores se escriben con gpio\+\_\+put\+\_\+masked(), de modo que cada refresco del display actualiza varios pines en una sola operación atómica en vez de recorrerlos uno a uno con digital\+Write. 
+
+\label{decoder__display_8c_doc-func-members}
+\Hypertarget{decoder__display_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{decoder__display_8c_a3d6578010335ee030c58684dd5e7eb54}\index{decoder\_display.c@{decoder\_display.c}!actualizar\_display@{actualizar\_display}}
+\index{actualizar\_display@{actualizar\_display}!decoder\_display.c@{decoder\_display.c}}
+\doxysubsubsection{\texorpdfstring{actualizar\_display()}{actualizar\_display()}}
+{\footnotesize\ttfamily \label{decoder__display_8c_a3d6578010335ee030c58684dd5e7eb54} 
+void actualizar\+\_\+display (\begin{DoxyParamCaption}\item[{int}]{nivel}{, }\item[{int}]{vidas}{, }\item[{int}]{tiempo}{, }\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Realiza el multiplexado de los displays para actualizar nivel, vidas y tiempo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nivel} & Valor del nivel actual (0-\/9). \\
+\hline
+{\em vidas} & Cantidad de vidas restantes (0-\/9). \\
+\hline
+{\em tiempo} & Valor del tiempo acumulado (0-\/99). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{decoder__display_8c_a287619be472ee27a8ce7a1b2caf3a6ba}\index{decoder\_display.c@{decoder\_display.c}!configurar\_display@{configurar\_display}}
+\index{configurar\_display@{configurar\_display}!decoder\_display.c@{decoder\_display.c}}
+\doxysubsubsection{\texorpdfstring{configurar\_display()}{configurar\_display()}}
+{\footnotesize\ttfamily \label{decoder__display_8c_a287619be472ee27a8ce7a1b2caf3a6ba} 
+void configurar\+\_\+display (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{pines\+\_\+segmento}{\+[7], }\item[{const uint8\+\_\+t}]{pines\+\_\+digitos}{\+[4]}\end{DoxyParamCaption})}
+
+
+
+Inicializa los pines GPIO asignados a los segmentos y dígitos del display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pines\+\_\+segmento} & Arreglo de 7 pines para los segmentos (a-\/g). \\
+\hline
+{\em pines\+\_\+digitos} & Arreglo de 4 pines para los habilitadores de cada dígito. \\
+\hline
+\end{DoxyParams}

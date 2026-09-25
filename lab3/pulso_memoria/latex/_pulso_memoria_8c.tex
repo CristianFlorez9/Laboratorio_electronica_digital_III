@@ -1,0 +1,39 @@
+\doxysection{Pulso\+Memoria.\+c File Reference}
+\hypertarget{_pulso_memoria_8c}{}\label{_pulso_memoria_8c}\index{PulsoMemoria.c@{PulsoMemoria.c}}
+
+
+Archivo principal de control y máquina de estados del juego Simon Says.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include "{}pico/\+stdlib.\+h"{}}\newline
+{\ttfamily \+\#include "{}Dispositivos.\+h"{}}\newline
+{\ttfamily \+\#include "{}Juego.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{_pulso_memoria_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Punto de entrada del firmware. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Archivo principal de control y máquina de estados del juego Simon Says. 
+
+
+
+\label{_pulso_memoria_8c_doc-func-members}
+\Hypertarget{_pulso_memoria_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_pulso_memoria_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{PulsoMemoria.c@{PulsoMemoria.c}!main@{main}}
+\index{main@{main}!PulsoMemoria.c@{PulsoMemoria.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_pulso_memoria_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Punto de entrada del firmware. 
+
+Inicializa periféricos y el estado del juego, y luego entra en un ciclo principal infinito que en cada vuelta: 1) resuelve las transiciones de estado dependientes del tiempo (\doxylink{_juego_8c_aeb1932453df079599d687d20febb2a6d}{cambio\+\_\+estado\+\_\+tiempo()}), 2) procesa el botón START (inicio de partida o reinicio sostenido), 3) procesa los botones de juego mientras se está en el estado INPUTS, 4) despacha la animación de LEDs correspondiente al estado actual, y 5) refresca el display de 7 segmentos con el nivel, las vidas y el tiempo acumulado. \begin{DoxyReturn}{Returns}
+No retorna en condiciones normales (el ciclo principal es infinito); el valor de retorno 0 solo existe para cumplir con la firma estándar de \doxylink{_pulso_memoria_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}. 
+\end{DoxyReturn}

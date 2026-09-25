@@ -1,0 +1,192 @@
+\doxysection{Juego.\+c File Reference}
+\hypertarget{_juego_8c}{}\label{_juego_8c}\index{Juego.c@{Juego.c}}
+
+
+Implementación del núcleo de la máquina de estados y reglas del juego Simon Says.  
+
+
+{\ttfamily \+\#include "{}Juego.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \+\#include "{}pico/\+rand.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_juego_8c_a3d01119b46d6750ad7c1cda8dae4c691}{inicio\+\_\+reset}} (void)
+\begin{DoxyCompactList}\small\item\em Reinicia completamente el sistema del juego a su estado de reposo inicial. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} \doxymbox{\hyperlink{_juego_8c_a17565044aef6e50d70901afff977bdca}{verificacion\+\_\+estado}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene el estado actual en el que se encuentra la máquina de estados del juego. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8c_aeb1932453df079599d687d20febb2a6d}{cambio\+\_\+estado\+\_\+tiempo}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} \doxymbox{\hyperlink{_juego_8c_a7e9749b1591583c03cca74fb3c9f0b3b}{procesar\+\_\+boton}} (int boton\+\_\+presionado, uint32\+\_\+t tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (INPUTS). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8c_a6037bdfa9cd0eac5b4f63b53a275372d}{iniciar\+\_\+partida}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Arranca una nueva partida del juego a partir de una interacción del usuario. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8c_a9062c1cb75294536d1e2e57309516fee}{obtener\+\_\+porcentaje\+\_\+tiempo}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Calcula el porcentaje de tiempo consumido del límite permitido para el turno actual. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8c_ad692eea2c790f7f3ccebb2b2d643fc8f}{obtener\+\_\+nivel}} (void)
+\begin{DoxyCompactList}\small\item\em Nivel actual del jugador. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8c_ac8d4be53a988bf3e22edf83061290f94}{obtener\+\_\+vidas}} (void)
+\begin{DoxyCompactList}\small\item\em Vidas restantes del jugador. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8c_ae51dc4aee3eb3fdf7771aabfacc93da5}{obtener\+\_\+tiempo\+\_\+acumulado}} (void)
+\begin{DoxyCompactList}\small\item\em Tiempo total acumulado de respuesta, en segundos. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_juego_8c_ae2d004f5cf8a8fafa7617ef3fc2f53f7}{obtener\+\_\+led\+\_\+actual\+\_\+presentacion}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
+\begin{DoxyCompactList}\small\item\em Determina qué LED debe estar encendido durante la fase de presentación de la secuencia. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del núcleo de la máquina de estados y reglas del juego Simon Says. 
+
+Puerto a C / Raspberry Pi Pico SDK: random() se sustituye por get\+\_\+rand\+\_\+32() (pico/\+rand.\+h) y Serial.\+print/\+println por printf. 
+
+\label{_juego_8c_doc-func-members}
+\Hypertarget{_juego_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_juego_8c_aeb1932453df079599d687d20febb2a6d}\index{Juego.c@{Juego.c}!cambio\_estado\_tiempo@{cambio\_estado\_tiempo}}
+\index{cambio\_estado\_tiempo@{cambio\_estado\_tiempo}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{cambio\_estado\_tiempo()}{cambio\_estado\_tiempo()}}
+{\footnotesize\ttfamily \label{_juego_8c_aeb1932453df079599d687d20febb2a6d} 
+void cambio\+\_\+estado\+\_\+tiempo (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. 
+
+Debe llamarse en cada vuelta del ciclo principal. Resuelve las transiciones que dependen únicamente del paso del tiempo: fin de la presentación de la secuencia, expiración del tiempo de respuesta del usuario, y las pausas tras completar o fallar un nivel. 
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_juego_8c_a6037bdfa9cd0eac5b4f63b53a275372d}\index{Juego.c@{Juego.c}!iniciar\_partida@{iniciar\_partida}}
+\index{iniciar\_partida@{iniciar\_partida}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{iniciar\_partida()}{iniciar\_partida()}}
+{\footnotesize\ttfamily \label{_juego_8c_a6037bdfa9cd0eac5b4f63b53a275372d} 
+void iniciar\+\_\+partida (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Arranca una nueva partida del juego a partir de una interacción del usuario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_juego_8c_a3d01119b46d6750ad7c1cda8dae4c691}\index{Juego.c@{Juego.c}!inicio\_reset@{inicio\_reset}}
+\index{inicio\_reset@{inicio\_reset}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{inicio\_reset()}{inicio\_reset()}}
+{\footnotesize\ttfamily \label{_juego_8c_a3d01119b46d6750ad7c1cda8dae4c691} 
+void inicio\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Reinicia completamente el sistema del juego a su estado de reposo inicial. 
+
+Restablece nivel, vidas, contadores y todos los acumuladores de tiempo (incluyendo el auxiliar en milisegundos) a sus valores por defecto. \Hypertarget{_juego_8c_ae2d004f5cf8a8fafa7617ef3fc2f53f7}\index{Juego.c@{Juego.c}!obtener\_led\_actual\_presentacion@{obtener\_led\_actual\_presentacion}}
+\index{obtener\_led\_actual\_presentacion@{obtener\_led\_actual\_presentacion}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{obtener\_led\_actual\_presentacion()}{obtener\_led\_actual\_presentacion()}}
+{\footnotesize\ttfamily \label{_juego_8c_ae2d004f5cf8a8fafa7617ef3fc2f53f7} 
+int obtener\+\_\+led\+\_\+actual\+\_\+presentacion (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Determina qué LED debe estar encendido durante la fase de presentación de la secuencia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Índice del LED a encender (0 a 3), o -\/1 si corresponde a un espacio de apagado. 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_ad692eea2c790f7f3ccebb2b2d643fc8f}\index{Juego.c@{Juego.c}!obtener\_nivel@{obtener\_nivel}}
+\index{obtener\_nivel@{obtener\_nivel}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{obtener\_nivel()}{obtener\_nivel()}}
+{\footnotesize\ttfamily \label{_juego_8c_ad692eea2c790f7f3ccebb2b2d643fc8f} 
+int obtener\+\_\+nivel (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Nivel actual del jugador. 
+
+\begin{DoxyReturn}{Returns}
+Número de nivel (1 a 9). 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_a9062c1cb75294536d1e2e57309516fee}\index{Juego.c@{Juego.c}!obtener\_porcentaje\_tiempo@{obtener\_porcentaje\_tiempo}}
+\index{obtener\_porcentaje\_tiempo@{obtener\_porcentaje\_tiempo}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{obtener\_porcentaje\_tiempo()}{obtener\_porcentaje\_tiempo()}}
+{\footnotesize\ttfamily \label{_juego_8c_a9062c1cb75294536d1e2e57309516fee} 
+int obtener\+\_\+porcentaje\+\_\+tiempo (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Calcula el porcentaje de tiempo consumido del límite permitido para el turno actual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Porcentaje de tiempo consumido (0 a 100). 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_ae51dc4aee3eb3fdf7771aabfacc93da5}\index{Juego.c@{Juego.c}!obtener\_tiempo\_acumulado@{obtener\_tiempo\_acumulado}}
+\index{obtener\_tiempo\_acumulado@{obtener\_tiempo\_acumulado}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{obtener\_tiempo\_acumulado()}{obtener\_tiempo\_acumulado()}}
+{\footnotesize\ttfamily \label{_juego_8c_ae51dc4aee3eb3fdf7771aabfacc93da5} 
+int obtener\+\_\+tiempo\+\_\+acumulado (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tiempo total acumulado de respuesta, en segundos. 
+
+El valor se calcula redondeando al segundo más cercano el acumulado exacto en milisegundos (no se trunca hacia abajo), y queda topado en 99 para no desbordar el display de 7 segmentos. \begin{DoxyReturn}{Returns}
+Segundos acumulados (0 a 99). 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_ac8d4be53a988bf3e22edf83061290f94}\index{Juego.c@{Juego.c}!obtener\_vidas@{obtener\_vidas}}
+\index{obtener\_vidas@{obtener\_vidas}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{obtener\_vidas()}{obtener\_vidas()}}
+{\footnotesize\ttfamily \label{_juego_8c_ac8d4be53a988bf3e22edf83061290f94} 
+int obtener\+\_\+vidas (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Vidas restantes del jugador. 
+
+\begin{DoxyReturn}{Returns}
+Cantidad de vidas (0 a 3). 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_a7e9749b1591583c03cca74fb3c9f0b3b}\index{Juego.c@{Juego.c}!procesar\_boton@{procesar\_boton}}
+\index{procesar\_boton@{procesar\_boton}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{procesar\_boton()}{procesar\_boton()}}
+{\footnotesize\ttfamily \label{_juego_8c_a7e9749b1591583c03cca74fb3c9f0b3b} 
+\doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} procesar\+\_\+boton (\begin{DoxyParamCaption}\item[{int}]{boton\+\_\+presionado}{, }\item[{uint32\+\_\+t}]{tiempo\+\_\+transcurrido}{}\end{DoxyParamCaption})}
+
+
+
+Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (INPUTS). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em boton\+\_\+presionado} & Índice del botón que activó el jugador (0 a 3). \\
+\hline
+{\em tiempo\+\_\+transcurrido} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Resultado de la evaluación (ver \doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}). 
+\end{DoxyReturn}
+\Hypertarget{_juego_8c_a17565044aef6e50d70901afff977bdca}\index{Juego.c@{Juego.c}!verificacion\_estado@{verificacion\_estado}}
+\index{verificacion\_estado@{verificacion\_estado}!Juego.c@{Juego.c}}
+\doxysubsubsection{\texorpdfstring{verificacion\_estado()}{verificacion\_estado()}}
+{\footnotesize\ttfamily \label{_juego_8c_a17565044aef6e50d70901afff977bdca} 
+\doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}} verificacion\+\_\+estado (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el estado actual en el que se encuentra la máquina de estados del juego. 
+
+\begin{DoxyReturn}{Returns}
+Estado actual (ver \doxylink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{Estado\+Juego}). 
+\end{DoxyReturn}

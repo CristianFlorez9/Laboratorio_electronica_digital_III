@@ -1,14 +1,3 @@
-# Generated Cmake Pico project file
-
-cmake_minimum_required(VERSION 3.13)
-
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Initialise pico_sdk from installed location
-# (note this can come from environment, CMake cache etc)
-
 # == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
 if(WIN32)
     set(USERHOME $ENV{USERPROFILE})
@@ -25,33 +14,39 @@ endif()
 # ====================================================================================
 set(PICO_BOARD pico CACHE STRING "Board type")
 
-# Pull in Raspberry Pi Pico SDK (must be before project)
+cmake_minimum_required(VERSION 3.13)
+
+# Requiere la variable de entorno PICO_SDK_PATH apuntando al pico-sdk.
 include(pico_sdk_import.cmake)
 
-project(pulso_memoria C CXX ASM)
+project(PulsoMemoria C CXX ASM)
 
-# Initialise the Raspberry Pi Pico SDK
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
-
-add_executable(pulso_memoria pulso_memoria.c )
-
-pico_set_program_name(pulso_memoria "pulso_memoria")
-pico_set_program_version(pulso_memoria "0.1")
-
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(pulso_memoria 0)
-pico_enable_stdio_usb(pulso_memoria 0)
-
-# Add the standard library to the build
-target_link_libraries(pulso_memoria
-        pico_stdlib)
-
-# Add the standard include files to the build
-target_include_directories(pulso_memoria PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+add_executable(PulsoMemoria
+    PulsoMemoria.c
+    Juego.c
+    Dispositivos.c
+    decoder_display.c
 )
 
-pico_add_extra_outputs(pulso_memoria)
+target_include_directories(PulsoMemoria PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_compile_options(PulsoMemoria PRIVATE -Wall -Wextra)
 
+target_link_libraries(PulsoMemoria
+    pico_stdlib
+    hardware_gpio
+    pico_rand   # get_rand_32(), usado en Juego.c para la secuencia aleatoria
+)
+
+# newlib-nano no imprime floats con printf("%f") por defecto; esta bandera lo habilita
+# (se usa en Dispositivos.c para mostrar segundos con 3 decimales).
+target_link_options(PulsoMemoria PRIVATE "-Wl,-u,_printf_float")
+
+pico_enable_stdio_usb(PulsoMemoria 1)
+pico_enable_stdio_uart(PulsoMemoria 0)
+
+pico_add_extra_outputs(PulsoMemoria)

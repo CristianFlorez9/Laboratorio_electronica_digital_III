@@ -1,0 +1,48 @@
+\doxysection{Juego.\+h}
+\hypertarget{_juego_8h_source}{}\label{_juego_8h_source}\doxymbox{\hyperlink{_juego_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ JUEGO\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ JUEGO\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00020\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67af6e4a90a4a7e46c98a5a12b965fb8354}{INICIO}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a77031cb0c927064901ef606cb14816ae}{PRESENTACION}},\ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aa122abe0e08ddbecb4c8d367d0ce19b6}{INPUTS}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a6629dd26773ebd6c4b8636164f9e993d}{NIVEL\_COMPLETO}},\ \ }
+\DoxyCodeLine{00024\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67a601e59f58ab4886a91d5aa0c8dffd1d9}{NIVEL\_FALLIDO}},\ \ \ }
+\DoxyCodeLine{00025\ \ \ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67aea3c073df31939c172972ef6ccbc988b}{FIN}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \}\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{EstadoJuego}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00032\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a8bf63f0eda4970fcd6c835fe2e733dd0}{CORRECTO\_CONTINUA}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a9c2b4b04fd79b1e66f9a7621a1fa4dec}{CORRECTO\_NIVEL\_COMPLETO}},\ }
+\DoxyCodeLine{00034\ \ \ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40a3561907801ad204bd8f45f9788faa3d7}{INCORRECTO}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \}\ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{ResultadoBoton}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8c_a3d01119b46d6750ad7c1cda8dae4c691}{inicio\_reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \doxymbox{\hyperlink{_juego_8h_a5c2e4a3bf7e1b133e4333adc27490e67}{EstadoJuego}}\ \doxymbox{\hyperlink{_juego_8c_a17565044aef6e50d70901afff977bdca}{verificacion\_estado}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8c_aeb1932453df079599d687d20febb2a6d}{cambio\_estado\_tiempo}}(uint32\_t\ tiempo\_transcurrido);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{ResultadoBoton}}\ \doxymbox{\hyperlink{_juego_8c_a7e9749b1591583c03cca74fb3c9f0b3b}{procesar\_boton}}(\textcolor{keywordtype}{int}\ boton\_presionado,\ uint32\_t\ tiempo\_transcurrido);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_juego_8c_a6037bdfa9cd0eac5b4f63b53a275372d}{iniciar\_partida}}(uint32\_t\ tiempo\_transcurrido);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8c_a9062c1cb75294536d1e2e57309516fee}{obtener\_porcentaje\_tiempo}}(uint32\_t\ tiempo\_transcurrido);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8c_ad692eea2c790f7f3ccebb2b2d643fc8f}{obtener\_nivel}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8c_ac8d4be53a988bf3e22edf83061290f94}{obtener\_vidas}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8c_ae51dc4aee3eb3fdf7771aabfacc93da5}{obtener\_tiempo\_acumulado}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_juego_8c_ae2d004f5cf8a8fafa7617ef3fc2f53f7}{obtener\_led\_actual\_presentacion}}(uint32\_t\ tiempo\_transcurrido);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

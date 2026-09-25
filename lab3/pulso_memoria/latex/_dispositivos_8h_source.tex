@@ -1,0 +1,40 @@
+\doxysection{Dispositivos.\+h}
+\hypertarget{_dispositivos_8h_source}{}\label{_dispositivos_8h_source}\doxymbox{\hyperlink{_dispositivos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ DISPOSITIVOS\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ DISPOSITIVOS\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_ad2b0e20850f717cc652cf0f3b14c957c}{inicializar\_dispositivos}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8c_a03c7e6fe8e378d3fb41fdabd9ace7506}{leer\_boton\_juego}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_dispositivos_8c_a8ca624ab061420932c378de95d179282}{leer\_boton\_start}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_a8b045b7561b292bd68e142e89629c4bc}{encender\_led\_secuencia}}(\textcolor{keywordtype}{int}\ indice,\ \textcolor{keywordtype}{bool}\ estado);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_aad10bd8eb4eb2e58d53f7dbb3b626659}{apagar\_todos\_leds}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_ad2586ceca326fa6e4a84db0896576a03}{actualizar\_palpito}}(\textcolor{keywordtype}{float}\ porcentaje\_tiempo,\ uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_a2d6f71500bb55379794f2a8a88cbb6e6}{mostrar\_en\_displays}}(\textcolor{keywordtype}{int}\ nivel,\ \textcolor{keywordtype}{int}\ vidas,\ \textcolor{keywordtype}{int}\ tiempo,\ uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_ad13abd375c67af055d1ff37bf98a4f98}{animacion\_secuencia\_correcta}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_a9e70424ae3ff055b216f1cfeb938fe9e}{animacion\_entrada\_incorrecta}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_ae94792e45500b02d3be213cbac9ef2cc}{animacion\_tiempo\_agotado}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_a2d1a72bea62c22de6d9a6af8e06c5173}{animacion\_perdida\_vida}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_a9e485376025fc8555180711d597ec0b1}{animacion\_victoria\_nivel\_9}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_dispositivos_8c_af6ae4b2caef86acb15dab26cdeef27ab}{animacion\_game\_over}}(uint32\_t\ tiempo\_actual);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

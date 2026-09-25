@@ -1,0 +1,226 @@
+\doxysection{Dispositivos.\+h File Reference}
+\hypertarget{_dispositivos_8h}{}\label{_dispositivos_8h}\index{Dispositivos.h@{Dispositivos.h}}
+
+
+Declaración de la interfaz de control de hardware, lectura de entradas y animaciones.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_dispositivos_8h_ad2b0e20850f717cc652cf0f3b14c957c}\label{_dispositivos_8h_ad2b0e20850f717cc652cf0f3b14c957c} 
+void {\bfseries inicializar\+\_\+dispositivos} (void)
+\begin{DoxyCompactList}\small\item\em Configura los pines de entrada y salida, e inicializa el hardware (GPIO + interrupciones). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_dispositivos_8h_a03c7e6fe8e378d3fb41fdabd9ace7506}{leer\+\_\+boton\+\_\+juego}} (void)
+\begin{DoxyCompactList}\small\item\em Lee el estado (ya antirrebotado) de los 4 botones de la secuencia de juego. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_dispositivos_8h_a8ca624ab061420932c378de95d179282}{leer\+\_\+boton\+\_\+start}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Evalúa la lectura del botón START gestionando el tiempo de pulsación. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_a8b045b7561b292bd68e142e89629c4bc}{encender\+\_\+led\+\_\+secuencia}} (int indice, bool estado)
+\begin{DoxyCompactList}\small\item\em Modifica el estado de un LED específico dentro de la secuencia. \end{DoxyCompactList}\item 
+\Hypertarget{_dispositivos_8h_aad10bd8eb4eb2e58d53f7dbb3b626659}\label{_dispositivos_8h_aad10bd8eb4eb2e58d53f7dbb3b626659} 
+void {\bfseries apagar\+\_\+todos\+\_\+leds} (void)
+\begin{DoxyCompactList}\small\item\em Apaga todos los LEDs del juego y el LED de pálpito. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_ad2586ceca326fa6e4a84db0896576a03}{actualizar\+\_\+palpito}} (float porcentaje\+\_\+tiempo, uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Controla el parpadeo del LED de pálpito con aceleración cuadrática. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_a2d6f71500bb55379794f2a8a88cbb6e6}{mostrar\+\_\+en\+\_\+displays}} (int nivel, int vidas, int tiempo, uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Actualiza la información desplegada en el display de 7 segmentos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_ad13abd375c67af055d1ff37bf98a4f98}{animacion\+\_\+secuencia\+\_\+correcta}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Animación de barrido cuando el jugador acierta toda la secuencia. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_a9e70424ae3ff055b216f1cfeb938fe9e}{animacion\+\_\+entrada\+\_\+incorrecta}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Animación de parpadeo alternado cuando se presiona un botón incorrecto. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_ae94792e45500b02d3be213cbac9ef2cc}{animacion\+\_\+tiempo\+\_\+agotado}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Animación de destello simultáneo cuando el tiempo expira. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_a2d1a72bea62c22de6d9a6af8e06c5173}{animacion\+\_\+perdida\+\_\+vida}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em LEDs fijos encendidos para indicar la pérdida de una vida. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_a9e485376025fc8555180711d597ec0b1}{animacion\+\_\+victoria\+\_\+nivel\+\_\+9}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Animación de marquesina al completar el Nivel 9 (Victoria final). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_dispositivos_8h_af6ae4b2caef86acb15dab26cdeef27ab}{animacion\+\_\+game\+\_\+over}} (uint32\+\_\+t tiempo\+\_\+actual)
+\begin{DoxyCompactList}\small\item\em Animación de apagado progresivo al perder todas las vidas (Game Over). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de la interfaz de control de hardware, lectura de entradas y animaciones. 
+
+
+
+\label{_dispositivos_8h_doc-func-members}
+\Hypertarget{_dispositivos_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_dispositivos_8h_ad2586ceca326fa6e4a84db0896576a03}\index{Dispositivos.h@{Dispositivos.h}!actualizar\_palpito@{actualizar\_palpito}}
+\index{actualizar\_palpito@{actualizar\_palpito}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{actualizar\_palpito()}{actualizar\_palpito()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_ad2586ceca326fa6e4a84db0896576a03} 
+void actualizar\+\_\+palpito (\begin{DoxyParamCaption}\item[{float}]{porcentaje\+\_\+tiempo}{, }\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Controla el parpadeo del LED de pálpito con aceleración cuadrática. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em porcentaje\+\_\+tiempo} & Valor flotante entre 0.\+0 (inicio) y 1.\+0 (tiempo agotado). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_a9e70424ae3ff055b216f1cfeb938fe9e}\index{Dispositivos.h@{Dispositivos.h}!animacion\_entrada\_incorrecta@{animacion\_entrada\_incorrecta}}
+\index{animacion\_entrada\_incorrecta@{animacion\_entrada\_incorrecta}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_entrada\_incorrecta()}{animacion\_entrada\_incorrecta()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a9e70424ae3ff055b216f1cfeb938fe9e} 
+void animacion\+\_\+entrada\+\_\+incorrecta (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Animación de parpadeo alternado cuando se presiona un botón incorrecto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_af6ae4b2caef86acb15dab26cdeef27ab}\index{Dispositivos.h@{Dispositivos.h}!animacion\_game\_over@{animacion\_game\_over}}
+\index{animacion\_game\_over@{animacion\_game\_over}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_game\_over()}{animacion\_game\_over()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_af6ae4b2caef86acb15dab26cdeef27ab} 
+void animacion\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Animación de apagado progresivo al perder todas las vidas (Game Over). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_a2d1a72bea62c22de6d9a6af8e06c5173}\index{Dispositivos.h@{Dispositivos.h}!animacion\_perdida\_vida@{animacion\_perdida\_vida}}
+\index{animacion\_perdida\_vida@{animacion\_perdida\_vida}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_perdida\_vida()}{animacion\_perdida\_vida()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a2d1a72bea62c22de6d9a6af8e06c5173} 
+void animacion\+\_\+perdida\+\_\+vida (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+LEDs fijos encendidos para indicar la pérdida de una vida. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos (no usada, reservada para mantener una firma uniforme entre todas las animaciones). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_ad13abd375c67af055d1ff37bf98a4f98}\index{Dispositivos.h@{Dispositivos.h}!animacion\_secuencia\_correcta@{animacion\_secuencia\_correcta}}
+\index{animacion\_secuencia\_correcta@{animacion\_secuencia\_correcta}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_secuencia\_correcta()}{animacion\_secuencia\_correcta()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_ad13abd375c67af055d1ff37bf98a4f98} 
+void animacion\+\_\+secuencia\+\_\+correcta (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Animación de barrido cuando el jugador acierta toda la secuencia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_ae94792e45500b02d3be213cbac9ef2cc}\index{Dispositivos.h@{Dispositivos.h}!animacion\_tiempo\_agotado@{animacion\_tiempo\_agotado}}
+\index{animacion\_tiempo\_agotado@{animacion\_tiempo\_agotado}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_tiempo\_agotado()}{animacion\_tiempo\_agotado()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_ae94792e45500b02d3be213cbac9ef2cc} 
+void animacion\+\_\+tiempo\+\_\+agotado (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Animación de destello simultáneo cuando el tiempo expira. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_a9e485376025fc8555180711d597ec0b1}\index{Dispositivos.h@{Dispositivos.h}!animacion\_victoria\_nivel\_9@{animacion\_victoria\_nivel\_9}}
+\index{animacion\_victoria\_nivel\_9@{animacion\_victoria\_nivel\_9}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{animacion\_victoria\_nivel\_9()}{animacion\_victoria\_nivel\_9()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a9e485376025fc8555180711d597ec0b1} 
+void animacion\+\_\+victoria\+\_\+nivel\+\_\+9 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Animación de marquesina al completar el Nivel 9 (Victoria final). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_a8b045b7561b292bd68e142e89629c4bc}\index{Dispositivos.h@{Dispositivos.h}!encender\_led\_secuencia@{encender\_led\_secuencia}}
+\index{encender\_led\_secuencia@{encender\_led\_secuencia}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{encender\_led\_secuencia()}{encender\_led\_secuencia()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a8b045b7561b292bd68e142e89629c4bc} 
+void encender\+\_\+led\+\_\+secuencia (\begin{DoxyParamCaption}\item[{int}]{indice}{, }\item[{bool}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Modifica el estado de un LED específico dentro de la secuencia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indice} & Identificador del LED (0 a 3). \\
+\hline
+{\em estado} & true para encender, false para apagar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_dispositivos_8h_a03c7e6fe8e378d3fb41fdabd9ace7506}\index{Dispositivos.h@{Dispositivos.h}!leer\_boton\_juego@{leer\_boton\_juego}}
+\index{leer\_boton\_juego@{leer\_boton\_juego}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{leer\_boton\_juego()}{leer\_boton\_juego()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a03c7e6fe8e378d3fb41fdabd9ace7506} 
+int leer\+\_\+boton\+\_\+juego (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Lee el estado (ya antirrebotado) de los 4 botones de la secuencia de juego. 
+
+\begin{DoxyReturn}{Returns}
+Índice del botón presionado (0 a 3) o -\/1 si no hay pulso válido nuevo. 
+\end{DoxyReturn}
+\Hypertarget{_dispositivos_8h_a8ca624ab061420932c378de95d179282}\index{Dispositivos.h@{Dispositivos.h}!leer\_boton\_start@{leer\_boton\_start}}
+\index{leer\_boton\_start@{leer\_boton\_start}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{leer\_boton\_start()}{leer\_boton\_start()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a8ca624ab061420932c378de95d179282} 
+int leer\+\_\+boton\+\_\+start (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Evalúa la lectura del botón START gestionando el tiempo de pulsación. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 = Sin pulsación, 1 = Pulsación corta, 2 = Pulsación sostenida (\texorpdfstring{$>$}{>}= 2 s). 
+\end{DoxyReturn}
+\Hypertarget{_dispositivos_8h_a2d6f71500bb55379794f2a8a88cbb6e6}\index{Dispositivos.h@{Dispositivos.h}!mostrar\_en\_displays@{mostrar\_en\_displays}}
+\index{mostrar\_en\_displays@{mostrar\_en\_displays}!Dispositivos.h@{Dispositivos.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_en\_displays()}{mostrar\_en\_displays()}}
+{\footnotesize\ttfamily \label{_dispositivos_8h_a2d6f71500bb55379794f2a8a88cbb6e6} 
+void mostrar\+\_\+en\+\_\+displays (\begin{DoxyParamCaption}\item[{int}]{nivel}{, }\item[{int}]{vidas}{, }\item[{int}]{tiempo}{, }\item[{uint32\+\_\+t}]{tiempo\+\_\+actual}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza la información desplegada en el display de 7 segmentos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nivel} & Valor del nivel actual a mostrar. \\
+\hline
+{\em vidas} & Cantidad de vidas restantes a mostrar. \\
+\hline
+{\em tiempo} & Valor del tiempo acumulado a mostrar (0-\/99). \\
+\hline
+{\em tiempo\+\_\+actual} & Estampa de tiempo actual del sistema en milisegundos. \\
+\hline
+\end{DoxyParams}
