@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pulsomemoria_2ec_0',['PulsoMemoria.c',['../_pulso_memoria_8c.html',1,'']]]
+  ['medicion_2eh_0',['medicion.h',['../medicion_8h.html',1,'']]]
 ];

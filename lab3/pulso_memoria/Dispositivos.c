@@ -21,11 +21,11 @@
 
 #include "Dispositivos.h"
 #include "decoder_display.h"
+#include "medicion.h"
 #include "hardware/gpio.h"
 #include "hardware/sync.h"
 #include "pico/stdlib.h"
 #include <stdio.h>
-#include <inttypes.h>
 
 /** @brief Pines GPIO de los 4 LEDs que muestran la secuencia a memorizar. */
 static const uint8_t PINES_LEDS[4]    = {15, 14, 13, 12};
@@ -67,6 +67,14 @@ static volatile bool bandera_start           = false;
 
 /** @brief Estampa de tiempo (ms) del último flanco detectado por la ISR en el botón START. */
 static volatile uint32_t tiempo_flanco_start = 0;
+
+// --- Medición de tiempos de ejecución (ver medicion.h) ---
+
+/** @brief Estadísticas de los sondeos de leer_boton_juego() sin pulsación válida. */
+static MedEstadistica med_boton_juego = MED_ESTADISTICA_INICIAL;
+
+/** @brief Estadísticas de los sondeos de leer_boton_start() sin evento (retorno 0). */
+static MedEstadistica med_boton_start = MED_ESTADISTICA_INICIAL;
 
 /**
  * @brief Rutina de interrupción GPIO (callback único compartido por todos los pines).
@@ -112,6 +120,8 @@ static void aplicar_patron_leds(uint8_t patron) {
 }
 
 void inicializar_dispositivos(void) {
+  uint32_t t0 = time_us_32();
+
   mascara_leds = 0;
 
   for (int i = 0; i < 4; i++) {
@@ -155,9 +165,13 @@ void inicializar_dispositivos(void) {
   }
 
   gpio_set_irq_enabled(PIN_BOTON_START, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true);
+
+  uint32_t dt = time_us_32() - t0;
+  MED_PRINTF("[TIEMPO] inicializar_dispositivos: %" PRIu32 " us\n", dt);
+  (void)dt; // evita el aviso de variable sin usar cuando MEDIR_TIEMPOS = 0
 }
 
-int leer_boton_juego(void) {
+static int leer_boton_juego_interno(void) {
   uint32_t tiempo_actual = to_ms_since_boot(get_absolute_time());
 
   for (int i = 0; i < 4; i++) {
@@ -191,7 +205,22 @@ int leer_boton_juego(void) {
   return -1;
 }
 
-int leer_boton_start(uint32_t tiempo_actual) {
+int leer_boton_juego(void) {
+  uint32_t t0 = time_us_32();
+  int resultado = leer_boton_juego_interno();
+  uint32_t dt = time_us_32() - t0;
+
+  if (resultado < 0) {
+    med_registrar(&med_boton_juego, dt); // sondeo sin pulsación válida: solo se acumula
+  } else {
+    MED_PRINTF("[TIEMPO] leer_boton_juego (pulsacion en boton %d): %" PRIu32 " us\n", resultado, dt);
+    med_reportar("leer_boton_juego (sondeos previos)", &med_boton_juego);
+  }
+
+  return resultado;
+}
+
+static int leer_boton_start_interno(uint32_t tiempo_actual) {
   static bool estado_estable_start  = true;
   static bool presionando           = false;
   static bool evento_2seg_generado  = false;
@@ -227,13 +256,6 @@ int leer_boton_start(uint32_t tiempo_actual) {
 
       evento_2seg_generado = true;
 
-      uint32_t tiempo_presionado_real = tiempo_actual - tiempo_presionado;
-
-      printf("\n");
-      printf("START PRESIONADO\n");
-      printf("Tiempo medido: %" PRIu32 " ms\n", tiempo_presionado_real);
-      printf("Tiempo medido: %.3f segundos\n", tiempo_presionado_real / 1000.0f);
-
       return 2;
     }
 
@@ -245,18 +267,27 @@ int leer_boton_start(uint32_t tiempo_actual) {
       uint32_t tiempo_presionado_real = tiempo_actual - tiempo_presionado;
 
       if (!evento_2seg_generado && tiempo_presionado_real < 2000) {
-
-        printf("\n");
-        printf("START PRESIONADO\n");
-        printf("Tiempo medido: %" PRIu32 " ms\n", tiempo_presionado_real);
-        printf("Tiempo medido: %.3f segundos\n", tiempo_presionado_real / 1000.0f);
-
         return 1;
       }
     }
   }
 
   return 0;
+}
+
+int leer_boton_start(uint32_t tiempo_actual) {
+  uint32_t t0 = time_us_32();
+  int resultado = leer_boton_start_interno(tiempo_actual);
+  uint32_t dt = time_us_32() - t0;
+
+  if (resultado == 0) {
+    med_registrar(&med_boton_start, dt); // sondeo sin evento: solo se acumula
+  } else {
+    MED_PRINTF("[TIEMPO] leer_boton_start (evento %d): %" PRIu32 " us\n", resultado, dt);
+    med_reportar("leer_boton_start (sondeos previos)", &med_boton_start);
+  }
+
+  return resultado;
 }
 
 void encender_led_secuencia(int indice, bool estado) {
@@ -291,6 +322,8 @@ void actualizar_palpito(float porcentaje_tiempo, uint32_t tiempo_actual) {
     ultima_conmutacion = tiempo_actual;
     estado_led = !estado_led;
     gpio_put(PIN_LED_PALPITO, estado_led);
+
+    
   }
 }
 

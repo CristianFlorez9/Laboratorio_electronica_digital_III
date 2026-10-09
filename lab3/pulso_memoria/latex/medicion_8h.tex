@@ -1,0 +1,48 @@
+\doxysection{medicion.\+h File Reference}
+\hypertarget{medicion_8h}{}\label{medicion_8h}\index{medicion.h@{medicion.h}}
+
+
+Utilidades para medir el tiempo de ejecución (en microsegundos) de las funciones del juego.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \+\#include "{}pico/\+time.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_med_estadistica}{Med\+Estadistica}}
+\begin{DoxyCompactList}\small\item\em Acumulador de estadísticas de tiempo para funciones que se llaman muchas veces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{medicion_8h_af9097903d112c5df28d7b70127584205}\label{medicion_8h_af9097903d112c5df28d7b70127584205} 
+\+\#define {\bfseries MEDIR\+\_\+\+TIEMPOS}~1
+\begin{DoxyCompactList}\small\item\em 1 = medir y reportar por consola; 0 = sin medición. \end{DoxyCompactList}\item 
+\Hypertarget{medicion_8h_ab21727be9bfe590b0678f7d12bf9ae02}\label{medicion_8h_ab21727be9bfe590b0678f7d12bf9ae02} 
+\+\#define {\bfseries MED\+\_\+\+ESTADISTICA\+\_\+\+INICIAL}~\{0, UINT32\+\_\+\+MAX, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Valor inicial de un \doxylink{struct_med_estadistica}{Med\+Estadistica}. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{medicion_8h_a99b3310bf2ba16f784bdc2848279723c}{MED\+\_\+\+PRINTF}}(...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utilidades para medir el tiempo de ejecución (en microsegundos) de las funciones del juego. 
+
+Se mide con time\+\_\+us\+\_\+32() (resolución de 1 us; el desbordamiento cada \texorpdfstring{$\sim$}{\string~}71 min no afecta porque solo se usan diferencias sin signo). Para desactivar TODA la medición basta con poner \doxylink{medicion_8h_af9097903d112c5df28d7b70127584205}{MEDIR\+\_\+\+TIEMPOS} en 0: los helpers quedan vacíos y los printf de medición desaparecen. 
+
+\label{medicion_8h_doc-define-members}
+\Hypertarget{medicion_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{medicion_8h_a99b3310bf2ba16f784bdc2848279723c}\index{medicion.h@{medicion.h}!MED\_PRINTF@{MED\_PRINTF}}
+\index{MED\_PRINTF@{MED\_PRINTF}!medicion.h@{medicion.h}}
+\doxysubsubsection{\texorpdfstring{MED\_PRINTF}{MED\_PRINTF}}
+{\footnotesize\ttfamily \label{medicion_8h_a99b3310bf2ba16f784bdc2848279723c} 
+\+\#define MED\+\_\+\+PRINTF(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{printf(\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}

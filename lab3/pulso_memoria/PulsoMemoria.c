@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <stdint.h>
 #include "pico/stdlib.h"
 #include "Dispositivos.h"
 #include "Juego.h"
@@ -21,6 +22,23 @@
  */
 int main(void) {
   stdio_init_all();
+
+  // El USB CDC tarda un momento en enumerar con el host: si se llama a
+  // inicializar_dispositivos() inmediatamente, su printf de tiempo (ver Dispositivos.c)
+  // casi siempre se pierde porque el monitor serial todavía no alcanzó a conectarse.
+  // Se espera aquí, con un timeout de 3 s, para no bloquear el arranque si el equipo
+  // se alimenta sin monitor serial conectado (por ejemplo, con una batería o un cargador USB).
+  uint32_t espera_inicio_us = to_ms_since_boot(get_absolute_time());
+  while (!stdio_usb_connected() &&
+         to_ms_since_boot(get_absolute_time()) - espera_inicio_us < 3000) {
+    sleep_ms(50);
+  }
+
+  // Pequeño margen adicional: aunque ya esté "conectado", algunos monitores seriales
+  // tardan un instante extra en empezar a mostrar lo que reciben.
+  if (stdio_usb_connected()) {
+    sleep_ms(200);
+  }
 
   inicializar_dispositivos();
   inicio_reset();

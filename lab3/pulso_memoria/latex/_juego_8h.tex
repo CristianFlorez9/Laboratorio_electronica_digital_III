@@ -33,6 +33,8 @@ void \doxymbox{\hyperlink{_juego_8h_a3d01119b46d6750ad7c1cda8dae4c691}{inicio\+\
 \begin{DoxyCompactList}\small\item\em Obtiene el estado actual en el que se encuentra la máquina de estados del juego. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{_juego_8h_aeb1932453df079599d687d20febb2a6d}{cambio\+\_\+estado\+\_\+tiempo}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
 \begin{DoxyCompactList}\small\item\em Controla las transiciones automáticas de estado basadas en el tiempo transcurrido. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_juego_8h_a53fdc48e1633e92ae75cbcb98d2c587f}{reportar\+\_\+medicion\+\_\+cambio\+\_\+estado}} (void)
+\begin{DoxyCompactList}\small\item\em Imprime (si hay datos acumulados) las estadisticas de llamadas a \doxylink{_juego_8h_aeb1932453df079599d687d20febb2a6d}{cambio\+\_\+estado\+\_\+tiempo()} que NO produjeron una transicion de estado, y reinicia el acumulador. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}} \doxymbox{\hyperlink{_juego_8h_a7e9749b1591583c03cca74fb3c9f0b3b}{procesar\+\_\+boton}} (int boton\+\_\+presionado, uint32\+\_\+t tiempo\+\_\+transcurrido)
 \begin{DoxyCompactList}\small\item\em Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (INPUTS). \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{_juego_8h_a6037bdfa9cd0eac5b4f63b53a275372d}{iniciar\+\_\+partida}} (uint32\+\_\+t tiempo\+\_\+transcurrido)
@@ -277,7 +279,17 @@ Evalúa la pulsación de un botón recibida durante el estado de entrada de usua
 \begin{DoxyReturn}{Returns}
 Resultado de la evaluación (ver \doxylink{_juego_8h_a64af93f1628837c6ad3089008f83ac40}{Resultado\+Boton}). 
 \end{DoxyReturn}
-\Hypertarget{_juego_8h_a17565044aef6e50d70901afff977bdca}\index{Juego.h@{Juego.h}!verificacion\_estado@{verificacion\_estado}}
+\Hypertarget{_juego_8h_a53fdc48e1633e92ae75cbcb98d2c587f}\index{Juego.h@{Juego.h}!reportar\_medicion\_cambio\_estado@{reportar\_medicion\_cambio\_estado}}
+\index{reportar\_medicion\_cambio\_estado@{reportar\_medicion\_cambio\_estado}!Juego.h@{Juego.h}}
+\doxysubsubsection{\texorpdfstring{reportar\_medicion\_cambio\_estado()}{reportar\_medicion\_cambio\_estado()}}
+{\footnotesize\ttfamily \label{_juego_8h_a53fdc48e1633e92ae75cbcb98d2c587f} 
+void reportar\+\_\+medicion\+\_\+cambio\+\_\+estado (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Imprime (si hay datos acumulados) las estadisticas de llamadas a \doxylink{_juego_8h_aeb1932453df079599d687d20febb2a6d}{cambio\+\_\+estado\+\_\+tiempo()} que NO produjeron una transicion de estado, y reinicia el acumulador. 
+
+Pensada para llamarse periodicamente desde el ciclo principal, ya que en uso normal las transiciones de estado (que si imprimen por si solas) pueden ser poco frecuentes. \Hypertarget{_juego_8h_a17565044aef6e50d70901afff977bdca}\index{Juego.h@{Juego.h}!verificacion\_estado@{verificacion\_estado}}
 \index{verificacion\_estado@{verificacion\_estado}!Juego.h@{Juego.h}}
 \doxysubsubsection{\texorpdfstring{verificacion\_estado()}{verificacion\_estado()}}
 {\footnotesize\ttfamily \label{_juego_8h_a17565044aef6e50d70901afff977bdca} 

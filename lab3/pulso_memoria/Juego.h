@@ -58,6 +58,14 @@ EstadoJuego verificacion_estado(void);
 void cambio_estado_tiempo(uint32_t tiempo_transcurrido);
 
 /**
+ * @brief Imprime (si hay datos acumulados) las estadisticas de llamadas a cambio_estado_tiempo()
+ *        que NO produjeron una transicion de estado, y reinicia el acumulador.
+ * @details Pensada para llamarse periodicamente desde el ciclo principal, ya que en uso normal
+ *          las transiciones de estado (que si imprimen por si solas) pueden ser poco frecuentes.
+ */
+void reportar_medicion_cambio_estado(void);
+
+/**
  * @brief Evalúa la pulsación de un botón recibida durante el estado de entrada de usuario (INPUTS).
  * @param boton_presionado Índice del botón que activó el jugador (0 a 3).
  * @param tiempo_transcurrido Estampa de tiempo actual del sistema en milisegundos.

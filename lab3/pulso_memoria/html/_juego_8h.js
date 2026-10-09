@@ -22,5 +22,6 @@ var _juego_8h =
     [ "obtener_tiempo_acumulado", "_juego_8h.html#ae51dc4aee3eb3fdf7771aabfacc93da5", null ],
     [ "obtener_vidas", "_juego_8h.html#ac8d4be53a988bf3e22edf83061290f94", null ],
     [ "procesar_boton", "_juego_8h.html#a7e9749b1591583c03cca74fb3c9f0b3b", null ],
+    [ "reportar_medicion_cambio_estado", "_juego_8h.html#a53fdc48e1633e92ae75cbcb98d2c587f", null ],
     [ "verificacion_estado", "_juego_8h.html#a17565044aef6e50d70901afff977bdca", null ]
 ];

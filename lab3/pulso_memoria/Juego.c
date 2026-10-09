@@ -6,6 +6,7 @@
  */
 
 #include "Juego.h"
+#include "medicion.h"
 #include <stdio.h>
 #include <inttypes.h>
 #include "pico/rand.h"
@@ -75,17 +76,40 @@ static const uint32_t DURACION_VICTORIA = 1000;
 /** @brief Duración (ms) de la pausa de fallo antes de reintentar el nivel o terminar la partida. */
 static const uint32_t DURACION_FALLO = 450;
 
+// --- Medición de tiempos de ejecución (ver medicion.h) ---
+
+/** @brief Duración (us) de la última llamada a generar_siguiente_elemento(). */
+static uint32_t tiempo_generar_siguiente_us = 0;
+
+/** @brief Estadísticas de cambio_estado_tiempo() en llamadas donde NO hubo transición de estado. */
+static MedEstadistica med_cambio_estado = MED_ESTADISTICA_INICIAL;
+
 /**
  * @brief Genera de forma aleatoria el siguiente LED de la secuencia.
  * @details Escribe en secuencia_leds[nivel_actual - 1] un índice de LED (0-3) obtenido con
  *          get_rand_32(). No hace nada si nivel_actual queda fuera del rango del arreglo.
+ *          Mide su duración en #tiempo_generar_siguiente_us sin imprimir: el reporte lo hace
+ *          reportar_generar_siguiente() desde fuera, para que el printf no infle el tiempo de
+ *          las funciones que la llaman.
  */
 static void generar_siguiente_elemento(void) {
+  uint32_t t0 = time_us_32();
+
   int indice = nivel_actual - 1;
 
   if (indice >= 0 && indice < 9) {
     secuencia_leds[indice] = (int)(get_rand_32() % 4);
   }
+
+  tiempo_generar_siguiente_us = time_us_32() - t0;
+}
+
+/**
+ * @brief Imprime la duración de la última llamada a generar_siguiente_elemento().
+ */
+static void reportar_generar_siguiente(void) {
+  MED_PRINTF("[TIEMPO] generar_siguiente_elemento (nivel %d): %" PRIu32 " us\n",
+             nivel_actual, tiempo_generar_siguiente_us);
 }
 
 /**
@@ -177,7 +201,29 @@ EstadoJuego verificacion_estado(void) {
   return estado_actual;
 }
 
-void cambio_estado_tiempo(uint32_t tiempo_transcurrido) {
+/**
+ * @brief Nombre legible de un estado, solo para los mensajes de medición.
+ * @param e Estado a nombrar.
+ * @return Cadena constante con el nombre del estado.
+ */
+static const char *nombre_estado(EstadoJuego e) {
+  switch (e) {
+    case INICIO:         return "INICIO";
+    case PRESENTACION:   return "PRESENTACION";
+    case INPUTS:         return "INPUTS";
+    case NIVEL_COMPLETO: return "NIVEL_COMPLETO";
+    case NIVEL_FALLIDO:  return "NIVEL_FALLIDO";
+    case FIN:            return "FIN";
+  }
+
+  return "?";
+}
+
+/**
+ * @brief Cuerpo original de cambio_estado_tiempo(): resuelve las transiciones que dependen del tiempo.
+ * @param tiempo_transcurrido Estampa de tiempo actual del sistema en milisegundos.
+ */
+static void evaluar_transiciones(uint32_t tiempo_transcurrido) {
   if (estado_actual == NIVEL_COMPLETO) {
     if (tiempo_transcurrido - tiempo_nivel_completo >= DURACION_VICTORIA) {
       nivel_actual++;
@@ -241,6 +287,28 @@ void cambio_estado_tiempo(uint32_t tiempo_transcurrido) {
       tiempo_nivel_fallido = tiempo_transcurrido;
       estado_actual = NIVEL_FALLIDO;
     }
+  }
+}
+
+void cambio_estado_tiempo(uint32_t tiempo_transcurrido) {
+  EstadoJuego antes = estado_actual;
+
+  uint32_t t0 = time_us_32();
+  evaluar_transiciones(tiempo_transcurrido);
+  uint32_t dt = time_us_32() - t0;
+
+  if (estado_actual == antes) {
+    med_registrar(&med_cambio_estado, dt); // llamada sin transición: solo se acumula
+    return;
+  }
+
+  // Hubo transición: se reporta (fuera del intervalo medido) cuánto tardó esa llamada.
+  MED_PRINTF("[TIEMPO] cambio_estado_tiempo %s -> %s: %" PRIu32 " us\n",
+             nombre_estado(antes), nombre_estado(estado_actual), dt);
+  med_reportar("cambio_estado_tiempo (llamadas previas sin transicion)", &med_cambio_estado);
+
+  if (antes == NIVEL_COMPLETO) {
+    reportar_generar_siguiente(); // esa transición fue la que generó el nuevo elemento
   }
 }
 
@@ -315,6 +383,7 @@ void iniciar_partida(uint32_t tiempo_transcurrido) {
 
   calcular_tiempo_presentacion();
   generar_siguiente_elemento();
+  reportar_generar_siguiente();
 
   aux_tiempo_presentacion = tiempo_transcurrido;
   estado_actual = PRESENTACION;

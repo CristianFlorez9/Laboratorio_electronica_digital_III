@@ -1,0 +1,59 @@
+\doxysection{medicion.\+h}
+\hypertarget{medicion_8h_source}{}\label{medicion_8h_source}\doxymbox{\hyperlink{medicion_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ MEDICION\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MEDICION\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}pico/time.h"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ MEDIR\_TIEMPOS\ 1}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00022\ \ \ uint32\_t\ \doxymbox{\hyperlink{struct_med_estadistica_ad5a6c1ac3d3ec7949c5a9e46088ab61f}{n}};\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ uint32\_t\ \doxymbox{\hyperlink{struct_med_estadistica_ae9f72da9e8cdf3db984689e79bb1e47d}{min}};\ \ \ }
+\DoxyCodeLine{00024\ \ \ uint32\_t\ \doxymbox{\hyperlink{struct_med_estadistica_aee138a49501a8227ba278765e2b6fe25}{max}};\ \ \ }
+\DoxyCodeLine{00025\ \ \ uint64\_t\ \doxymbox{\hyperlink{struct_med_estadistica_a8f29b135c17623bff4a87879e3b17d89}{suma}};\ \ }
+\DoxyCodeLine{00026\ \}\ \doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MED\_ESTADISTICA\_INICIAL\ \{0,\ UINT32\_MAX,\ 0,\ 0\}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#if\ MEDIR\_TIEMPOS}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ MED\_PRINTF(...)\ printf(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ med\_registrar(\doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}}\ *e,\ uint32\_t\ dt\_us)\ \{}
+\DoxyCodeLine{00041\ \ \ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ad5a6c1ac3d3ec7949c5a9e46088ab61f}{n}}++;}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{if}\ (dt\_us\ <\ e-\/>min)\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ae9f72da9e8cdf3db984689e79bb1e47d}{min}}\ =\ dt\_us;}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (dt\_us\ >\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_aee138a49501a8227ba278765e2b6fe25}{max}})\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_aee138a49501a8227ba278765e2b6fe25}{max}}\ =\ dt\_us;}
+\DoxyCodeLine{00044\ \ \ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_a8f29b135c17623bff4a87879e3b17d89}{suma}}\ +=\ dt\_us;}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ med\_reportar(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *nombre,\ \doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}}\ *e)\ \{}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ad5a6c1ac3d3ec7949c5a9e46088ab61f}{n}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ printf(\textcolor{stringliteral}{"{}[TIEMPO]\ \%s\ -\/>\ \%"{}}\ PRIu32\ \textcolor{stringliteral}{"{}\ llamadas\ |\ min:\ \%"{}}\ PRIu32\ \textcolor{stringliteral}{"{}\ us\ |\ prom:\ \%"{}}\ PRIu32}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ us\ |\ max:\ \%"{}}\ PRIu32\ \textcolor{stringliteral}{"{}\ us\(\backslash\)n"{}},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ nombre,\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ad5a6c1ac3d3ec7949c5a9e46088ab61f}{n}},\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ae9f72da9e8cdf3db984689e79bb1e47d}{min}},\ (uint32\_t)(e-\/>\doxymbox{\hyperlink{struct_med_estadistica_a8f29b135c17623bff4a87879e3b17d89}{suma}}\ /\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_ad5a6c1ac3d3ec7949c5a9e46088ab61f}{n}}),\ e-\/>\doxymbox{\hyperlink{struct_med_estadistica_aee138a49501a8227ba278765e2b6fe25}{max}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ *e\ =\ (\doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}})\doxymbox{\hyperlink{medicion_8h_ab21727be9bfe590b0678f7d12bf9ae02}{MED\_ESTADISTICA\_INICIAL}};}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ MED\_PRINTF(...)\ ((void)0)}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ med\_registrar(\doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}}\ *e,\ uint32\_t\ dt\_us)\ \{\ (void)e;\ (void)dt\_us;\ \}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ med\_reportar(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *nombre,\ \doxymbox{\hyperlink{struct_med_estadistica}{MedEstadistica}}\ *e)\ \{\ (void)nombre;\ (void)e;\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
