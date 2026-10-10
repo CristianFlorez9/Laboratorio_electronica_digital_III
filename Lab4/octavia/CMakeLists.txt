@@ -35,7 +35,16 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(octavia octavia.c )
+add_executable(octavia
+        main.c
+        app/octavia.c
+        app/notes.c
+        app/synth.c
+        app/wavetable.c
+        drivers/buttons_leds.c
+        drivers/dac.c
+        drivers/systick.c
+)
 
 pico_set_program_name(octavia "octavia")
 pico_set_program_version(octavia "0.1")
@@ -46,12 +55,17 @@ pico_enable_stdio_usb(octavia 0)
 
 # Add the standard library to the build
 target_link_libraries(octavia
-        pico_stdlib)
+        pico_stdlib
+        hardware_gpio
+        hardware_irq
+        hardware_sync
+)
 
 # Add the standard include files to the build
 target_include_directories(octavia PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/app
+        ${CMAKE_CURRENT_LIST_DIR}/drivers
 )
 
 pico_add_extra_outputs(octavia)
-
