@@ -1,5 +1,0 @@
-Estos modos de prueba comprueban el funcionamiento de cada uno de los componentes del programa, su modo de uso es pegar los codigos
-que se encuentran es esta carpeta en el archivo main, tener en cuenta que se debe pegar cada uno por separado.
-
-Ejemplo: Si pegamos el codigo de prueba_leds_botones veremos en el hardware como se prenden los leds correspondientes a las octavas y a su vez
-podremos ver en el puerto serial la nota de cada boton presionado.
