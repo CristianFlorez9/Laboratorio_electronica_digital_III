@@ -60,6 +60,10 @@ target_link_libraries(octavia
         hardware_irq
         hardware_sync
 )
+target_link_libraries(octavia
+    pico_stdlib
+    hardware_exception
+)
 
 # Add the standard include files to the build
 target_include_directories(octavia PRIVATE
