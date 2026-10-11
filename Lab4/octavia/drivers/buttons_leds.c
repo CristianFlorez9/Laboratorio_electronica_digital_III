@@ -58,6 +58,7 @@ static void leds_mostrar_octava(void)
 static void gpio_isr(uint gpio, uint32_t eventos)
 {
     (void)eventos;
+    
     if (gpio >= NUM_BANK0_GPIOS) {
         return;
     }
