@@ -1,0 +1,243 @@
+Estructura actual del proyecto:
+
+  octavia/
+  |-- app/
+  |   |-- notes.c / notes.h
+  |   |-- octavia.c / octavia.h
+  |   |-- synth.c / synth.h
+  |   |-- wavetable.c / wavetable.h
+  |-- build/
+  |-- drivers/
+  |   |-- buttons.c / buttons.h
+  |   |-- dac.c / dac.h
+  |   |-- systick.c / systick.h
+  |-- test/
+  |-- .gitignore
+  |-- CMakeLists.txt
+  |-- main.c
+  |-- pico_sdk_import.cmake
+
+Idea general: el codigo se divide en dos capas.
+  - drivers/ : hablan con el hardware. Solo aqui se tocan registros.
+  - app/     : reglas musicales y generacion de sonido. No toca registros;
+               usa los drivers a traves de sus funciones.
+  - main.c   : une todo (inicializa y arranca).
+
+1. CARPETA app/  (logica del instrumento)
+
+--------------------------------------------------------------------------
+notes.c / notes.h
+--------------------------------------------------------------------------
+Que es: la tabla de las notas.
+Que contiene:
+  - Las 21 notas (7 notas x 3 octavas, o las que declares).
+  - Para cada una: la frecuencia objetivo en Hz, calculada con
+    f = 440 x 2^(n/12), y el paso de fase (phase increment) que el
+    sintetizador debe sumar en cada muestra para obtener esa frecuencia.
+Quien lo usa: synth (para saber cuanto avanzar en la tabla) y las pruebas
+  de afinacion (para comparar objetivo vs. frecuencia real).
+Nota: el paso de fase depende de la tasa de muestreo y del tamano de la
+  tabla; por eso conviene generarlo con un programa de calculo en vez de
+  escribirlo a mano.
+
+--------------------------------------------------------------------------
+octavia.c / octavia.h
+--------------------------------------------------------------------------
+Que es: las reglas del instrumento (el "cerebro" musical).
+Responsabilidades:
+  - Guardar la octava vigente (la que esta elegida en los botones de octava).
+  - Capturar la octava de cada nota en el momento de pulsarla, para que la
+    nota la conserve aunque despues cambies de octava.
+  - Decidir que nota suena cuando hay varias botones de nota presionados
+    (ultima pulsada, mas grave o mas aguda) y que pasa al soltarlos.
+  - Definir el estado al encender (octava inicial, silencio).
+  - Iniciar y terminar notas (en coordinacion con la envolvente de synth).
+No debe: tocar registros ni conocer detalles del hardware.
+
+--------------------------------------------------------------------------
+synth.c / synth.h
+--------------------------------------------------------------------------
+Que es: el generador de la senal de audio.
+Responsabilidades:
+  - Mantener el acumulador de fase.
+  - Leer la tabla de ondas en cada muestra (con interpolacion o sin ella;
+    la guia pide comparar ambas).
+  - Aplicar la envolvente de ataque y liberacion para evitar chasquidos.
+  - Entregar el valor de la muestra que se escribira en el DAC.
+Cuando se ejecuta: una vez por cada tick de muestreo, llamado desde la
+  interrupcion del SysTick. Por eso debe ser corto y rapido.
+
+--------------------------------------------------------------------------
+wavetable.c / wavetable.h
+--------------------------------------------------------------------------
+Que es: la tabla de muestras de un ciclo de la onda, guardada en Flash.
+  - wavetable.c : el arreglo con los valores (puede generarse con un
+    programa auxiliar para que sea reproducible).
+  - wavetable.h : declara el arreglo y su tamano para que synth lo use.
+Decisiones asociadas (del equipo): forma de onda, numero de muestras y
+  representacion numerica (por ejemplo, 8 bits sin signo si el DAC es de
+  8 bits).
+
+2. CARPETA drivers/  (acceso al hardware)
+
+--------------------------------------------------------------------------
+systick.c / systick.h   <-- EL MAS IMPORTANTE DE LA PRACTICA
+--------------------------------------------------------------------------
+Que es: el driver propio del temporizador SysTick.
+Responsabilidades:
+  - Configurar el SysTick escribiendo directamente sus registros
+    (CSR, RVR, CVR) y, si se usa, la prioridad en SHPR3.
+  - Calcular y cargar el valor de recarga para la tasa de muestreo.
+  - Ofrecer funciones como init, start y stop.
+  - Definir la rutina de interrupcion (isr_systick) y desde ahi llamar a
+    la funcion que se haya registrado (callback), por ejemplo la que
+    actualiza el sonido.
+  - Llevar un contador de milisegundos, util para el antirrebote.
+Reglas de la guia:
+  - Solo este archivo debe tocar los registros del SysTick.
+  - No se permiten funciones del SDK que sustituyan su configuracion u
+    operacion. Solo se pueden usar las cabeceras con las definiciones de
+    registros.
+  - Debe participar de verdad en la temporizacion del sonido. Si no,
+    la nota maxima de la practica es 2,5.
+  - Documentarlo con Doxygen (parametros, unidades, retorno, efectos).
+
+--------------------------------------------------------------------------
+dac.c / dac.h
+--------------------------------------------------------------------------
+Que es: el driver de la salida analogica (DAC externo).
+Responsabilidades:
+  - Configurar los pines GPIO que alimentan el DAC (R-2R o paralelo).
+  - Ofrecer una funcion para escribir una muestra (por ejemplo,
+    dac_write(valor)) cambiando todos los bits en una sola operacion para
+    evitar glitches entre bits.
+  - Dejar la salida en el nivel medio al encender.
+Aqui si se permite usar el SDK (GPIO).
+
+--------------------------------------------------------------------------
+buttons.c / buttons.h
+--------------------------------------------------------------------------
+Que es: el driver de los controles (7 botones de nota + botones de octava).
+Responsabilidades:
+  - Configurar los GPIO como entradas con pull-up y sus interrupciones.
+  - Manejar el antirrebote (confirmar el estado estable tras unos
+    milisegundos, usando la base de tiempo del SysTick).
+  - Entregar el estado ya depurado: que notas estan presionadas y que
+    boton de octava se pulso.
+  - Evitar activaciones involuntarias y notas que queden pegadas.
+Aqui si se permite usar el SDK (GPIO e interrupciones).
+
+3. ARCHIVOS DE LA RAIZ
+
+--------------------------------------------------------------------------
+main.c
+--------------------------------------------------------------------------
+Punto de entrada del programa.
+  - Inicializa los drivers (SysTick, DAC, botones) y la logica (octavia,
+    synth).
+  - Registra el callback del SysTick y lo arranca.
+  - En el bucle principal hace poco: actualizar LED de octava y, si se
+    quiere, dormir hasta la siguiente interrupcion.
+
+--------------------------------------------------------------------------
+CMakeLists.txt
+--------------------------------------------------------------------------
+Configuracion de compilacion del proyecto.
+  - Lista los archivos .c que se compilan (app/*.c, drivers/*.c, main.c).
+  - Indica los directorios de include para que los #include funcionen.
+  - Enlaza las bibliotecas del SDK que se usen (por ejemplo, GPIO) y
+    activa la salida USB/UART si se necesita para depurar.
+Importante: cada .c nuevo debe agregarse a mano en add_executable.
+
+--------------------------------------------------------------------------
+pico_sdk_import.cmake
+--------------------------------------------------------------------------
+Archivo estandar del Pico SDK que le dice a CMake donde esta el SDK.
+Normalmente se copia desde el SDK y no se modifica.
+
+--------------------------------------------------------------------------
+.gitignore
+--------------------------------------------------------------------------
+Lista de archivos y carpetas que Git no debe versionar, por ejemplo la
+carpeta build/ y los binarios generados.
+
+4. CARPETAS
+
+--------------------------------------------------------------------------
+build/
+--------------------------------------------------------------------------
+Carpeta generada por CMake al compilar (objetos, .elf, .uf2, etc.).
+No se edita a mano y no se sube a Git. El archivo .uf2 que se arrastra a
+la Pico sale de aqui. Para la entrega conviene incluir las instrucciones
+de compilacion, no esta carpeta.
+
+--------------------------------------------------------------------------
+test/
+--------------------------------------------------------------------------
+Pruebas de componente y de aceptacion.
+Ejemplos de lo que puede ir aqui:
+  - Prueba del SysTick: un callback que cambie un pin cada tick para medir
+    la frecuencia con osciloscopio.
+  - Prueba del DAC: rampa o seno fijo para medir amplitud y DC.
+  - Prueba de botones: imprimir o encender un LED segun el estado.
+  - Procedimientos y registros de las pruebas de aceptacion.
+La guia pide probar por separado drivers, DAC y controles antes de
+integrar, y dejar evidencia.
+
+5. COMO INCLUIR LOS ARCHIVOS (segun tu estructura)
+
+Como app/ y drivers/ estan directamente bajo la raiz, la forma recomendada
+es agregar la raiz del proyecto como directorio de include en CMake:
+
+  target_include_directories(octavia PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+
+y escribir en el codigo:
+
+  #include "drivers/systick.h"
+  #include "drivers/dac.h"
+  #include "drivers/buttons.h"
+  #include "app/octavia.h"
+  #include "app/synth.h"
+  #include "app/notes.h"
+  #include "app/wavetable.h"
+
+Tambien deben listarse los .c en add_executable, por ejemplo:
+
+  add_executable(octavia
+      main.c
+      app/notes.c
+      app/octavia.c
+      app/synth.c
+      app/wavetable.c
+      drivers/buttons.c
+      drivers/dac.c
+      drivers/systick.c
+  )
+
+6. ARCHIVOS QUE AUN FALTAN POR AGREGAR (sugeridos)
+
+  - config.h : un solo lugar para pines, tasa de muestreo, tiempos de
+               antirrebote y otras constantes (evita numeros dispersos).
+  - README.md : instrucciones de compilacion y carga, versiones de las
+               herramientas (lo exige la entrega).
+  - Doxyfile  : configuracion para generar la documentacion Doxygen.
+  - tools/    : programas auxiliares de PC (generar la tabla de ondas y
+               calcular la afinacion), para tener los calculos
+               reproducibles.
+  - docs/     : informe, evidencias (capturas, videos) y datos de
+               afinacion.
+
+7. RESUMEN DEL FLUJO DE EJECUCION
+
+  1) main.c inicializa todo y arranca el SysTick.
+  2) Cada tick del SysTick (isr_systick en systick.c):
+        synth genera la siguiente muestra  ->  dac la escribe en el DAC.
+  3) Cuando se pulsa o suelta un boton, buttons detecta el cambio por
+     interrupcion y hace el antirrebote con la base de tiempo del SysTick.
+  4) octavia recibe el estado depurado, aplica las reglas (octava
+     capturada, notas simultaneas) y le indica a synth que nota sonar
+     (paso de fase de notes).
+  5) El bucle principal de main.c actualiza indicadores (LED de octava).
+
+Fecha limite de entrega: martes 13 de octubre de 2026, antes de la
+medianoche, en Moodle.
