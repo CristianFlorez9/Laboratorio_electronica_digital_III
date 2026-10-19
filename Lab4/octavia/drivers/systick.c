@@ -64,11 +64,6 @@ void systick_init(uint32_t reload_value)
     *SYST_CSR = SYST_CSR_CLKSOURCE | SYST_CSR_TICKINT | SYST_CSR_ENABLE;
 }
 
-void systick_set_reload(uint32_t reload_value)
-{
-    *SYST_RVR = reload_value & SYST_MASCARA_24;
-}
-
 void systick_set_state(bool enable)
 {
     if (enable) {
