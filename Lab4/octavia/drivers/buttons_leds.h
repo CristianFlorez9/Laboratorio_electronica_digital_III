@@ -18,7 +18,7 @@
 
 /** Ticks de bl_actualizar() que un botón pendiente debe esperar antes de validarse. */
 #ifndef BL_TICKS_ANTIRREBOTE
-#define BL_TICKS_ANTIRREBOTE 5u
+#define BL_TICKS_ANTIRREBOTE 3u
 #endif
 
 /** 1 si el botón conecta el pin a GND (con pull-up interno), 0 si lo conecta a 3V3. */
