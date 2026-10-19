@@ -3,8 +3,11 @@
 #include "synth.h"
 #include "drivers/buttons_leds.h"
 
-uint8_t octava_vigente = 0;      // octava 3 por defecto
-uint8_t nota_sonando = 255;      // 255 = Silencio
+#define SIN_NOTA 255u
+#define NUM_NOTAS 7
+
+static uint8_t nota_sonando = SIN_NOTA;
+static uint8_t octava_de_nota[NUM_NOTAS];
 
 void octavia_iniciar(void){
     stdio_init_all();
@@ -12,53 +15,53 @@ void octavia_iniciar(void){
     synth_init();
 }
 
+static int8_t nota_mas_aguda(uint8_t mascara)
+{
+    for (int8_t i = NUM_NOTAS - 1; i >= 0; i--) {
+        if ((mascara >> i) & 1u) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void octavia_ejecutar(void){
     bl_actualizar();
-        
+
     uint8_t presionadas = 0;
     uint8_t liberadas = 0;
-        
-    // Extraemos eventos y estado actual
     bl_notas_tomar_eventos(&presionadas, &liberadas);
     uint8_t sostenidas = bl_notas_presionadas();
 
-    // REGLA A: ¿Se presionó una tecla nueva?
-    if (presionadas > 0) {
-        
-        // Solo leemos la octava del hardware si veníamos del silencio
-        if (nota_sonando == 255) {
-            octava_vigente = bl_octava_actual(); 
+    /* Cada nota captura la octava vigente en el instante de su pulsación */
+    for (uint8_t i = 0; i < NUM_NOTAS; i++) {
+        if ((presionadas >> i) & 1u) {
+            octava_de_nota[i] = bl_octava_actual();
         }
-            
-        // Buscamos qué nota nueva se presionó (prioridad a la más aguda)
-        for (int i = 6; i >= 0; i--) {
-            if ((presionadas >> i) & 1u) {
-                nota_sonando = i;
-                synth_tocar_nota(octava_vigente, nota_sonando);
-                break;
-            }
-        }
-    } 
-    // REGLA B: ¿Se soltó alguna tecla?
-    else if (liberadas > 0) {
-        
+    }
+
+    /* Primero las liberaciones */
+    if (liberadas) {
         if (sostenidas == 0) {
-            // Ya no hay ningún dedo en el teclado -> Silencio
-            nota_sonando = 255;
+            nota_sonando = SIN_NOTA;
             synth_liberar_nota();
-        } else {
-            // LEGATO: Cuando habián varias teclas presionadas y se suelta una
-            // busca en las que quedan presionadas y es la que suena
-            for (int i = 6; i >= 0; i--) {
-                if ((sostenidas >> i) & 1u) {
-                    nota_sonando = i;
-                    synth_tocar_nota(octava_vigente, nota_sonando);
-                    break; 
-                }
+        } else if (nota_sonando != SIN_NOTA && ((liberadas >> nota_sonando) & 1u)) {
+            int8_t n = nota_mas_aguda(sostenidas);
+            if (n >= 0) {
+                nota_sonando = (uint8_t)n;
+                synth_tocar_nota(octava_de_nota[n], nota_sonando);
             }
         }
     }
 
-    // Pequeña pausa para no saturar el procesador
+    /* Después las pulsaciones nuevas */
+    if (presionadas) {
+        int8_t n = nota_mas_aguda(presionadas);
+        if (n >= 0) {
+            nota_sonando = (uint8_t)n;
+            synth_tocar_nota(octava_de_nota[n], nota_sonando);
+        }
+    }
+
     sleep_ms(1);
 }
