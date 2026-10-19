@@ -40,16 +40,6 @@
 void systick_init(uint32_t reload_value);
 
 /**
- * @brief Cambia el periodo sin detener el contador.
- *
- * @param reload_value Nuevo valor de recarga (24 bits). Se aplica al próximo ciclo.
- *
- * @note El ciclo en curso termina con el valor anterior; el nuevo periodo
- *       empieza en la siguiente recarga.
- */
-void systick_set_reload(uint32_t reload_value);
-
-/**
  * @brief Enciende o apaga el contador sin tocar el resto de la configuración.
  *
  * @param enable true para encender, false para apagar.
