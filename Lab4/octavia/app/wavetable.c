@@ -1,6 +1,25 @@
+/**
+ * @file wavetable.c
+ * @brief Definición de la tabla de ondas del sintetizador de Octavia.
+ *
+ * Contiene los datos de tabla_onda (declarada en wavetable.h): un ciclo
+ * completo de una onda senoidal.
+ *
+ * Características de la tabla:
+ * - Cantidad de muestras: TABLE_SIZE (256).
+ * - Representación: enteros de 8 bits sin signo (0 a 255).
+ * - Componente continua: centrada en 128, que corresponde al nivel de reposo
+ *   del DAC (silencio).
+ * - Amplitud: de 0 a 255 cuentas (pico a pico completo).
+ * - Fase: la muestra 0 está en el cruce por cero (128) y la onda sube; el
+ *   máximo cae cerca del índice 64 y el mínimo cerca del 192.
+ *
+ * El sintetizador la recorre con los 8 bits más altos de un acumulador de
+ * fase de 32 bits, sin interpolación entre muestras.
+ */
+
 #include "wavetable.h"
 
-// Aquí definimos el arreglo y le damos los datos reales
 const uint8_t tabla_onda[TABLE_SIZE] = {
     128,131,134,137,140,143,146,149,152,155,158,162,165,167,170,173,
     176,179,182,185,188,190,193,196,198,201,203,206,208,211,213,215,
