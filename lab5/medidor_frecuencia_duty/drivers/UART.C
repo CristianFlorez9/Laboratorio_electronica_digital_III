@@ -1,4 +1,4 @@
-#include "uart_driver.h"
+#include "UART.h"
 #include <string.h>
 #include "hardware/uart.h"
 #include "hardware/irq.h"
@@ -16,7 +16,7 @@ static critical_section_t uart_crit_sec;
 
 
 static void on_uart_tx_isr(void) {
- 
+
     while (uart_is_tx_fifo_full(UART_ID) == false) {
         if (head != tail) { // Hay datos en el búfer circular
             // Extraer byte aplicando la máscara para dar la vuelta al arreglo circular
@@ -37,14 +37,14 @@ void uart_driver_init(void) {
 
     critical_section_init(&uart_crit_sec);
 
-    // Inicializar periférico UART al baud rate definido
+    
     uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     
     // Configuración estricta de formato: 8 bits de datos, sin paridad, 1 bit de parada
     uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
-    uart_set_hw_flow(UART_ID, false, false);
-    uart_set_fifo_enabled(UART_ID, true);    // Activar FIFOs de hardware
+    uart_set_hw_flow(UART_ID, false, false); //Apaga el control de flujo por hardware (pines RTS/CTS)
+    uart_set_fifo_enabled(UART_ID, true);    // Activar FIFOs(memoria interna de 32bits) de hardware
 
     // Configurar el manejador de la interrupción en el NVIC del ARM Cortex
     int uart_irq_num = (UART_ID == uart0) ? UART0_IRQ : UART1_IRQ;
@@ -67,7 +67,7 @@ bool uart_driver_send_string(const char* str) {
     uint32_t used_space = tail - head;
     uint32_t free_space = (TX_BUFFER_SIZE - 1) - used_space;
 
-    // Política de descarte completo: si no cabe entero, se omite para evitar tramas corruptas[cite: 2]
+    // Política de descarte completo: si no cabe entero, se omite para evitar tramas corruptas
     if (len > free_space) {
         dropped_reports++;
         critical_section_exit(&uart_crit_sec); // Liberar sección crítica antes de salir

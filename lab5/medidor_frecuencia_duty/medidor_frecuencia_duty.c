@@ -1,13 +1,16 @@
-#include <stdio.h>
 #include "pico/stdlib.h"
+#include "drivers/UART.h"
 
+int main() {
 
-int main()
-{
-    stdio_init_all();
+    uart_driver_init();
+
 
     while (true) {
-        printf("Hello, world!\n");
+        
+        uart_driver_send_string("Hola\r\n");
         sleep_ms(1000);
     }
+
+    return 0;
 }
