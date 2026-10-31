@@ -1,0 +1,6 @@
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.h:34: warning: argument octava from the argument list of synth_tocar_nota has multiple @param documentation sections
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.h:34: warning: argument nota from the argument list of synth_tocar_nota has multiple @param documentation sections
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.h:34: warning: too many @param commands for function synth_tocar_nota. Found 4 while function has 2 parameters
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.c:93: warning: argument octava from the argument list of synth_tocar_nota has multiple @param documentation sections
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.c:93: warning: argument nota from the argument list of synth_tocar_nota has multiple @param documentation sections
+C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab4/octavia/app/synth.c:93: warning: too many @param commands for function synth_tocar_nota. Found 4 while function has 2 parameters

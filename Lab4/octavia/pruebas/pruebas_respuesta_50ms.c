@@ -1,87 +1,96 @@
+#include <stdio.h>
 #include "octavia.h"
 #include "pico/stdlib.h"
 #include "synth.h"
 #include "drivers/buttons_leds.h"
 
-uint8_t octava_vigente = 0;      // octava 3 por defecto
-uint8_t nota_sonando = 255;      // 255 = Silencio
+uint8_t octava_vigente = 0;
+uint8_t nota_sonando = 255;      // 255 = silencio
 
 void octavia_iniciar(void){
     stdio_init_all();
-    sleep_ms(2000);              // Tiempo para iniciar el monitor serial
+    sleep_ms(2000);              // tiempo para abrir el monitor serie
 
     bl_iniciar();
     synth_init();
 }
 
+/* Devuelve el instante de flanco más reciente entre las notas de la máscara. */
+static uint32_t flanco_mas_reciente_us(uint8_t mascara)
+{
+    uint32_t mejor = 0;
+    bool hay = false;
+
+    for (uint8_t i = 0; i < BL_NUM_NOTAS; i++) {
+        if (!((mascara >> i) & 1u)) {
+            continue;
+        }
+        uint32_t t = bl_tiempo_evento_us(i);
+        if (!hay || (int32_t)(t - mejor) > 0) {
+            mejor = t;
+            hay = true;
+        }
+    }
+    return mejor;
+}
+
+static void imprimir_latencia(const char *etiqueta, uint32_t t_flanco,
+                              uint32_t t_deteccion, uint32_t t_fin)
+{
+    printf("%s | flanco->deteccion: %.3f ms | deteccion->sonido: %.3f ms | total: %.3f ms\n",
+           etiqueta,
+           (uint32_t)(t_deteccion - t_flanco) / 1000.0,
+           (uint32_t)(t_fin - t_deteccion) / 1000.0,
+           (uint32_t)(t_fin - t_flanco) / 1000.0);
+}
+
 void octavia_ejecutar(void){
     bl_actualizar();
-        
+
     uint8_t presionadas = 0;
     uint8_t liberadas = 0;
-        
-    // Extraemos eventos y estado actual
     bl_notas_tomar_eventos(&presionadas, &liberadas);
 
     uint8_t sostenidas = bl_notas_presionadas();
 
-    // REGLA A: ¿Se presionó una tecla nueva?
+    // Regla A: se presionó una tecla nueva
     if (presionadas > 0) {
+        uint32_t t_deteccion = time_us_32();
+        uint32_t t_flanco = flanco_mas_reciente_us(presionadas);
 
-        /* Tomamos el tiempo exacto en que detectamos la pulsación */
-        absolute_time_t tiempo_inicio = get_absolute_time();
-        
-        // Solo leemos la octava del hardware si veníamos del silencio
+        // Solo se lee la octava del hardware si veníamos del silencio
         if (nota_sonando == 255) {
-            octava_vigente = bl_octava_actual(); 
+            octava_vigente = bl_octava_actual();
         }
-            
-        // Buscamos qué nota nueva se presionó (prioridad a la más aguda)
+
+        // Prioridad a la nota más aguda
         for (int i = 6; i >= 0; i--) {
             if ((presionadas >> i) & 1u) {
                 nota_sonando = i;
                 synth_tocar_nota(octava_vigente, nota_sonando);
-
-                /* Tomamos el tiempo final */
-                absolute_time_t tiempo_fin = get_absolute_time();
-                /* Calculamos diferencia en microsegundos y la pasamos a milisegundos */
-                int64_t latencia_us = absolute_time_diff_us(tiempo_inicio, tiempo_fin);
-                printf("Tiempo de ataque: %.3f ms\n", latencia_us / 1000.0);
-
+                imprimir_latencia("Ataque", t_flanco, t_deteccion, time_us_32());
                 break;
             }
         }
-    } 
-    // REGLA B: ¿Se soltó alguna tecla?
+    }
+    // Regla B: se soltó alguna tecla
     else if (liberadas > 0) {
-        
+        uint32_t t_deteccion = time_us_32();
+        uint32_t t_flanco = flanco_mas_reciente_us(liberadas);
+
         if (sostenidas == 0) {
-            // Ya no hay ningún dedo en el teclado -> Silencio
             nota_sonando = 255;
             synth_liberar_nota();
         } else {
-            // LEGATO: Cuando habián varias teclas presionadas y se suelta una
-            // busca en las que quedan presionadas y es la que suena
-
-            /* Tomamos el tiempo exacto en que detectamos el inicio del legato */
-            absolute_time_t tiempo_inicio = get_absolute_time();
-
+            // Legato: suena la más aguda de las que siguen presionadas
             for (int i = 6; i >= 0; i--) {
                 if ((sostenidas >> i) & 1u) {
                     nota_sonando = i;
                     synth_tocar_nota(octava_vigente, nota_sonando);
-
-                    /* Tomamos el tiempo final */
-                    absolute_time_t tiempo_fin = get_absolute_time();
-                    int64_t latencia_us = absolute_time_diff_us(tiempo_inicio, tiempo_fin);
-                    printf("Tiempo de legato: %.3f ms\n", latencia_us / 1000.0);
-
-                    break; 
+                    imprimir_latencia("Legato", t_flanco, t_deteccion, time_us_32());
+                    break;
                 }
             }
         }
     }
-
-    // Pequeña pausa para no saturar el procesador
-    sleep_ms(1);
 }

@@ -16,9 +16,9 @@
 /** Total de botones gestionados por el driver. */
 #define BL_NUM_BOTONES (BL_NUM_NOTAS + BL_NUM_OCTAVAS)
 
-/** Ticks de bl_actualizar() que un botón pendiente debe esperar antes de validarse. */
-#ifndef BL_TICKS_ANTIRREBOTE
-#define BL_TICKS_ANTIRREBOTE 3u
+/** Tiempo de antirrebote en milisegundos, medido con el temporizador del sistema. */
+#ifndef BL_ANTIRREBOTE_MS
+#define BL_ANTIRREBOTE_MS 30u
 #endif
 
 /** 1 si el botón conecta el pin a GND (con pull-up interno), 0 si lo conecta a 3V3. */
@@ -48,15 +48,14 @@
 void bl_iniciar(void);
 
 /**
- * @brief Avanza el antirrebote de los botones pendientes.
+ * @brief Valida los botones pendientes una vez cumplido el antirrebote.
  *
- * Debe llamarse de forma periódica desde el lazo principal (en Octavia, una
- * vez por iteración de octavia_ejecutar()). Cada llamada suma un tick a cada
- * botón pendiente; al llegar a BL_TICKS_ANTIRREBOTE se lee el nivel y se
- * confirma el cambio. El tiempo de antirrebote es aproximadamente
- * BL_TICKS_ANTIRREBOTE por el periodo del lazo (unos 5 ms con la pausa de 1 ms
- * actual), no un valor exacto. No bloquea y retorna de inmediato si no hay
- * botones pendientes.
+ * Debe llamarse de forma periódica desde el lazo principal. La ISR de GPIO
+ * guarda el instante del primer flanco de cada botón; esta función confirma
+ * el cambio cuando han transcurrido BL_ANTIRREBOTE_MS desde ese instante,
+ * medido con time_us_32(), por lo que el antirrebote no depende del periodo
+ * del lazo (solo se añade el retraso con que se vuelva a llamar). No bloquea
+ * y retorna de inmediato si no hay botones pendientes.
  *
  * @note Modifica variables compartidas con la ISR de GPIO.
  */
@@ -93,5 +92,14 @@ uint8_t bl_octava_actual(void);
  * @param encendido true para encender.
  */
 void bl_led_escribir(uint8_t indice, bool encendido);
+
+/**
+ * @brief Instante (time_us_32) del primer flanco del último cambio validado de un botón.
+ *
+ * @param indice Número de botón (0 a BL_NUM_BOTONES - 1).
+ * @return Microsegundos desde el arranque, con desbordamiento a 32 bits.
+ *         Devuelve 0 si el índice es inválido.
+ */
+uint32_t bl_tiempo_evento_us(uint8_t indice);
 
 #endif

@@ -2,11 +2,11 @@
  * @file buttons_leds.c
  * @brief Driver de botones (con antirrebote) y LEDs de Octavia.
  *
- * Los flancos de los botones se capturan por interrupción de GPIO. La ISR solo
- * deshabilita el pin y lo marca como pendiente; el antirrebote y la
- * generación de eventos se hacen en bl_actualizar(), que cuenta ticks hasta
- * BL_TICKS_ANTIRREBOTE y luego confirma el nivel leído. Las funciones
- * públicas están documentadas en buttons_leds.h.
+ * Los flancos de los botones se capturan por interrupción de GPIO. La ISR
+ * deshabilita el pin, guarda el instante del flanco y lo marca como pendiente;
+ * el antirrebote y la generación de eventos se hacen en bl_actualizar(), que
+ * espera BL_ANTIRREBOTE_MS desde ese instante y luego confirma el nivel leído.
+ * Las funciones públicas están documentadas en buttons_leds.h.
  */
 
 #include "buttons_leds.h"
@@ -20,6 +20,9 @@
 
 /** @brief Eventos de GPIO que se monitorean: flanco de bajada y de subida. */
 #define BL_EVENTOS_GPIO (GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE)
+
+/** @brief Tiempo de antirrebote en microsegundos. */
+#define BL_ANTIRREBOTE_US (BL_ANTIRREBOTE_MS * 1000u)
 
 /**
  * @brief GPIO de cada botón, indexados por número de botón.
@@ -53,8 +56,11 @@ static volatile uint16_t eventos_liberado;
 /** @brief Octava vigente (0 a BL_NUM_OCTAVAS - 1). */
 static volatile uint8_t octava;
 
-/** @brief Ticks de antirrebote acumulados por cada botón pendiente. */
-static uint8_t contador[BL_NUM_BOTONES];
+/** @brief Instante del primer flanco de cada botón pendiente (time_us_32). */
+static volatile uint32_t t_flanco_us[BL_NUM_BOTONES];
+
+/** @brief Instante del primer flanco del último cambio validado de cada botón. */
+static volatile uint32_t t_evento_us[BL_NUM_BOTONES];
 
 /**
  * @brief Lee el nivel instantáneo de un botón, sin filtrar.
@@ -96,8 +102,8 @@ static void leds_mostrar_octava(void)
  * @brief ISR de GPIO: marca el botón como pendiente de validación.
  *
  * No valida nada: deshabilita las interrupciones del pin (para ignorar el
- * rebote), reinicia su contador y lo agrega a pendientes. La validación se
- * hace en bl_actualizar().
+ * rebote), guarda el instante del flanco y agrega el botón a pendientes. La
+ * validación se hace en bl_actualizar().
  *
  * @param gpio    GPIO que generó la interrupción.
  * @param eventos Eventos detectados (no se usan).
@@ -114,7 +120,7 @@ static void gpio_isr(uint gpio, uint32_t eventos)
         return;
     }
     gpio_set_irq_enabled(gpio, BL_EVENTOS_GPIO, false);
-    contador[i] = 0;
+    t_flanco_us[i] = time_us_32();
     pendientes |= (uint16_t)(1u << i);
 }
 
@@ -138,7 +144,8 @@ void bl_iniciar(void)
 
     for (uint8_t i = 0; i < BL_NUM_BOTONES; i++) {
         indice_de_pin[pines_botones[i]] = i;
-        contador[i] = 0;
+        t_flanco_us[i] = 0;
+        t_evento_us[i] = 0;
 
         gpio_init(pines_botones[i]);
         gpio_set_dir(pines_botones[i], GPIO_IN);
@@ -180,11 +187,9 @@ void bl_actualizar(void)
         if (!((pend >> i) & 1u)) {
             continue;
         }
-        if (++contador[i] < BL_TICKS_ANTIRREBOTE) {
+        if ((uint32_t)(time_us_32() - t_flanco_us[i]) < BL_ANTIRREBOTE_US) {
             continue;
         }
-
-        contador[i] = 0;
 
         /* La ISR también escribe pendientes: la limpieza debe ser atómica. */
         uint32_t irq = save_and_disable_interrupts();
@@ -196,6 +201,7 @@ void bl_actualizar(void)
 
         if (crudo != estable) {
             estado_estable ^= (uint16_t)(1u << i);
+            t_evento_us[i] = t_flanco_us[i];
             if (crudo) {
                 eventos_presionado |= (uint16_t)(1u << i);
                 if (i >= BL_NUM_NOTAS) {
@@ -216,7 +222,7 @@ void bl_actualizar(void)
         /* Si el nivel cambió justo antes de rehabilitar, reiniciar el filtro. */
         if (leer_boton_crudo(i) != (bool)((estado_estable >> i) & 1u)) {
             gpio_set_irq_enabled(pines_botones[i], BL_EVENTOS_GPIO, false);
-            contador[i] = 0;
+            t_flanco_us[i] = time_us_32();
 
             irq = save_and_disable_interrupts();
             pendientes |= (uint16_t)(1u << i);
@@ -252,4 +258,9 @@ void bl_notas_tomar_eventos(uint8_t *presionadas, uint8_t *liberadas)
 uint8_t bl_octava_actual(void)
 {
     return octava;
+}
+
+uint32_t bl_tiempo_evento_us(uint8_t indice)
+{
+    return (indice < BL_NUM_BOTONES) ? t_evento_us[indice] : 0u;
 }
