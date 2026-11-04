@@ -1,0 +1,166 @@
+# ninja log v7
+51	4530	8151136133309013	build.ninja	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/tools/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/boot_picobin_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/boot_picoboot_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/boot_uf2_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_base_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_usb_reset_interface_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_bit_ops_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_binary_info/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_divider_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_sync/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_time/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_util/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/pico_stdlib_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/common/hardware_claim/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/pico_platform/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/hardware_regs/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/hardware_structs/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/boot_stage2/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_base/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_adc/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_boot_lock/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_clocks/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_divider/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_dma/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_exception/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_flash/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_gpio/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_i2c/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_interp/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_irq/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_pio/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_pll/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_pwm/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_resets/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_rosc/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_rtc/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_spi/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_sync/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_sync_spin_lock/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_ticks/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_timer/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_uart/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_vreg/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_watchdog/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_xip_cache/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/hardware_xosc/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/boot_bootrom_headers/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_platform_common/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_platform_compiler/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_platform_sections/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_platform_panic/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_aon_timer/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_bootrom/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_bootsel_via_double_reset/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_multicore/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_unique_id/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_atomic/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_bit_ops/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_divider/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_double/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_int64_ops/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_flash/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_float/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_low_power/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_mem_ops/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_malloc/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_printf/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_rand/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_thread_local/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdio_semihosting/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdio_uart/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdio_rtt/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/cmsis/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/tinyusb/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdio_usb/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_usb_reset/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_i2c_slave/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_async_context/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_btstack/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_cyw43_driver/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_cyw43_driver/cybt_shared_bus/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_mbedtls/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_lwip/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_lwip/tools/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_cyw43_arch/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_time_adapter/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_crt0/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_clib_interface/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_cxx_options/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_standard_binary_info/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_standard_link/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_fix/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_status_led/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_runtime_init/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_runtime/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdio/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2_common/pico_stdlib/cmake_install.cmake	d47cf4f9d5b3109a
+51	4530	8151136133309013	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/docs/cmake_install.cmake	d47cf4f9d5b3109a
+61	982	8151136135091099	pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj	483def12fa09a903
+987	1709	8151136151483005	pico-sdk/src/rp2040/boot_stage2/bs2_default.elf	dc4dc58c1bd61a6a
+987	1709	8151136151483005	pico-sdk/src/rp2040/boot_stage2/bs2_default.dis	dc4dc58c1bd61a6a
+987	1709	8151136151483005	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.dis	dc4dc58c1bd61a6a
+1710	1875	8151136153176987	pico-sdk/src/rp2040/boot_stage2/bs2_default.bin	80651be9278a588e
+1710	1875	8151136153176987	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin	80651be9278a588e
+1875	2207	8151136156418213	pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S	c321a3834baf7e32
+1875	2207	8151136156418213	C:/Users/Usuario/Desktop/digitales 3/Laboratorio_electronica_digital_III/lab5/medidor_frecuencia_duty/build/pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S	c321a3834baf7e32
+2279	2558	8151136157271590	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_platform_panic/custom_panic_function.S.obj	e6ed4b3bd2aa9c61
+2332	2597	8151136157801704	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_irq/irq_handler_chain.S.obj	44bb8d16a65b2c55
+2257	2948	8151136157051538	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_platform_common/common.c.obj	f3017b284c5c0d32
+2245	3108	8151136156941514	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2040/pico_platform/platform.c.obj	3f643cc5630ca0dc
+2208	3121	8151136156566864	CMakeFiles/medidor_frecuencia_duty.dir/medidor_frecuencia_duty.c.obj	dc8a9b56616a2072
+2309	3136	8151136157571657	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj	68e66c875c9b636a
+2226	3150	8151136156750552	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_stdlib/stdlib.c.obj	2bc72a223e32c5f2
+2298	3163	8151136157471633	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_sync/sync.c.obj	7bb3f8051b806c92
+2289	3175	8151136157371623	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/hardware_claim/claim.c.obj	dbc2d9f9a257cbc1
+2378	3189	8151136158265884	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_sync/critical_section.c.obj	d35260ba3278f3bb
+2355	3202	8151136158025835	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_sync/lock_core.c.obj	245d318811eaf04d
+2558	3341	8151136160068470	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_time/timeout_helper.c.obj	88eb5b5b9bf31a9a
+2342	3359	8151136157905810	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_sync/sem.c.obj	70bbc894c96449b5
+2235	3409	8151136156834556	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_gpio/gpio.c.obj	4a08937fdf483f0e
+2366	3427	8151136158145859	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_sync/mutex.c.obj	37c4729f92022fec
+2597	3558	8151136160457443	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_timer/timer.c.obj	622791c2228068a5
+2267	3626	8151136157171575	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_platform_panic/panic.c.obj	dab87b65dfc007d3
+3108	3628	8151136165568196	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_util/fixed_bitset.c.obj	4831313aa3b2e3cb
+3189	3773	8151136166378383	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_vreg/vreg.c.obj	3ce892fbdf6eca25
+3176	3829	8151136166238347	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_pll/pll.c.obj	6a6d6ea5b8c4536
+2390	3862	8151136158385904	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_time/time.c.obj	f1ca4f679c61ce69
+2949	3870	8151136163982390	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_util/datetime.c.obj	b91664215ebdaf08
+3150	3884	8151136165988294	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_uart/uart.c.obj	b9c1ad3a5ff38db
+3136	3917	8151136165848252	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_util/queue.c.obj	479ef25bfaac4c6d
+3203	3984	8151136166508421	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_watchdog/watchdog.c.obj	112d2e54260fe07c
+3121	4006	8151136165698229	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/common/pico_util/pheap.c.obj	9579bac177a64851
+3163	4074	8151136166108317	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_clocks/clocks.c.obj	f6d5f631f1ad26f0
+2321	4122	8151136157701691	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_irq/irq.c.obj	ab2a5b6f825785d4
+180	541	8151136343125461	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_divider/divider.S.obj	5b7a4e2579f7c0cd
+290	622	8151136344248716	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_divider/divider_hardware.S.obj	bfae036f2cc54204
+276	665	8151136344088680	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj	d9cf152cd3d45556
+306	715	8151136344408755	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj	359a026ae447030f
+126	815	8151136342595332	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_boot_lock/boot_lock.c.obj	7081093967eeebc3
+83	830	8151136342155187	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_ticks/ticks.c.obj	d2cbb94c65ef2f36
+113	844	8151136342462619	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_bootrom/bootrom_lock.c.obj	6f431ee149ce1a9d
+543	859	8151136346747479	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj	addebd057f90f90
+622	873	8151136347551733	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj	b01c07da46b2f1e
+198	1025	8151136343305496	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_runtime/runtime.c.obj	d8580d3e43662c7d
+142	1027	8151136342755372	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_flash/flash.c.obj	656262a9d2e52fe4
+666	1033	8151136347981877	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj	a32552d52c3f7fdd
+245	1052	8151136343785600	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.obj	c22cc517d5505981
+830	1098	8151136349632863	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj	54fac164c46df366
+159	1112	8151136342925412	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_xosc/xosc.c.obj	e5274b42485f0314
+96	1172	8151136342282496	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_bootrom/bootrom.c.obj	3bcf52bb92c9429f
+859	1174	8151136349916714	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj	5d4ac220d0e5dd27
+229	1195	8151136343635565	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj	ba13b3b9bf1b2695
+215	1227	8151136343475529	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_runtime_init/runtime_init.c.obj	63c949e68908ced4
+322	1259	8151136344558784	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj	62cbbf0ea2e12f35
+260	1288	8151136343932521	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_rtc/rtc.c.obj	6928510ad7a475
+844	1353	8151136349770319	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_malloc/malloc.c.obj	7f97c17d86edd11d
+715	1359	8151136348483144	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj	b2fb1b42609797af
+874	1575	8151136350058140	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_atomic/atomic.c.obj	74bc7f83d43525ce
+340	1782	8151136344722663	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_double/double_math.c.obj	2116fd76c108191
+816	1806	8151136349482828	CMakeFiles/medidor_frecuencia_duty.dir/C_/Users/Usuario/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_float/float_math.c.obj	6f00a6ffd0a16778
