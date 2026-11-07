@@ -15,8 +15,7 @@ int main(void)
     gpio_set_function(PWM_GPIO, GPIO_FUNC_PWM);
     uint slice = pwm_gpio_to_slice_num(PWM_GPIO);
 
-    printf("fclk = %u Hz\n", (unsigned)fclk);
-    printf("Escribe: frecuencia_Hz duty_pct (ejemplo: 1000 25)\n");
+
 
     while (true) {
         uint32_t ftarget;

@@ -7,20 +7,20 @@
 static volatile char tx_buffer[TX_BUFFER_SIZE];
 
 // Contadores absolutos
-static volatile uint32_t head = 0; 
-static volatile uint32_t tail = 0;
+static volatile uint32_t head = 0; //Posición de lectura. Marca dónde está el espacio ocupado más antiguo
+static volatile uint32_t tail = 0; //Posición de escritura. Marca dónde está el siguiente espacio vacío
 static volatile uint32_t dropped_reports = 0;
+
 
 static void on_uart_tx_isr(void) {
     while (uart_is_writable(UART_ID)) {
-        if (head != tail) { // Hay datos en el búfer circular
-            // Extraer byte aplicando la máscara para dar la vuelta al arreglo circular
+        if (head != tail) { 
+    
             char c = tx_buffer[head & TX_BUFFER_MASK];
-            uart_putc_raw(UART_ID, c); // Envío directo al hardware
-            head++; // Avanzar contador de lectura
+            uart_putc_raw(UART_ID, c);
+            head++; 
         } else {
-            // El búfer de software se vació por completo. 
-            // Apagamos la interrupción de transmisión.
+    
             uart_set_irq_enables(UART_ID, false, false);
             break;
         }
@@ -29,29 +29,30 @@ static void on_uart_tx_isr(void) {
 
 void uart_driver_init(void) {
     uart_init(UART_ID, BAUD_RATE);
-    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
+    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART); //Define la función del pin como UART
     
-    // Configuración estricta de formato: 8 bits de datos, sin paridad, 1 bit de parada[cite: 2]
-    uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
-    uart_set_hw_flow(UART_ID, false, false); 
-    uart_set_fifo_enabled(UART_ID, true);    
+    uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE); //8N1
+    uart_set_hw_flow(UART_ID, false, false); //Deshabilita el control de pines RTS y CTS
+    uart_set_fifo_enabled(UART_ID, true);// Activa los búferes de memoria internos
 
-    // Configurar el manejador de la interrupción en el NVIC
     int uart_irq_num = (UART_ID == uart0) ? UART0_IRQ : UART1_IRQ;
-    irq_set_exclusive_handler(uart_irq_num, on_uart_tx_isr);
-    irq_set_enabled(uart_irq_num, true);
+    irq_set_exclusive_handler(uart_irq_num, on_uart_tx_isr); //Interrupción
+    irq_set_enabled(uart_irq_num, true); //Habilita la interrupción
     
-    uart_set_irq_enables(UART_ID, false, false);
+    uart_set_irq_enables(UART_ID, false, false);//Apagamos las interrupciones
 }
 
+
+
+
 bool uart_driver_send_string(const char* str) {
-    uint32_t len = strlen(str);
+    uint32_t len = strlen(str); //Calcula cuántos caracteres tiene la cadena a enviar.
     
     uint32_t current_head = head;
     uint32_t used_space = tail - current_head;
-    uint32_t free_space = (TX_BUFFER_SIZE - 1) - used_space;
+    uint32_t free_space = (TX_BUFFER_SIZE - 1) - used_space; //Espacio disponible en el buffer
 
-    if (len > free_space) {
+    if (len > free_space) {//Si la cadena es mayor al espacio libre se rechaza
         dropped_reports++;
         return false; 
     }
@@ -62,11 +63,10 @@ bool uart_driver_send_string(const char* str) {
     
     tail += len;
 
-    // 1. Encendemos la máscara de la interrupción[cite: 3]
+
     uart_set_irq_enables(UART_ID, false, true);
     
-    // 2. FORZAMOS el primer disparo de la interrupción en el procesador.
-    // Esto soluciona la inactividad del hardware PL011 al arrancar con FIFO vacío.
+
     int uart_irq_num = (UART_ID == uart0) ? UART0_IRQ : UART1_IRQ;
     irq_set_pending(uart_irq_num);
     

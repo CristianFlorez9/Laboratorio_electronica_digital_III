@@ -42,13 +42,13 @@ pico_set_program_version(PWM_PICO "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(PWM_PICO 0)
-pico_enable_stdio_usb(PWM_PICO 1) 
+pico_enable_stdio_usb(PWM_PICO 1)
 
 # Add the standard library to the build
 target_link_libraries(PWM_PICO
         pico_stdlib
-        hardware_pwm    # <--- Necesario para pwm_set_enabled, etc.
-        hardware_clocks # <--- Necesario para clock_get_hz
+        hardware_pwm    
+        hardware_clocks 
 )
 
 # Add the standard include files to the build

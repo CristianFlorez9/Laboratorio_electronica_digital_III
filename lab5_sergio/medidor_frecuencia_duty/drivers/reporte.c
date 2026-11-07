@@ -5,7 +5,7 @@
 #include "pico/stdlib.h"
 #include <stdio.h> 
 
-// El temporizador de hardware debe persistir en memoria, por lo que se declara estático o global
+
 static struct repeating_timer timer_100ms;
 
 
@@ -25,12 +25,12 @@ static bool timer_100ms_isr_callback(struct repeating_timer *t) {
 
     char buffer[64];
 
-    if ((now_us - last_edge_local_us) > 500000) {
-        snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,SIN_TRANSICIONES\n", n_report, dt_ms);
+    if (T_local_us == 0) {
+        snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,ESPERANDO\n", n_report, dt_ms);
     } 
     // Validar si todavía no se ha completado la medición del primer periodo
-    else if (T_local_us == 0) {
-        snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,ESPERANDO\n", n_report, dt_ms);
+    else if ((now_us - last_edge_local_us) > 500000) {
+        snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,SIN_TRANSICIONES\n", n_report, dt_ms);
     } 
     // Si los datos son frescos y válidos, aplicar matemática en punto flotante
     else {
@@ -41,16 +41,13 @@ static bool timer_100ms_isr_callback(struct repeating_timer *t) {
         // Frecuencia con 3 decimales, duty con 1 decimal
         snprintf(buffer, sizeof(buffer), "%lu,%lu,%.3f,%.1f,OK\n", n_report, dt_ms, f_hz, duty);
     }
-
-
     uart_driver_send_string(buffer);
-    
-
     n_report++; 
-
 
     return true;
 }
+
+
 
 
 void reporte_init(void) {

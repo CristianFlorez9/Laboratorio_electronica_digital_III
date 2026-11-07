@@ -15,10 +15,10 @@
 
 void uart_driver_init(void);
 
-// Función de transmisión guiada por eventos (descarte completo si no hay espacio)
 bool uart_driver_send_string(const char* str);
+// Función de transmisión guiada por eventos (descarte completo si no hay espacio)
 
-// Retorna la cantidad de paquetes descartados
 uint32_t uart_driver_get_dropped_count(void);
+// Retorna la cantidad de paquetes descartados
 
 #endif
