@@ -59,12 +59,12 @@ void medicion_init(void) {
 
 
 
-void medicion_obtener_datos(uint64_t* periodo_us, uint64_t* tiempo_alto_us, uint64_t* ultimo_flanco_us) {
-    uint32_t estado_previo = save_and_disable_interrupts();
+void medicion_obtener_datos(uint64_t* period_us, uint64_t* time_high_us, uint64_t* last_flank_us) {
+    uint32_t previous_state = save_and_disable_interrupts();
 
-    *periodo_us = T_us;
-    *tiempo_alto_us = t_H_us;
-    *ultimo_flanco_us = last_edge_time;
+    *period_us = T_us;
+    *time_high_us = t_H_us;
+    *last_flank_us = last_edge_time;
     
-    restore_interrupts(estado_previo);
+    restore_interrupts(previous_state);
 }
