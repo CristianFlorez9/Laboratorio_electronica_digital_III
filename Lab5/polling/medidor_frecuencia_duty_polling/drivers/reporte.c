@@ -2,7 +2,7 @@
 #include "medicion.h"
 #include "hardware/uart.h"
 #include "hardware/timer.h"
-#include "hardware/gpio.h" 
+#include "hardware/gpio.h"
 #include <stdio.h>        
 
 static uint32_t n_report = 0;            // Número de reporte (n)
