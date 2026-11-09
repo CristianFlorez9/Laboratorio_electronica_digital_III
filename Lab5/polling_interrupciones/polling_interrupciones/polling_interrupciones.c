@@ -20,7 +20,7 @@
  * |-------------------------------|----------------------|-------------------------------------------------------|
  * | ISR de wrap de PWM (prio. 0)  | capture.c            | Guarda instante y tipo de cada flanco en un anillo    |
  * | ISR de alarma periódica       | capture.c            | Marca "toca reporte" cada 100 ms                      |
- * | ISR de la UART0               | UART.c               | Umbral y timeout de RX, y servicio de TX              |
+ * | ISR de la UART0               | UART.c               | Servicio de TX (pasa el buffer a la FIFO)             |
  * | Ciclo principal               | main.c, measure.c    | Drena flancos, calcula, formatea y entrega al driver  |
  *
  * @section pins Pines
@@ -29,7 +29,7 @@
  * | GPIO 3 | Entrada de la señal: slice PWM 1, canal B, cuenta subidas     |
  * | GPIO 7 | Entrada de la señal: slice PWM 3, canal B, cuenta bajadas     |
  * | GPIO 0 | TX de la UART0 hacia el adaptador USB a UART                  |
- * | GPIO 1 | RX de la UART0 desde el adaptador USB a UART                  |
+ * | GPIO 1 | RX de la UART0 (no se usa: la guía solo exige transmisión)    |
  *
  * La señal de entrada (3,3 V, con tierra común) se conecta a los GPIO 3 y 7 a la vez.
  * La UART opera a 115200 bits/s, 8N1, sin control de flujo.
@@ -44,9 +44,6 @@
  *  - uart_driver_get_dropped_count(): líneas descartadas por falta de espacio en TX.
  *  - measure_get_late_count(): reportes que no se generaron por llegar tarde el ciclo.
  *  - capture_overflow_count(): flancos perdidos por anillo lleno.
- *
- * Además, uart_driver_get_rx_irq_counts() cuenta las veces que se atendió el umbral y el
- * timeout de recepción.
  *
  * @section build Compilación
  * Con el SDK oficial de Raspberry Pi Pico, enlazando las bibliotecas
