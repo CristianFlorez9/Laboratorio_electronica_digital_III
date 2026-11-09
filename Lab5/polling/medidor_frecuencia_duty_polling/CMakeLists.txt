@@ -53,6 +53,7 @@ target_link_libraries(medidor_frecuencia_duty_polling
         pico_stdlib
         hardware_uart
         hardware_timer
+        hardware_pwm
         hardware_gpio
         hardware_clocks
 )

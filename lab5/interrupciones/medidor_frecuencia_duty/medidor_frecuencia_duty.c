@@ -5,9 +5,6 @@
 #include "drivers/UART.h" 
 #include "drivers/medicion.h"
 #include "drivers/reporte.h"
-#include "pico/stdlib.h"
-#include "hardware/clocks.h"
-#include "hardware/sync.h"
 #include "hardware/irq.h" 
 
 int main() {
@@ -21,10 +18,10 @@ int main() {
 
     
 
-    // MÁXIMA PRIORIDAD (0x00)
+    // MÁXIMA PRIORIDAD 
     irq_set_priority(IO_IRQ_BANK0, 0x00);
 
-    // PRIORIDAD MÍNIMA (0xC0)
+    // PRIORIDAD MÍNIMA 
     irq_set_priority(UART0_IRQ, 0xC0);
 
     

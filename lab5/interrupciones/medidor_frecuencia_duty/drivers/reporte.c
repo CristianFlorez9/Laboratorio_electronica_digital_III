@@ -51,7 +51,7 @@ static bool timer_100ms_isr_callback(struct repeating_timer *t) {
 
 
 void reporte_init(void) {
-    // El valor negativo (-100) garantiza que el periodo sea de 100 ms exactos 
+    // El valor negativo garantiza que el periodo sea de 100 ms exactos 
     // entre cada inicio de interrupción, compensando el tiempo de ejecución del callback.
-    add_repeating_timer_ms(-100, timer_100ms_isr_callback, NULL, &timer_100ms);
+    add_repeating_timer_ms(-60, timer_100ms_isr_callback, NULL, &timer_100ms);
 }
