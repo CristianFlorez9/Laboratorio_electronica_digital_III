@@ -7,8 +7,8 @@
 // NOTA: Para usar PWM como entrada, DEBEN ser pines impares (Canal B)
 // y deben pertenecer a slices diferentes.
 // Conecta tu señal físicamente a AMBOS pines.
-#define PIN_FREQ_B  1  // Slice 0, Canal B
-#define PIN_DUTY_B  3  // Slice 1, Canal B
+#define PIN_FREQ_B  3  // Slice 0, Canal B
+#define PIN_DUTY_B  7  // Slice 1, Canal B
 
 void medicion_init(void);
 
