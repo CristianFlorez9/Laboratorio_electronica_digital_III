@@ -56,6 +56,7 @@ target_link_libraries(medidor_frecuencia_duty_polling
         hardware_pwm
         hardware_gpio
         hardware_clocks
+        hardware_pwm    # <-- ¡Añadido aquí para corregir el error de hardware/pwm.h!
 )
 
 # Add the standard include files to the build
