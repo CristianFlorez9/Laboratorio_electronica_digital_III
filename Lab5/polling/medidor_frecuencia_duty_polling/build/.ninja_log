@@ -1,0 +1,227 @@
+# ninja log v7
+275	807	8158946181077535	pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj	445dff7f6b5c4eb3
+815	1291	8158946190956764	pico-sdk/src/rp2040/boot_stage2/bs2_default.elf	1c18dc855cca7724
+815	1291	8158946190956764	pico-sdk/src/rp2040/boot_stage2/bs2_default.dis	1c18dc855cca7724
+815	1291	8158946190956764	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.dis	1c18dc855cca7724
+1292	1433	8158946192444314	pico-sdk/src/rp2040/boot_stage2/bs2_default.bin	2b35f8a923396a8b
+1292	1433	8158946192444314	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin	2b35f8a923396a8b
+1440	1942	8158946197206553	pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S	9e6e9682bedf5c00
+1440	1942	8158946197206553	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S	9e6e9682bedf5c00
+425	1035	8158949078147451	CMakeFiles/medidor_frecuencia_duty_polling.dir/059ad607d25ce00525813e3f794a9a95/custom_panic_function.S.obj	ad753bd9e3becac7
+487	5341	8159276544632714	CMakeFiles/medidor_frecuencia_duty_polling.dir/medidor_frecuencia_duty_polling.c.obj	f27f8f7bb81d5db4
+294	1788	8158949076766877	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2040/pico_platform/platform.c.obj	48bb7ff7aaf99c7c
+355	1645	8158949077252374	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_platform_common/common.c.obj	ee03d0ab02c756f0
+230	1998	8158949075990422	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/pico_stdlib/stdlib.c.obj	4ac93b7b028330d6
+475	2046	8158949078443919	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/hardware_claim/claim.c.obj	a3215fcf0e6510be
+1062	2242	8158949084506023	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/hardware_sync/sync.c.obj	f0b43d540283fea5
+1511	5461	8159276552943860	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/reporte.c.obj	6d3734ba11034b39
+388	2313	8158949077638672	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_platform_panic/panic.c.obj	1fecbbcd97cbd31b
+258	2598	8158949076341680	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/hardware_gpio/gpio.c.obj	ad3946715c4f757e
+80	3853	8159760004688243	build.ninja	c995c218c2e58143
+80	3853	8159759997428648	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997530696	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997579219	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/tools/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997638992	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997708198	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/boot_picobin_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997769057	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/boot_picoboot_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997828853	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/boot_uf2_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997889897	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_base_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997960852	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_usb_reset_interface_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759997975018	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_bit_ops_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998079584	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_binary_info/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998134422	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_divider_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998195601	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_sync/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998236060	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_time/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998329143	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_util/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998407716	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/pico_stdlib_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998474941	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/common/hardware_claim/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998536939	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/pico_platform/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998597114	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/hardware_regs/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998659006	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/hardware_structs/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998767128	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2040/boot_stage2/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998840504	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_base/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998919200	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_adc/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759998975286	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_boot_lock/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999049746	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_clocks/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999080056	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_divider/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999180846	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_dma/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999221172	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_exception/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999281990	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_flash/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999345941	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_gpio/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999383513	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_i2c/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999474884	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_interp/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999531190	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_irq/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999575701	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_pio/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999595855	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_pll/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999688329	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_pwm/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999730251	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_resets/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999774174	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_rosc/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999808294	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_rtc/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999917801	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_spi/cmake_install.cmake	c995c218c2e58143
+80	3853	8159759999958097	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_sync/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000026673	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_sync_spin_lock/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000083341	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_ticks/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000113890	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_timer/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000198656	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_uart/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000198656	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_vreg/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000285297	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_watchdog/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000305586	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_xip_cache/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000385912	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/hardware_xosc/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000412488	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/boot_bootrom_headers/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000474483	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_platform_common/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000519321	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_platform_compiler/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000576320	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_platform_sections/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000641653	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_platform_panic/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000699224	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_aon_timer/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000734520	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_bootrom/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000782670	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_bootsel_via_double_reset/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000840365	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_multicore/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000883740	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_unique_id/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760000946812	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_atomic/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001018690	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_bit_ops/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001074857	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_divider/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001142630	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_double/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001205924	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_int64_ops/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001240349	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_flash/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001308135	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_float/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001372005	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_low_power/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001419322	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_mem_ops/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001479560	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_malloc/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001500499	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_printf/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001587774	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_rand/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001610738	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_thread_local/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001651153	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdio_semihosting/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001694776	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdio_uart/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001766664	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdio_rtt/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001808334	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/cmsis/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001855435	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/tinyusb/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001905908	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdio_usb/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760001959014	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_usb_reset/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002030374	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_i2c_slave/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002055932	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_async_context/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002140576	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_btstack/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002228088	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_cyw43_driver/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002308147	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_cyw43_driver/cybt_shared_bus/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002372115	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_mbedtls/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002415780	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_lwip/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002503710	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_lwip/tools/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002572578	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_cyw43_arch/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002638776	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_time_adapter/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002688129	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_crt0/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002721170	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_clib_interface/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002775585	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_cxx_options/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002807538	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_standard_binary_info/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002876352	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_standard_link/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760002951099	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_fix/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003082033	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003293810	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_status_led/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003460269	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_runtime_init/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003807554	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_runtime/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003892640	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdio/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760003961486	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/src/rp2_common/pico_stdlib/cmake_install.cmake	c995c218c2e58143
+80	3853	8159760004039679	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/pico-sdk/docs/cmake_install.cmake	c995c218c2e58143
+1461	5351	8159276552578221	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/medicion.c.obj	f361e3a411308e00
+1291	2502	8158949086782262	CMakeFiles/medidor_frecuencia_duty_polling.dir/c708a5386e0d41ab188f8aa3e955249f/sync_spin_lock.c.obj	77760cb3b20c99b8
+1762	2742	8158949091293487	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/hardware_irq/irq_handler_chain.S.obj	af35baedd13ede62
+1957	3034	8158949093364650	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_sync/lock_core.c.obj	46498c22c6922b2f
+1798	3339	8158949091658228	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_sync/sem.c.obj	af5845b1b912d78e
+2052	3599	8158949094461944	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/common/pico_sync/critical_section.c.obj	9ba121fda359d4b8
+2359	3690	8158949097265686	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/common/pico_time/timeout_helper.c.obj	4156a52ff8ea3946
+2020	3859	8158949093887300	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_sync/mutex.c.obj	c6dd6bc50b1462c8
+2780	4123	8158949102307458	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/common/pico_util/fixed_bitset.c.obj	b757fadf3ae13f78
+2631	4589	8158949100663150	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_util/datetime.c.obj	38b41dcb4171f331
+2515	4705	8158949098832792	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/hardware_timer/timer.c.obj	8220724aa7ad0687
+2247	5295	8158949096156516	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_time/time.c.obj	5a89a6dfb3d2567f
+3398	5546	8158949107710465	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_util/queue.c.obj	239080d3129233e1
+3915	5717	8158949114242114	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_pll/pll.c.obj	f48290b6f7593e6b
+3083	5778	8158949105793366	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/common/pico_util/pheap.c.obj	2d8911f2f48b9e49
+3625	5891	8158949109925245	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/hardware_uart/uart.c.obj	871c6e88d96f826
+4165	5974	8158949115507999	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/hardware_vreg/vreg.c.obj	d8f51e0c56e21854
+4709	6129	8158949120849313	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/hardware_ticks/ticks.c.obj	37dce125060335c4
+1694	6369	8158949090641013	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_irq/irq.c.obj	c31c298e8c11c48a
+3727	6657	8158949110986420	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/hardware_clocks/clocks.c.obj	77ef5d0ac5859631
+4596	6726	8158949119632343	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/hardware_watchdog/watchdog.c.obj	bdd76bffecda2532
+5974	6802	8158949133419556	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/hardware_divider/divider.S.obj	a3eb3270bc297981
+5735	6836	8158949131058495	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/hardware_boot_lock/boot_lock.c.obj	b07a4c4c48e54e4
+5567	6950	8158949129504278	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_bootrom/bootrom_lock.c.obj	1d8e21241d6421ff
+5911	7068	8158949132798669	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/hardware_xosc/xosc.c.obj	4d1177f45c4c8823
+5816	7136	8158949131987804	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_flash/flash.c.obj	27360cbc1de1e22f
+5313	7464	8158949126930642	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/pico_bootrom/bootrom.c.obj	a7a1182dc1a5862c
+6153	7640	8158949136271877	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/pico_runtime/runtime.c.obj	f91bc7067e9eec7d
+6398	7705	8158949137724820	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_runtime_init/runtime_init.c.obj	e591f71605a723c5
+6952	7816	8158949143203440	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_divider/divider_hardware.S.obj	363776a91569d252
+6768	7851	8158949141450778	CMakeFiles/medidor_frecuencia_duty_polling.dir/fc1d53749a7fb3bb3b4bb747d5460036/runtime_init_stack_guard.c.obj	20dee2041ca8ff5f
+6843	7982	8158949142110191	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_bit_ops/bit_ops_aeabi.S.obj	9d63a9c188fd932b
+7069	8046	8158949144382499	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_double/double_aeabi_rp2040.S.obj	ee491a4071c14239
+6661	8135	8158949140455661	CMakeFiles/medidor_frecuencia_duty_polling.dir/fc1d53749a7fb3bb3b4bb747d5460036/runtime_init_clocks.c.obj	3a9b5dd39be06e23
+6803	8339	8158949141783446	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/hardware_rtc/rtc.c.obj	dcdbc9dafee97544
+7675	8420	8158949150504824	CMakeFiles/medidor_frecuencia_duty_polling.dir/2e4baa69936d53693e6b48dcfe59170e/double_v1_rom_shim_rp2040.S.obj	1074eb5a475d0f73
+7139	8549	8158949145099434	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_double/double_init_rom_rp2040.c.obj	43d4ea94c9eb0216
+7818	9092	8158949151982947	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_float/float_aeabi_rp2040.S.obj	653c8bb58dae9597
+7714	9121	8158949151627943	CMakeFiles/medidor_frecuencia_duty_polling.dir/8b6dbe0930cc7099b281cd9d0e16e358/pico_int64_ops_aeabi.S.obj	e36247e6c8316942
+8048	9156	8158949154171214	CMakeFiles/medidor_frecuencia_duty_polling.dir/3234b0301d8a55aa0ce9e6737f45a0ad/float_v1_rom_shim_rp2040.S.obj	4dc6b25a07ac4dfc
+7861	9343	8158949152974025	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_float/float_init_rom_rp2040.c.obj	451d441b2f455130
+8355	9500	8158949157489147	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_mem_ops/mem_ops_aeabi.S.obj	67029d9a92672edd
+8137	9547	8158949155050933	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/pico_malloc/malloc.c.obj	314e76fb13e5dce0
+9158	10306	8158949165265534	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_crt0/crt0.S.obj	4c6c3b04554ca85b
+7997	10401	8158949153890400	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/pico_float/float_math.c.obj	5e2c0644f57555d3
+7500	10545	8158949148947688	CMakeFiles/medidor_frecuencia_duty_polling.dir/6a02ea5d407f3ec2ddd08a36c8937886/rp2_common/pico_double/double_math.c.obj	21ba614b033fa658
+9096	10668	8158949164652551	CMakeFiles/medidor_frecuencia_duty_polling.dir/53d9ac3fe1caed48aa7237719f8e63eb/standard_binary_info.c.obj	86cf167b6c7a6657
+8631	10696	8158949160693938	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_cxx_options/new_delete.cpp.obj	ef98bf72bfff6bd8
+8435	10715	8158949158036381	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/pico_atomic/atomic.c.obj	efcdf34aa3443c87
+9511	10834	8158949168777636	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_clib_interface/cxa_guard.c.obj	5d374ddb704741b3
+10577	11082	8158949179656941	pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default_library.dir/bs2_default_padded_checksummed.S.obj	6a1b5056920ff1a4
+9374	11331	8158949168403134	CMakeFiles/medidor_frecuencia_duty_polling.dir/86ec58f0d43481b31b21f9dba84fe42e/newlib_interface.c.obj	2eea8bde5022e9a8
+10483	11557	8158949178915427	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_thread_local/thread_local.c.obj	b6a5bae971efa646
+9578	11681	8158949169598187	CMakeFiles/medidor_frecuencia_duty_polling.dir/C_/Users/crist/.pico-sdk/sdk/2.3.1/src/rp2_common/pico_stdio/stdio.c.obj	bee5ec3100463fc4
+10341	11934	8158949177459065	CMakeFiles/medidor_frecuencia_duty_polling.dir/07787c03a918662e5d4cef3e0d2bd6df/pico_stdio_uart/stdio_uart.c.obj	eee028fb3f7572ea
+9133	12164	8158949165015105	CMakeFiles/medidor_frecuencia_duty_polling.dir/83279e626771d9add4bfb0941c5275bd/src/rp2_common/pico_printf/printf.c.obj	161889f5a014c6bb
+5465	11204	8159276649554155	medidor_frecuencia_duty_polling.elf	24cecc7727419ec5
+5465	11204	8159276649554155	medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+5465	11204	8159276649554155	medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+5465	11204	8159276649554155	medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+5465	11204	8159276649554155	medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+5465	11204	8159276649554155	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+5465	11204	8159276649554155	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+5465	11204	8159276649554155	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+5465	11204	8159276649554155	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+172	826	8159762682074640	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/reporte.c.obj	6d3734ba11034b39
+831	3012	8159762710267252	medidor_frecuencia_duty_polling.elf	24cecc7727419ec5
+831	3012	8159762710267252	medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+831	3012	8159762710267252	medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+831	3012	8159762710267252	medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+831	3012	8159762710267252	medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+831	3012	8159762710267252	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+831	3012	8159762710267252	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+831	3012	8159762710267252	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+831	3012	8159762710267252	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+134	934	8159764775835009	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/reporte.c.obj	6d3734ba11034b39
+936	1952	8159764793806449	medidor_frecuencia_duty_polling.elf	24cecc7727419ec5
+936	1952	8159764793806449	medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+936	1952	8159764793806449	medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+936	1952	8159764793806449	medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+936	1952	8159764793806449	medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+936	1952	8159764793806449	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+936	1952	8159764793806449	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+936	1952	8159764793806449	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+936	1952	8159764793806449	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+192	775	8159766337650182	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/reporte.c.obj	6d3734ba11034b39
+778	1999	8159766355417521	medidor_frecuencia_duty_polling.elf	24cecc7727419ec5
+778	1999	8159766355417521	medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+778	1999	8159766355417521	medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+778	1999	8159766355417521	medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+778	1999	8159766355417521	medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+778	1999	8159766355417521	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+778	1999	8159766355417521	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+778	1999	8159766355417521	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+778	1999	8159766355417521	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+389	1211	8159768685265022	CMakeFiles/medidor_frecuencia_duty_polling.dir/drivers/reporte.c.obj	6d3734ba11034b39
+1217	2054	8159768701342230	medidor_frecuencia_duty_polling.elf	24cecc7727419ec5
+1217	2054	8159768701342230	medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+1217	2054	8159768701342230	medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+1217	2054	8159768701342230	medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+1217	2054	8159768701342230	medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
+1217	2054	8159768701342230	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.dis	24cecc7727419ec5
+1217	2054	8159768701342230	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.hex	24cecc7727419ec5
+1217	2054	8159768701342230	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.bin	24cecc7727419ec5
+1217	2054	8159768701342230	C:/Users/crist/OneDrive/Desktop/9 semestre/Electronica digital III/Lab_digi3/Lab5/polling/medidor_frecuencia_duty_polling/build/medidor_frecuencia_duty_polling.uf2	24cecc7727419ec5
