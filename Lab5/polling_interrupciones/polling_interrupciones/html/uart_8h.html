@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>polling_interrupciones: Referencia del archivo drivers/uart.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">polling_interrupciones
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('uart_8h.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo uart.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Driver propio de transmisión por UART0, por interrupciones.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en uart.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h__incl.png" border="0" usemap="#adrivers_2uart_8h" loading="lazy" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h__dep__incl.png" border="0" usemap="#adrivers_2uart_8hdep" loading="lazy" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+</div>
+<p><a href="uart_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a1de69c73f829a03f46f5e7690da7e79a" id="r_a1de69c73f829a03f46f5e7690da7e79a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a>&#160;&#160;&#160;uart0</td></tr>
+<tr class="memitem:a6c82a6844388a551e8f06d249598989e" id="r_a6c82a6844388a551e8f06d249598989e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a6c82a6844388a551e8f06d249598989e">UART_TX_PIN</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:ad4455691936f92fdd6c37566fc58ba1f" id="r_ad4455691936f92fdd6c37566fc58ba1f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</a>&#160;&#160;&#160;115200</td></tr>
+<tr class="memitem:a9ab33647617098646990fe263600b650" id="r_a9ab33647617098646990fe263600b650"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a>&#160;&#160;&#160;256u</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a4d1dc433ab7e055098aabcf36ee3b8b9" id="r_a4d1dc433ab7e055098aabcf36ee3b8b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4d1dc433ab7e055098aabcf36ee3b8b9">uart_driver_init</a> (void)</td></tr>
+<tr class="memdesc:a4d1dc433ab7e055098aabcf36ee3b8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura UART0, el pin TX y la interrupción. Llamar desde main, antes del ciclo.  <br /></td></tr>
+<tr class="memitem:a54cc649348f6a9b96bdf9a7cde07de8c" id="r_a54cc649348f6a9b96bdf9a7cde07de8c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a54cc649348f6a9b96bdf9a7cde07de8c">uart_driver_send_string</a> (const char *str)</td></tr>
+<tr class="memdesc:a54cc649348f6a9b96bdf9a7cde07de8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encola una línea para enviarla por interrupciones, sin esperar.  <br /></td></tr>
+<tr class="memitem:ac8e8d319910523172d0fd2341d05becc" id="r_ac8e8d319910523172d0fd2341d05becc"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac8e8d319910523172d0fd2341d05becc">uart_driver_get_dropped_count</a> (void)</td></tr>
+<tr class="memdesc:ac8e8d319910523172d0fd2341d05becc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Líneas descartadas por falta de espacio desde el arranque [líneas].  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Driver propio de transmisión por UART0, por interrupciones. </p>
+<p>Enlace a 115200 bits/s, 8N1, sin control de flujo, con las FIFOs habilitadas. Solo transmite (la guía no pide recepción).</p>
+<p>El texto se copia a un buffer circular. Lo que cabe pasa de inmediato a la FIFO de hardware y el resto lo transfiere la ISR cuando la FIFO se vacía; nunca se espera a que haya espacio. Si una línea no cabe entera en el buffer, se descarta completa y se cuenta: no se transmiten líneas truncadas ni entrelazadas. </p>
+
+<p class="definition">Definición en el archivo <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="ad4455691936f92fdd6c37566fc58ba1f" name="ad4455691936f92fdd6c37566fc58ba1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4455691936f92fdd6c37566fc58ba1f">&#9670;&#160;</a></span>BAUD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUD_RATE&#160;&#160;&#160;115200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Velocidad [bits/s]. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8h_source.html#l00023">23</a> del archivo <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="uart_8c_source.html#l00044">uart_driver_init()</a>.</p>
+
+</div>
+</div>
+<a id="a9ab33647617098646990fe263600b650" name="a9ab33647617098646990fe263600b650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ab33647617098646990fe263600b650">&#9670;&#160;</a></span>TX_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TX_BUFFER_SIZE&#160;&#160;&#160;256u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tamaño del buffer de TX [bytes]. Potencia de 2. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8h_source.html#l00024">24</a> del archivo <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="uart_8c_source.html#l00028">tx_fill_hw()</a> y <a class="el" href="uart_8c_source.html#l00054">uart_driver_send_string()</a>.</p>
+
+</div>
+</div>
+<a id="a1de69c73f829a03f46f5e7690da7e79a" name="a1de69c73f829a03f46f5e7690da7e79a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de69c73f829a03f46f5e7690da7e79a">&#9670;&#160;</a></span>UART_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_ID&#160;&#160;&#160;uart0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Instancia de UART usada. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8h_source.html#l00021">21</a> del archivo <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="uart_8c_source.html#l00028">tx_fill_hw()</a>, <a class="el" href="uart_8c_source.html#l00044">uart_driver_init()</a>, <a class="el" href="uart_8c_source.html#l00054">uart_driver_send_string()</a> y <a class="el" href="uart_8c_source.html#l00037">uart_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a6c82a6844388a551e8f06d249598989e" name="a6c82a6844388a551e8f06d249598989e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c82a6844388a551e8f06d249598989e">&#9670;&#160;</a></span>UART_TX_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_TX_PIN&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GPIO de transmisión. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8h_source.html#l00022">22</a> del archivo <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="uart_8c_source.html#l00044">uart_driver_init()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="ac8e8d319910523172d0fd2341d05becc" name="ac8e8d319910523172d0fd2341d05becc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e8d319910523172d0fd2341d05becc">&#9670;&#160;</a></span>uart_driver_get_dropped_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t uart_driver_get_dropped_count </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Líneas descartadas por falta de espacio desde el arranque [líneas]. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8c_source.html#l00078">78</a> del archivo <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="uart_8c.html#a413ff3b4656c3b909707f1397d5bf2f9">dropped</a>; }</div>
+<div class="ttc" id="auart_8c_html_a413ff3b4656c3b909707f1397d5bf2f9"><div class="ttname"><a href="uart_8c.html#a413ff3b4656c3b909707f1397d5bf2f9">dropped</a></div><div class="ttdeci">static volatile uint32_t dropped</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00025">uart.c:25</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="uart_8c_source.html#l00025">dropped</a> y <a class="el" href="uart_8c_source.html#l00078">uart_driver_get_dropped_count()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="uart_8c_source.html#l00078">uart_driver_get_dropped_count()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_ac8e8d319910523172d0fd2341d05becc_cgraph.png" border="0" usemap="#auart_8h_ac8e8d319910523172d0fd2341d05becc_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_ac8e8d319910523172d0fd2341d05becc_icgraph.png" border="0" usemap="#auart_8h_ac8e8d319910523172d0fd2341d05becc_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+
+</div>
+</div>
+<a id="a4d1dc433ab7e055098aabcf36ee3b8b9" name="a4d1dc433ab7e055098aabcf36ee3b8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d1dc433ab7e055098aabcf36ee3b8b9">&#9670;&#160;</a></span>uart_driver_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_driver_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configura UART0, el pin TX y la interrupción. Llamar desde main, antes del ciclo. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8c_source.html#l00044">44</a> del archivo <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>                            {</div>
+<div class="line"><span class="lineno">   45</span>    uart_init(<a class="code hl_define" href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a>, <a class="code hl_define" href="#ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</a>);          <span class="comment">/* deja 8N1 y sin control de flujo */</span></div>
+<div class="line"><span class="lineno">   46</span>    gpio_set_function(<a class="code hl_define" href="#a6c82a6844388a551e8f06d249598989e">UART_TX_PIN</a>, GPIO_FUNC_UART);</div>
+<div class="line"><span class="lineno">   47</span>    uart_set_fifo_enabled(<a class="code hl_define" href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a>, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   48</span>    uart_get_hw(<a class="code hl_define" href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a>)-&gt;ifls = 0;         <span class="comment">/* IRQ de TX cuando la FIFO baja a 1/8 (4 bytes) */</span></div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>    irq_set_exclusive_handler(UART0_IRQ, <a class="code hl_function" href="uart_8c.html#aeed2e3808f527e218a11256be2cf6639">uart_isr</a>);</div>
+<div class="line"><span class="lineno">   51</span>    irq_set_enabled(UART0_IRQ, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   52</span>}</div>
+<div class="ttc" id="auart_8c_html_aeed2e3808f527e218a11256be2cf6639"><div class="ttname"><a href="uart_8c.html#aeed2e3808f527e218a11256be2cf6639">uart_isr</a></div><div class="ttdeci">static void uart_isr(void)</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00037">uart.c:37</a></div></div>
+<div class="ttc" id="auart_8h_html_a1de69c73f829a03f46f5e7690da7e79a"><div class="ttname"><a href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a></div><div class="ttdeci">#define UART_ID</div><div class="ttdef"><b>Definición</b> <a href="uart_8h_source.html#l00021">uart.h:21</a></div></div>
+<div class="ttc" id="auart_8h_html_a6c82a6844388a551e8f06d249598989e"><div class="ttname"><a href="#a6c82a6844388a551e8f06d249598989e">UART_TX_PIN</a></div><div class="ttdeci">#define UART_TX_PIN</div><div class="ttdef"><b>Definición</b> <a href="uart_8h_source.html#l00022">uart.h:22</a></div></div>
+<div class="ttc" id="auart_8h_html_ad4455691936f92fdd6c37566fc58ba1f"><div class="ttname"><a href="#ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</a></div><div class="ttdeci">#define BAUD_RATE</div><div class="ttdef"><b>Definición</b> <a href="uart_8h_source.html#l00023">uart.h:23</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="uart_8h_source.html#l00023">BAUD_RATE</a>, <a class="el" href="uart_8c_source.html#l00044">uart_driver_init()</a>, <a class="el" href="uart_8h_source.html#l00021">UART_ID</a>, <a class="el" href="uart_8c_source.html#l00037">uart_isr()</a> y <a class="el" href="uart_8h_source.html#l00022">UART_TX_PIN</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="polling__interrupciones_8c_source.html#l00070">main()</a> y <a class="el" href="uart_8c_source.html#l00044">uart_driver_init()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_a4d1dc433ab7e055098aabcf36ee3b8b9_cgraph.png" border="0" usemap="#auart_8h_a4d1dc433ab7e055098aabcf36ee3b8b9_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_a4d1dc433ab7e055098aabcf36ee3b8b9_icgraph.png" border="0" usemap="#auart_8h_a4d1dc433ab7e055098aabcf36ee3b8b9_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 5 -->
+</div>
+
+</div>
+</div>
+<a id="a54cc649348f6a9b96bdf9a7cde07de8c" name="a54cc649348f6a9b96bdf9a7cde07de8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54cc649348f6a9b96bdf9a7cde07de8c">&#9670;&#160;</a></span>uart_driver_send_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool uart_driver_send_string </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encola una línea para enviarla por interrupciones, sin esperar. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>Cadena terminada en NUL (se copia). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si quedó encolada completa; false si no cabía (se descarta y se cuenta). </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="uart_8c_source.html#l00054">54</a> del archivo <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                              {</div>
+<div class="line"><span class="lineno">   55</span>    uint32_t len = strlen(str);</div>
+<div class="line"><span class="lineno">   56</span>    uint32_t irq_state = save_and_disable_interrupts();   <span class="comment">/* la ISR no entra mientras se copia */</span></div>
+<div class="line"><span class="lineno">   57</span> </div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span> (len &gt; <a class="code hl_define" href="#a9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a> - (<a class="code hl_variable" href="uart_8c.html#a7340af55556dc05e46f16587e84b0cd8">tx_tail</a> - <a class="code hl_variable" href="uart_8c.html#a61fb2482a3e21e1cccea0ee94608050c">tx_head</a>)) {     <span class="comment">/* no cabe entera: descartar */</span></div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_variable" href="uart_8c.html#a413ff3b4656c3b909707f1397d5bf2f9">dropped</a>++;</div>
+<div class="line"><span class="lineno">   60</span>        restore_interrupts(irq_state);</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   62</span>    }</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; len; i++) {</div>
+<div class="line"><span class="lineno">   65</span>        <a class="code hl_variable" href="uart_8c.html#a32a4eca4443fd012691d4b2f3516c051">tx_buffer</a>[(<a class="code hl_variable" href="uart_8c.html#a7340af55556dc05e46f16587e84b0cd8">tx_tail</a> + i) % <a class="code hl_define" href="#a9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a>] = str[i];</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
+<div class="line"><span class="lineno">   67</span>    <a class="code hl_variable" href="uart_8c.html#a7340af55556dc05e46f16587e84b0cd8">tx_tail</a> += len;</div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span>    <a class="code hl_function" href="uart_8c.html#a20f6bde298913c236119fab7ea87d479">tx_fill_hw</a>();                                         <span class="comment">/* a la FIFO lo que quepa ya */</span></div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart_8c.html#a61fb2482a3e21e1cccea0ee94608050c">tx_head</a> != <a class="code hl_variable" href="uart_8c.html#a7340af55556dc05e46f16587e84b0cd8">tx_tail</a>) {</div>
+<div class="line"><span class="lineno">   71</span>        uart_get_hw(<a class="code hl_define" href="#a1de69c73f829a03f46f5e7690da7e79a">UART_ID</a>)-&gt;imsc = UART_UARTIMSC_TXIM_BITS;   <span class="comment">/* el resto lo envía la ISR */</span></div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    restore_interrupts(irq_state);</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   76</span>}</div>
+<div class="ttc" id="auart_8c_html_a20f6bde298913c236119fab7ea87d479"><div class="ttname"><a href="uart_8c.html#a20f6bde298913c236119fab7ea87d479">tx_fill_hw</a></div><div class="ttdeci">static void tx_fill_hw(void)</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00028">uart.c:28</a></div></div>
+<div class="ttc" id="auart_8c_html_a32a4eca4443fd012691d4b2f3516c051"><div class="ttname"><a href="uart_8c.html#a32a4eca4443fd012691d4b2f3516c051">tx_buffer</a></div><div class="ttdeci">static volatile char tx_buffer[TX_BUFFER_SIZE]</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00022">uart.c:22</a></div></div>
+<div class="ttc" id="auart_8c_html_a61fb2482a3e21e1cccea0ee94608050c"><div class="ttname"><a href="uart_8c.html#a61fb2482a3e21e1cccea0ee94608050c">tx_head</a></div><div class="ttdeci">static volatile uint32_t tx_head</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00023">uart.c:23</a></div></div>
+<div class="ttc" id="auart_8c_html_a7340af55556dc05e46f16587e84b0cd8"><div class="ttname"><a href="uart_8c.html#a7340af55556dc05e46f16587e84b0cd8">tx_tail</a></div><div class="ttdeci">static volatile uint32_t tx_tail</div><div class="ttdef"><b>Definición</b> <a href="uart_8c_source.html#l00024">uart.c:24</a></div></div>
+<div class="ttc" id="auart_8h_html_a9ab33647617098646990fe263600b650"><div class="ttname"><a href="#a9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a></div><div class="ttdeci">#define TX_BUFFER_SIZE</div><div class="ttdef"><b>Definición</b> <a href="uart_8h_source.html#l00024">uart.h:24</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="uart_8c_source.html#l00025">dropped</a>, <a class="el" href="uart_8c_source.html#l00022">tx_buffer</a>, <a class="el" href="uart_8h_source.html#l00024">TX_BUFFER_SIZE</a>, <a class="el" href="uart_8c_source.html#l00028">tx_fill_hw()</a>, <a class="el" href="uart_8c_source.html#l00023">tx_head</a>, <a class="el" href="uart_8c_source.html#l00024">tx_tail</a>, <a class="el" href="uart_8c_source.html#l00054">uart_driver_send_string()</a> y <a class="el" href="uart_8h_source.html#l00021">UART_ID</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="measure_8c_source.html#l00064">measure_poll()</a> y <a class="el" href="uart_8c_source.html#l00054">uart_driver_send_string()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_a54cc649348f6a9b96bdf9a7cde07de8c_cgraph.png" border="0" usemap="#auart_8h_a54cc649348f6a9b96bdf9a7cde07de8c_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 6 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8h_a54cc649348f6a9b96bdf9a7cde07de8c_icgraph.png" border="0" usemap="#auart_8h_a54cc649348f6a9b96bdf9a7cde07de8c_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 7 -->
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a href="uart_8h.html">uart.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>
