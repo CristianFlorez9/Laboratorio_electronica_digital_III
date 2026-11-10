@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>polling_interrupciones: Archivo de código fuente app/capture.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">polling_interrupciones
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('capture_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">capture.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="capture_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * @file capture.h</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * @brief Captura de flancos con dos slices PWM y alarma de reporte.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * @details</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Cada slice PWM cuenta flancos de su pin con TOP = 0, así que cada flanco provoca una</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * interrupción. La ISR solo guarda el instante y el tipo del flanco en un anillo; el</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * cálculo lo hace measure.c en el ciclo principal.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * El modo de entrada del PWM solo existe en el canal B (GPIO impar). La señal se conecta</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * a los dos pines a la vez, y deben ser de slices distintos.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef CAPTURE_H</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define CAPTURE_H</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="capture_8h.html#af3acd53571cbbbea60980d3cc52c18c1">   20</a></span><span class="preprocessor">#define CAPTURE_RISE_GPIO  3        </span><span class="comment">/**&lt; Pin que cuenta subidas (GPIO impar). */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="capture_8h.html#acf82ea8ca602ff8a8e1288981d695f5d">   21</a></span><span class="preprocessor">#define CAPTURE_FALL_GPIO  7        </span><span class="comment">/**&lt; Pin que cuenta bajadas (GPIO impar, otro slice). */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="capture_8h.html#acbf5745c8c2d01e24e19fc467b88e23b">   22</a></span><span class="preprocessor">#define REPORT_PERIOD_US   100000u  </span><span class="comment">/**&lt; Periodo de reporte [us]: 10 por segundo. */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">   23</a></span><span class="preprocessor">#define EDGE_RING_SIZE     1024u    </span><span class="comment">/**&lt; Capacidad del anillo [eventos]. Potencia de 2. */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"></span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/** Un flanco capturado. */</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structedge__event__t.html">   26</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">   27</a></span>    uint32_t <a class="code hl_variable" href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">t_us</a>;    <span class="comment">/**&lt; Instante del flanco [us]. */</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">   28</a></span>    <span class="keywordtype">bool</span>     <a class="code hl_variable" href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">rising</a>;  <span class="comment">/**&lt; true = subida, false = bajada. */</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} <a class="code hl_struct" href="structedge__event__t.html">edge_event_t</a>;</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/** @brief Configura los slices PWM, su interrupción y la alarma de reporte. */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">void</span> <a class="code hl_function" href="capture_8c.html#a35b2c84840bc6107b024dd278c7d11d9">capture_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"></span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/** @brief Saca el flanco más antiguo del anillo. Devuelve false si está vacío. */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">bool</span> <a class="code hl_function" href="capture_8c.html#a445d7c541cab9fa7e0f6a138de42dd3a">capture_pop_edge</a>(<a class="code hl_struct" href="structedge__event__t.html">edge_event_t</a> *ev);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"></span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/** @brief Flancos perdidos por anillo lleno [eventos]. */</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>uint32_t <a class="code hl_function" href="capture_8c.html#ab0fe18e31495b111f718fe7e31280962">capture_overflow_count</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"></span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * @brief Lee juntos el número de ticks de reporte y el instante del último.</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> * @param[out] count Ticks desde el arranque (el primero deja count = 1).</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"> * @param[out] t_us  Instante del último tick [us].</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="capture_8c.html#a43908da119efed4355d792f2fd434aa3">capture_get_tick</a>(uint32_t *count, uint32_t *t_us);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="acapture_8c_html_a35b2c84840bc6107b024dd278c7d11d9"><div class="ttname"><a href="capture_8c.html#a35b2c84840bc6107b024dd278c7d11d9">capture_init</a></div><div class="ttdeci">void capture_init(void)</div><div class="ttdoc">Configura los slices PWM, su interrupción y la alarma de reporte.</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00071">capture.c:71</a></div></div>
+<div class="ttc" id="acapture_8c_html_a43908da119efed4355d792f2fd434aa3"><div class="ttname"><a href="capture_8c.html#a43908da119efed4355d792f2fd434aa3">capture_get_tick</a></div><div class="ttdeci">void capture_get_tick(uint32_t *count, uint32_t *t_us)</div><div class="ttdoc">Lee juntos el número de ticks de reporte y el instante del último.</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00094">capture.c:94</a></div></div>
+<div class="ttc" id="acapture_8c_html_a445d7c541cab9fa7e0f6a138de42dd3a"><div class="ttname"><a href="capture_8c.html#a445d7c541cab9fa7e0f6a138de42dd3a">capture_pop_edge</a></div><div class="ttdeci">bool capture_pop_edge(edge_event_t *ev)</div><div class="ttdoc">Saca el flanco más antiguo del anillo. Devuelve false si está vacío.</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00084">capture.c:84</a></div></div>
+<div class="ttc" id="acapture_8c_html_ab0fe18e31495b111f718fe7e31280962"><div class="ttname"><a href="capture_8c.html#ab0fe18e31495b111f718fe7e31280962">capture_overflow_count</a></div><div class="ttdeci">uint32_t capture_overflow_count(void)</div><div class="ttdoc">Flancos perdidos por anillo lleno [eventos].</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00092">capture.c:92</a></div></div>
+<div class="ttc" id="astructedge__event__t_html"><div class="ttname"><a href="structedge__event__t.html">edge_event_t</a></div><div class="ttdef"><b>Definición</b> <a href="#l00026">capture.h:26</a></div></div>
+<div class="ttc" id="astructedge__event__t_html_a3d3161ef7b7590161aa0a6188ebe35b8"><div class="ttname"><a href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">edge_event_t::t_us</a></div><div class="ttdeci">uint32_t t_us</div><div class="ttdef"><b>Definición</b> <a href="#l00027">capture.h:27</a></div></div>
+<div class="ttc" id="astructedge__event__t_html_ae6a2afc72045dc4ba2ba51af713de286"><div class="ttname"><a href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">edge_event_t::rising</a></div><div class="ttdeci">bool rising</div><div class="ttdef"><b>Definición</b> <a href="#l00028">capture.h:28</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a href="capture_8h.html">capture.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

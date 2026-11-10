@@ -1,0 +1,36 @@
+PROJECT_NAME           = "polling_interrupciones"
+OUTPUT_LANGUAGE        = Spanish
+
+# Carpetas y archivos a documentar
+INPUT                  = app drivers polling_interrupciones.c mainpage.dox
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h *.dox
+EXCLUDE                = build html latex .vscode pico_sdk_import.cmake
+EXCLUDE_PATTERNS       = */build/* */html/* */latex/*
+
+# Que salgan todas las funciones, incluidas las static
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+
+# Mostrar la estructura de carpetas
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = .
+SHOW_FILES             = YES
+SHOW_DIRECTORIES       = YES
+
+# Código fuente con comentarios
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# Diagramas (necesita Graphviz)
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DIRECTORY_GRAPH        = YES
+INCLUDE_GRAPH          = YES
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO

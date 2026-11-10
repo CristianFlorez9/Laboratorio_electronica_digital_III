@@ -7,7 +7,8 @@
  * de la señal y la transmisión periódica de los datos mediante UART.
  *
  * La generación de reportes utiliza una estrategia de polling,
- * estableciendo un intervalo mínimo de 100 ms entre transmisiones.
+ * estableciendo un intervalo mínimo entre transmisiones definido por
+ * REPORTE_INTERVALO_MS.
  */
 
 #include "reporte.h"
@@ -15,7 +16,24 @@
 #include "hardware/uart.h"
 #include "hardware/timer.h"
 #include "hardware/gpio.h"
-#include <stdio.h>        
+#include <stdio.h>
+
+/** Intervalo mínimo entre reportes, en milisegundos.
+ *  Se puede sobrescribir antes de incluir este archivo (o desde CMake
+ *  con -DREPORTE_INTERVALO_MS=200).
+ */
+#ifndef REPORTE_INTERVALO_MS
+#define REPORTE_INTERVALO_MS 20
+#endif
+
+/** Tiempo máximo sin flancos antes de declarar SIN_TRANSICIONES, en ms. */
+#ifndef REPORTE_TIMEOUT_SIN_FLANCOS_MS
+#define REPORTE_TIMEOUT_SIN_FLANCOS_MS 500
+#endif
+
+/* Conversión a microsegundos (la comparación se hace con time_us_64()). */
+#define REPORTE_INTERVALO_US          ((uint64_t)(REPORTE_INTERVALO_MS) * 1000ULL)
+#define REPORTE_TIMEOUT_SIN_FLANCOS_US ((uint64_t)(REPORTE_TIMEOUT_SIN_FLANCOS_MS) * 1000ULL)
 
 /** Contador consecutivo de reportes transmitidos.
  *  Se incrementa después de cada transmisión UART y permite
@@ -32,8 +50,8 @@ static uint64_t last_report_time_us = 0;
 void reporte_init(void){
     /* Inicializar el UART del SDK */
     uart_init(UART_ID, BAUD_RATE);
-    
-    /* Mpaeo de pines del uart. */
+
+    /* Mapeo de pines del uart. */
     gpio_set_function(0, GPIO_FUNC_UART); /* TX */
     gpio_set_function(1, GPIO_FUNC_UART); /* RX */
 }
@@ -41,8 +59,8 @@ void reporte_init(void){
 void reporte_actualizar(void){
     uint64_t now_us = time_us_64();
 
-    /* LÓGICA POLLING: Comprobar si ya pasaron 100ms */
-    if (last_report_time_us != 0 && (now_us - last_report_time_us) < 100000) {
+    /* LÓGICA POLLING: Comprobar si ya pasó el intervalo configurado */
+    if (last_report_time_us != 0 && (now_us - last_report_time_us) < REPORTE_INTERVALO_US) {
         return;
     }
 
@@ -50,7 +68,7 @@ void reporte_actualizar(void){
     last_report_time_us = now_us;
 
     uint64_t T_local_us, t_H_local_us, last_edge_local_us;
-    
+
     medicion_obtener_datos(&T_local_us, &t_H_local_us, &last_edge_local_us);
 
     char buffer[64];
@@ -58,8 +76,8 @@ void reporte_actualizar(void){
     if(T_local_us == 0){
         snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,ESPERANDO\n", n_report, dt_ms);
     }
-    /* Validar si no se ha completado la medición del primer periodo */
-    else if((now_us - last_edge_local_us) > 500000){
+    /* Validar si dejaron de llegar flancos */
+    else if((now_us - last_edge_local_us) > REPORTE_TIMEOUT_SIN_FLANCOS_US){
         snprintf(buffer, sizeof(buffer), "%lu,%lu,NA,NA,SIN_TRANSICIONES\n", n_report, dt_ms);
     }
     /* Si los datos son frescos y válidos, aplicar matemática de punto flotante */
@@ -70,8 +88,8 @@ void reporte_actualizar(void){
 
         snprintf(buffer, sizeof(buffer), "%lu,%lu,%.3f,%.1f,OK\n", n_report, dt_ms, f_hz, duty);
     }
-    
-    /* Enviar el string usando la función del SDK correctamente */
+
+    /* Enviar el string usando la función del SDK */
     uart_puts(UART_ID, buffer);
     n_report++;
 }

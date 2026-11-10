@@ -12,3 +12,4 @@ void medicion_init(void);
 void medicion_obtener_datos(uint64_t* periodo_us, uint64_t* tiempo_alto_us, uint64_t* ultimo_flanco_us);
 
 #endif
+

@@ -1,0 +1,791 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>polling_interrupciones: Referencia del archivo app/capture.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">polling_interrupciones
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('capture_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo capture.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Captura de flancos con slices PWM (interfaz en <a class="el" href="capture_8h.html" title="Captura de flancos con dos slices PWM y alarma de reporte.">capture.h</a>).  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="capture_8h_source.html">capture.h</a>&quot;</code><br />
+<code>#include &quot;hardware/gpio.h&quot;</code><br />
+<code>#include &quot;hardware/pwm.h&quot;</code><br />
+<code>#include &quot;hardware/irq.h&quot;</code><br />
+<code>#include &quot;hardware/sync.h&quot;</code><br />
+<code>#include &quot;pico/time.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en capture.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c__incl.png" border="0" usemap="#aapp_2capture_8c" loading="lazy" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="capture_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ae56235b0ebfd3babdbaad7dd4c61e575" id="r_ae56235b0ebfd3babdbaad7dd4c61e575"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ae56235b0ebfd3babdbaad7dd4c61e575">pwm_isr</a> (void)</td></tr>
+<tr class="memitem:a42ae15624f6c1b40d4c1f00cdca87cbc" id="r_a42ae15624f6c1b40d4c1f00cdca87cbc"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a42ae15624f6c1b40d4c1f00cdca87cbc">tick_isr</a> (repeating_timer_t *rt)</td></tr>
+<tr class="memitem:afe0590f7f863d8e2c89957624c53f2b2" id="r_afe0590f7f863d8e2c89957624c53f2b2"><td class="memItemLeft">static uint&#160;</td><td class="memItemRight"><a class="el" href="#afe0590f7f863d8e2c89957624c53f2b2">counter_init</a> (uint gpio, enum pwm_clkdiv_mode mode)</td></tr>
+<tr class="memitem:a35b2c84840bc6107b024dd278c7d11d9" id="r_a35b2c84840bc6107b024dd278c7d11d9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a35b2c84840bc6107b024dd278c7d11d9">capture_init</a> (void)</td></tr>
+<tr class="memdesc:a35b2c84840bc6107b024dd278c7d11d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura los slices PWM, su interrupción y la alarma de reporte.  <br /></td></tr>
+<tr class="memitem:a445d7c541cab9fa7e0f6a138de42dd3a" id="r_a445d7c541cab9fa7e0f6a138de42dd3a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a445d7c541cab9fa7e0f6a138de42dd3a">capture_pop_edge</a> (<a class="el" href="structedge__event__t.html">edge_event_t</a> *ev)</td></tr>
+<tr class="memdesc:a445d7c541cab9fa7e0f6a138de42dd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saca el flanco más antiguo del anillo. Devuelve false si está vacío.  <br /></td></tr>
+<tr class="memitem:ab0fe18e31495b111f718fe7e31280962" id="r_ab0fe18e31495b111f718fe7e31280962"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab0fe18e31495b111f718fe7e31280962">capture_overflow_count</a> (void)</td></tr>
+<tr class="memdesc:ab0fe18e31495b111f718fe7e31280962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flancos perdidos por anillo lleno [eventos].  <br /></td></tr>
+<tr class="memitem:a43908da119efed4355d792f2fd434aa3" id="r_a43908da119efed4355d792f2fd434aa3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a43908da119efed4355d792f2fd434aa3">capture_get_tick</a> (uint32_t *count, uint32_t *t_us)</td></tr>
+<tr class="memdesc:a43908da119efed4355d792f2fd434aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee juntos el número de ticks de reporte y el instante del último.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a86d4d95a04c7666871d32b4cde61861a" id="r_a86d4d95a04c7666871d32b4cde61861a"><td class="memItemLeft">static volatile <a class="el" href="structedge__event__t.html">edge_event_t</a>&#160;</td><td class="memItemRight"><a class="el" href="#a86d4d95a04c7666871d32b4cde61861a">ring</a> [<a class="el" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>]</td></tr>
+<tr class="memitem:a4c8a032642ccc217b8e720889b8b8e2e" id="r_a4c8a032642ccc217b8e720889b8b8e2e"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a></td></tr>
+<tr class="memitem:ae1ce94ab2d53a18021e6259e4f0e92b2" id="r_ae1ce94ab2d53a18021e6259e4f0e92b2"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a></td></tr>
+<tr class="memitem:a02faf1eacded9976693679633740bc8b" id="r_a02faf1eacded9976693679633740bc8b"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a02faf1eacded9976693679633740bc8b">overflow</a></td></tr>
+<tr class="memitem:a7adccde9be9fb7a6ba685e0080f9cdff" id="r_a7adccde9be9fb7a6ba685e0080f9cdff"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a7adccde9be9fb7a6ba685e0080f9cdff">tick_count</a></td></tr>
+<tr class="memitem:a37da707e22fc7beb07d8378d6655a8f4" id="r_a37da707e22fc7beb07d8378d6655a8f4"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a37da707e22fc7beb07d8378d6655a8f4">tick_t_us</a></td></tr>
+<tr class="memitem:a930786e7c53c8fcaf2dcf122a5a4ed1e" id="r_a930786e7c53c8fcaf2dcf122a5a4ed1e"><td class="memItemLeft">static uint&#160;</td><td class="memItemRight"><a class="el" href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">rise_slice</a></td></tr>
+<tr class="memitem:abc41c1efef8602a4e0b308cfacd14c26" id="r_abc41c1efef8602a4e0b308cfacd14c26"><td class="memItemLeft">static uint&#160;</td><td class="memItemRight"><a class="el" href="#abc41c1efef8602a4e0b308cfacd14c26">fall_slice</a></td></tr>
+<tr class="memitem:abb3d54bf74afb1292540f06430f8d9a5" id="r_abb3d54bf74afb1292540f06430f8d9a5"><td class="memItemLeft">static repeating_timer_t&#160;</td><td class="memItemRight"><a class="el" href="#abb3d54bf74afb1292540f06430f8d9a5">report_timer</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Captura de flancos con slices PWM (interfaz en <a class="el" href="capture_8h.html" title="Captura de flancos con dos slices PWM y alarma de reporte.">capture.h</a>). </p>
+<p>Dos ISR que solo guardan datos: la de PWM (una por flanco) y la de la alarma (una por reporte). El ciclo principal los lee. </p>
+
+<p class="definition">Definición en el archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a43908da119efed4355d792f2fd434aa3" name="a43908da119efed4355d792f2fd434aa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43908da119efed4355d792f2fd434aa3">&#9670;&#160;</a></span>capture_get_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void capture_get_tick </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>t_us</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lee juntos el número de ticks de reporte y el instante del último. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">count</td><td>Ticks desde el arranque (el primero deja count = 1). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">t_us</td><td>Instante del último tick [us]. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00094">94</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>                                                       {</div>
+<div class="line"><span class="lineno">   95</span>    uint32_t s = save_and_disable_interrupts();</div>
+<div class="line"><span class="lineno">   96</span>    *count = <a class="code hl_variable" href="#a7adccde9be9fb7a6ba685e0080f9cdff">tick_count</a>;</div>
+<div class="line"><span class="lineno">   97</span>    *t_us  = <a class="code hl_variable" href="#a37da707e22fc7beb07d8378d6655a8f4">tick_t_us</a>;</div>
+<div class="line"><span class="lineno">   98</span>    restore_interrupts(s);</div>
+<div class="line"><span class="lineno">   99</span>}</div>
+<div class="ttc" id="acapture_8c_html_a37da707e22fc7beb07d8378d6655a8f4"><div class="ttname"><a href="#a37da707e22fc7beb07d8378d6655a8f4">tick_t_us</a></div><div class="ttdeci">static volatile uint32_t tick_t_us</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00023">capture.c:23</a></div></div>
+<div class="ttc" id="acapture_8c_html_a7adccde9be9fb7a6ba685e0080f9cdff"><div class="ttname"><a href="#a7adccde9be9fb7a6ba685e0080f9cdff">tick_count</a></div><div class="ttdeci">static volatile uint32_t tick_count</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00023">capture.c:23</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8c_source.html#l00094">capture_get_tick()</a>, <a class="el" href="capture_8c_source.html#l00023">tick_count</a> y <a class="el" href="capture_8c_source.html#l00023">tick_t_us</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00094">capture_get_tick()</a> y <a class="el" href="measure_8c_source.html#l00064">measure_poll()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a43908da119efed4355d792f2fd434aa3_cgraph.png" border="0" usemap="#acapture_8c_a43908da119efed4355d792f2fd434aa3_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a43908da119efed4355d792f2fd434aa3_icgraph.png" border="0" usemap="#acapture_8c_a43908da119efed4355d792f2fd434aa3_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+
+</div>
+</div>
+<a id="a35b2c84840bc6107b024dd278c7d11d9" name="a35b2c84840bc6107b024dd278c7d11d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35b2c84840bc6107b024dd278c7d11d9">&#9670;&#160;</a></span>capture_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void capture_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configura los slices PWM, su interrupción y la alarma de reporte. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00071">71</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                        {</div>
+<div class="line"><span class="lineno">   72</span>    <a class="code hl_variable" href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">rise_slice</a> = <a class="code hl_function" href="#afe0590f7f863d8e2c89957624c53f2b2">counter_init</a>(<a class="code hl_define" href="capture_8h.html#af3acd53571cbbbea60980d3cc52c18c1">CAPTURE_RISE_GPIO</a>, PWM_DIV_B_RISING);</div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_variable" href="#abc41c1efef8602a4e0b308cfacd14c26">fall_slice</a> = <a class="code hl_function" href="#afe0590f7f863d8e2c89957624c53f2b2">counter_init</a>(<a class="code hl_define" href="capture_8h.html#acf82ea8ca602ff8a8e1288981d695f5d">CAPTURE_FALL_GPIO</a>, PWM_DIV_B_FALLING);</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>    irq_set_exclusive_handler(PWM_IRQ_WRAP, <a class="code hl_function" href="#ae56235b0ebfd3babdbaad7dd4c61e575">pwm_isr</a>);</div>
+<div class="line"><span class="lineno">   76</span>    irq_set_priority(PWM_IRQ_WRAP, 0x00);       <span class="comment">/* la más alta, para no perder flancos */</span></div>
+<div class="line"><span class="lineno">   77</span>    irq_set_enabled(PWM_IRQ_WRAP, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   78</span>    pwm_set_mask_enabled((1u &lt;&lt; <a class="code hl_variable" href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">rise_slice</a>) | (1u &lt;&lt; <a class="code hl_variable" href="#abc41c1efef8602a4e0b308cfacd14c26">fall_slice</a>));</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">/* Retardo negativo: periodo fijo entre inicios, sin deriva. */</span></div>
+<div class="line"><span class="lineno">   81</span>    add_repeating_timer_us(-(int32_t)<a class="code hl_define" href="capture_8h.html#acbf5745c8c2d01e24e19fc467b88e23b">REPORT_PERIOD_US</a>, <a class="code hl_function" href="#a42ae15624f6c1b40d4c1f00cdca87cbc">tick_isr</a>, NULL, &amp;<a class="code hl_variable" href="#abb3d54bf74afb1292540f06430f8d9a5">report_timer</a>);</div>
+<div class="line"><span class="lineno">   82</span>}</div>
+<div class="ttc" id="acapture_8c_html_a42ae15624f6c1b40d4c1f00cdca87cbc"><div class="ttname"><a href="#a42ae15624f6c1b40d4c1f00cdca87cbc">tick_isr</a></div><div class="ttdeci">static bool tick_isr(repeating_timer_t *rt)</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00049">capture.c:49</a></div></div>
+<div class="ttc" id="acapture_8c_html_a930786e7c53c8fcaf2dcf122a5a4ed1e"><div class="ttname"><a href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">rise_slice</a></div><div class="ttdeci">static uint rise_slice</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00025">capture.c:25</a></div></div>
+<div class="ttc" id="acapture_8c_html_abb3d54bf74afb1292540f06430f8d9a5"><div class="ttname"><a href="#abb3d54bf74afb1292540f06430f8d9a5">report_timer</a></div><div class="ttdeci">static repeating_timer_t report_timer</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00026">capture.c:26</a></div></div>
+<div class="ttc" id="acapture_8c_html_abc41c1efef8602a4e0b308cfacd14c26"><div class="ttname"><a href="#abc41c1efef8602a4e0b308cfacd14c26">fall_slice</a></div><div class="ttdeci">static uint fall_slice</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00025">capture.c:25</a></div></div>
+<div class="ttc" id="acapture_8c_html_ae56235b0ebfd3babdbaad7dd4c61e575"><div class="ttname"><a href="#ae56235b0ebfd3babdbaad7dd4c61e575">pwm_isr</a></div><div class="ttdeci">static void pwm_isr(void)</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00029">capture.c:29</a></div></div>
+<div class="ttc" id="acapture_8c_html_afe0590f7f863d8e2c89957624c53f2b2"><div class="ttname"><a href="#afe0590f7f863d8e2c89957624c53f2b2">counter_init</a></div><div class="ttdeci">static uint counter_init(uint gpio, enum pwm_clkdiv_mode mode)</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00057">capture.c:57</a></div></div>
+<div class="ttc" id="acapture_8h_html_acbf5745c8c2d01e24e19fc467b88e23b"><div class="ttname"><a href="capture_8h.html#acbf5745c8c2d01e24e19fc467b88e23b">REPORT_PERIOD_US</a></div><div class="ttdeci">#define REPORT_PERIOD_US</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00022">capture.h:22</a></div></div>
+<div class="ttc" id="acapture_8h_html_acf82ea8ca602ff8a8e1288981d695f5d"><div class="ttname"><a href="capture_8h.html#acf82ea8ca602ff8a8e1288981d695f5d">CAPTURE_FALL_GPIO</a></div><div class="ttdeci">#define CAPTURE_FALL_GPIO</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00021">capture.h:21</a></div></div>
+<div class="ttc" id="acapture_8h_html_af3acd53571cbbbea60980d3cc52c18c1"><div class="ttname"><a href="capture_8h.html#af3acd53571cbbbea60980d3cc52c18c1">CAPTURE_RISE_GPIO</a></div><div class="ttdeci">#define CAPTURE_RISE_GPIO</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00020">capture.h:20</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8h_source.html#l00021">CAPTURE_FALL_GPIO</a>, <a class="el" href="capture_8c_source.html#l00071">capture_init()</a>, <a class="el" href="capture_8h_source.html#l00020">CAPTURE_RISE_GPIO</a>, <a class="el" href="capture_8c_source.html#l00057">counter_init()</a>, <a class="el" href="capture_8c_source.html#l00025">fall_slice</a>, <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>, <a class="el" href="capture_8h_source.html#l00022">REPORT_PERIOD_US</a>, <a class="el" href="capture_8c_source.html#l00026">report_timer</a>, <a class="el" href="capture_8c_source.html#l00025">rise_slice</a> y <a class="el" href="capture_8c_source.html#l00049">tick_isr()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="polling__interrupciones_8c_source.html#l00070">main()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a35b2c84840bc6107b024dd278c7d11d9_cgraph.png" border="0" usemap="#acapture_8c_a35b2c84840bc6107b024dd278c7d11d9_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a35b2c84840bc6107b024dd278c7d11d9_icgraph.png" border="0" usemap="#acapture_8c_a35b2c84840bc6107b024dd278c7d11d9_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+
+</div>
+</div>
+<a id="ab0fe18e31495b111f718fe7e31280962" name="ab0fe18e31495b111f718fe7e31280962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0fe18e31495b111f718fe7e31280962">&#9670;&#160;</a></span>capture_overflow_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t capture_overflow_count </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flancos perdidos por anillo lleno [eventos]. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00092">92</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   92</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="#a02faf1eacded9976693679633740bc8b">overflow</a>; }</div>
+<div class="ttc" id="acapture_8c_html_a02faf1eacded9976693679633740bc8b"><div class="ttname"><a href="#a02faf1eacded9976693679633740bc8b">overflow</a></div><div class="ttdeci">static volatile uint32_t overflow</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00020">capture.c:20</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8c_source.html#l00092">capture_overflow_count()</a> y <a class="el" href="capture_8c_source.html#l00020">overflow</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00092">capture_overflow_count()</a> y <a class="el" href="measure_8c_source.html#l00064">measure_poll()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_ab0fe18e31495b111f718fe7e31280962_cgraph.png" border="0" usemap="#acapture_8c_ab0fe18e31495b111f718fe7e31280962_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 5 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_ab0fe18e31495b111f718fe7e31280962_icgraph.png" border="0" usemap="#acapture_8c_ab0fe18e31495b111f718fe7e31280962_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 6 -->
+</div>
+
+</div>
+</div>
+<a id="a445d7c541cab9fa7e0f6a138de42dd3a" name="a445d7c541cab9fa7e0f6a138de42dd3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a445d7c541cab9fa7e0f6a138de42dd3a">&#9670;&#160;</a></span>capture_pop_edge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool capture_pop_edge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structedge__event__t.html">edge_event_t</a> *</td>          <td class="paramname"><span class="paramname"><em>ev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saca el flanco más antiguo del anillo. Devuelve false si está vacío. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00084">84</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>                                        {</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a> == <a class="code hl_variable" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   86</span>    ev-&gt;<a class="code hl_variable" href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">t_us</a>   = <a class="code hl_variable" href="#a86d4d95a04c7666871d32b4cde61861a">ring</a>[<a class="code hl_variable" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a> % <a class="code hl_define" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>].<a class="code hl_variable" href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">t_us</a>;</div>
+<div class="line"><span class="lineno">   87</span>    ev-&gt;<a class="code hl_variable" href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">rising</a> = <a class="code hl_variable" href="#a86d4d95a04c7666871d32b4cde61861a">ring</a>[<a class="code hl_variable" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a> % <a class="code hl_define" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>].<a class="code hl_variable" href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">rising</a>;</div>
+<div class="line"><span class="lineno">   88</span>    <a class="code hl_variable" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a>++;</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   90</span>}</div>
+<div class="ttc" id="acapture_8c_html_a4c8a032642ccc217b8e720889b8b8e2e"><div class="ttname"><a href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a></div><div class="ttdeci">static volatile uint32_t w_idx</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00019">capture.c:19</a></div></div>
+<div class="ttc" id="acapture_8c_html_a86d4d95a04c7666871d32b4cde61861a"><div class="ttname"><a href="#a86d4d95a04c7666871d32b4cde61861a">ring</a></div><div class="ttdeci">static volatile edge_event_t ring[EDGE_RING_SIZE]</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00018">capture.c:18</a></div></div>
+<div class="ttc" id="acapture_8c_html_ae1ce94ab2d53a18021e6259e4f0e92b2"><div class="ttname"><a href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a></div><div class="ttdeci">static volatile uint32_t r_idx</div><div class="ttdef"><b>Definición</b> <a href="capture_8c_source.html#l00019">capture.c:19</a></div></div>
+<div class="ttc" id="acapture_8h_html_af4ceeb71e2e2024838066743c9fa8a3b"><div class="ttname"><a href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a></div><div class="ttdeci">#define EDGE_RING_SIZE</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00023">capture.h:23</a></div></div>
+<div class="ttc" id="astructedge__event__t_html_a3d3161ef7b7590161aa0a6188ebe35b8"><div class="ttname"><a href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">edge_event_t::t_us</a></div><div class="ttdeci">uint32_t t_us</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00027">capture.h:27</a></div></div>
+<div class="ttc" id="astructedge__event__t_html_ae6a2afc72045dc4ba2ba51af713de286"><div class="ttname"><a href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">edge_event_t::rising</a></div><div class="ttdeci">bool rising</div><div class="ttdef"><b>Definición</b> <a href="capture_8h_source.html#l00028">capture.h:28</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8c_source.html#l00084">capture_pop_edge()</a>, <a class="el" href="capture_8h_source.html#l00023">EDGE_RING_SIZE</a>, <a class="el" href="capture_8c_source.html#l00019">r_idx</a>, <a class="el" href="capture_8c_source.html#l00018">ring</a>, <a class="el" href="capture_8h_source.html#l00028">edge_event_t::rising</a>, <a class="el" href="capture_8h_source.html#l00027">edge_event_t::t_us</a> y <a class="el" href="capture_8c_source.html#l00019">w_idx</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00084">capture_pop_edge()</a> y <a class="el" href="measure_8c_source.html#l00064">measure_poll()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a445d7c541cab9fa7e0f6a138de42dd3a_cgraph.png" border="0" usemap="#acapture_8c_a445d7c541cab9fa7e0f6a138de42dd3a_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 7 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a445d7c541cab9fa7e0f6a138de42dd3a_icgraph.png" border="0" usemap="#acapture_8c_a445d7c541cab9fa7e0f6a138de42dd3a_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 8 -->
+</div>
+
+</div>
+</div>
+<a id="afe0590f7f863d8e2c89957624c53f2b2" name="afe0590f7f863d8e2c89957624c53f2b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe0590f7f863d8e2c89957624c53f2b2">&#9670;&#160;</a></span>counter_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint counter_init </td>
+          <td>(</td>
+          <td class="paramtype">uint</td>          <td class="paramname"><span class="paramname"><em>gpio</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum pwm_clkdiv_mode</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00057">57</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                               {</div>
+<div class="line"><span class="lineno">   58</span>    gpio_set_function(gpio, GPIO_FUNC_PWM);</div>
+<div class="line"><span class="lineno">   59</span>    uint slice = pwm_gpio_to_slice_num(gpio);</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    pwm_config cfg = pwm_get_default_config();</div>
+<div class="line"><span class="lineno">   62</span>    pwm_config_set_clkdiv_mode(&amp;cfg, mode);</div>
+<div class="line"><span class="lineno">   63</span>    pwm_config_set_wrap(&amp;cfg, 0);</div>
+<div class="line"><span class="lineno">   64</span>    pwm_init(slice, &amp;cfg, <span class="keyword">false</span>);               <span class="comment">/* queda detenido */</span></div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>    pwm_clear_irq(slice);</div>
+<div class="line"><span class="lineno">   67</span>    pwm_set_irq_enabled(slice, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">return</span> slice;</div>
+<div class="line"><span class="lineno">   69</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8c_source.html#l00057">counter_init()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="capture_8c_source.html#l00057">counter_init()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_afe0590f7f863d8e2c89957624c53f2b2_cgraph.png" border="0" usemap="#acapture_8c_afe0590f7f863d8e2c89957624c53f2b2_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 9 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_afe0590f7f863d8e2c89957624c53f2b2_icgraph.png" border="0" usemap="#acapture_8c_afe0590f7f863d8e2c89957624c53f2b2_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 10 -->
+</div>
+
+</div>
+</div>
+<a id="ae56235b0ebfd3babdbaad7dd4c61e575" name="ae56235b0ebfd3babdbaad7dd4c61e575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56235b0ebfd3babdbaad7dd4c61e575">&#9670;&#160;</a></span>pwm_isr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pwm_isr </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00029">29</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>                          {</div>
+<div class="line"><span class="lineno">   30</span>    uint32_t t = time_us_32();</div>
+<div class="line"><span class="lineno">   31</span>    uint32_t pending = pwm_get_irq_status_mask();   <span class="comment">/* ambos slices comparten la IRQ */</span></div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 2; i++) {</div>
+<div class="line"><span class="lineno">   34</span>        uint slice = i ? <a class="code hl_variable" href="#abc41c1efef8602a4e0b308cfacd14c26">fall_slice</a> : <a class="code hl_variable" href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">rise_slice</a>;</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">if</span> (!(pending &amp; (1u &lt;&lt; slice))) <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   36</span>        pwm_clear_irq(slice);</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a> - <a class="code hl_variable" href="#ae1ce94ab2d53a18021e6259e4f0e92b2">r_idx</a> &gt;= <a class="code hl_define" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>) {      <span class="comment">/* anillo lleno: descartar y contar */</span></div>
+<div class="line"><span class="lineno">   39</span>            <a class="code hl_variable" href="#a02faf1eacded9976693679633740bc8b">overflow</a>++;</div>
+<div class="line"><span class="lineno">   40</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   41</span>            <a class="code hl_variable" href="#a86d4d95a04c7666871d32b4cde61861a">ring</a>[<a class="code hl_variable" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a> % <a class="code hl_define" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>].<a class="code hl_variable" href="structedge__event__t.html#a3d3161ef7b7590161aa0a6188ebe35b8">t_us</a>   = t;</div>
+<div class="line"><span class="lineno">   42</span>            <a class="code hl_variable" href="#a86d4d95a04c7666871d32b4cde61861a">ring</a>[<a class="code hl_variable" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a> % <a class="code hl_define" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>].<a class="code hl_variable" href="structedge__event__t.html#ae6a2afc72045dc4ba2ba51af713de286">rising</a> = (i == 0);</div>
+<div class="line"><span class="lineno">   43</span>            <a class="code hl_variable" href="#a4c8a032642ccc217b8e720889b8b8e2e">w_idx</a>++;</div>
+<div class="line"><span class="lineno">   44</span>        }</div>
+<div class="line"><span class="lineno">   45</span>    }</div>
+<div class="line"><span class="lineno">   46</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8h_source.html#l00023">EDGE_RING_SIZE</a>, <a class="el" href="capture_8c_source.html#l00025">fall_slice</a>, <a class="el" href="capture_8c_source.html#l00020">overflow</a>, <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>, <a class="el" href="capture_8c_source.html#l00019">r_idx</a>, <a class="el" href="capture_8c_source.html#l00018">ring</a>, <a class="el" href="capture_8c_source.html#l00025">rise_slice</a>, <a class="el" href="capture_8h_source.html#l00028">edge_event_t::rising</a>, <a class="el" href="capture_8h_source.html#l00027">edge_event_t::t_us</a> y <a class="el" href="capture_8c_source.html#l00019">w_idx</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_ae56235b0ebfd3babdbaad7dd4c61e575_cgraph.png" border="0" usemap="#acapture_8c_ae56235b0ebfd3babdbaad7dd4c61e575_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 11 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_ae56235b0ebfd3babdbaad7dd4c61e575_icgraph.png" border="0" usemap="#acapture_8c_ae56235b0ebfd3babdbaad7dd4c61e575_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 12 -->
+</div>
+
+</div>
+</div>
+<a id="a42ae15624f6c1b40d4c1f00cdca87cbc" name="a42ae15624f6c1b40d4c1f00cdca87cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42ae15624f6c1b40d4c1f00cdca87cbc">&#9670;&#160;</a></span>tick_isr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tick_isr </td>
+          <td>(</td>
+          <td class="paramtype">repeating_timer_t *</td>          <td class="paramname"><span class="paramname"><em>rt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00049">49</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>                                            {</div>
+<div class="line"><span class="lineno">   50</span>    (void)rt;</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="#a37da707e22fc7beb07d8378d6655a8f4">tick_t_us</a> = time_us_32();</div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_variable" href="#a7adccde9be9fb7a6ba685e0080f9cdff">tick_count</a>++;</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   54</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Hace referencia a <a class="el" href="capture_8c_source.html#l00023">tick_count</a>, <a class="el" href="capture_8c_source.html#l00049">tick_isr()</a> y <a class="el" href="capture_8c_source.html#l00023">tick_t_us</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="capture_8c_source.html#l00049">tick_isr()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas de esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a42ae15624f6c1b40d4c1f00cdca87cbc_cgraph.png" border="0" usemap="#acapture_8c_a42ae15624f6c1b40d4c1f00cdca87cbc_cgraph" loading="lazy" alt=""/></div>
+<!-- MAP 13 -->
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="capture_8c_a42ae15624f6c1b40d4c1f00cdca87cbc_icgraph.png" border="0" usemap="#acapture_8c_a42ae15624f6c1b40d4c1f00cdca87cbc_icgraph" loading="lazy" alt=""/></div>
+<!-- MAP 14 -->
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="abc41c1efef8602a4e0b308cfacd14c26" name="abc41c1efef8602a4e0b308cfacd14c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc41c1efef8602a4e0b308cfacd14c26">&#9670;&#160;</a></span>fall_slice</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint fall_slice</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00025">25</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a02faf1eacded9976693679633740bc8b" name="a02faf1eacded9976693679633740bc8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02faf1eacded9976693679633740bc8b">&#9670;&#160;</a></span>overflow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t overflow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00020">20</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00092">capture_overflow_count()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+<a id="ae1ce94ab2d53a18021e6259e4f0e92b2" name="ae1ce94ab2d53a18021e6259e4f0e92b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ce94ab2d53a18021e6259e4f0e92b2">&#9670;&#160;</a></span>r_idx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t r_idx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00019">19</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00084">capture_pop_edge()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+<a id="abb3d54bf74afb1292540f06430f8d9a5" name="abb3d54bf74afb1292540f06430f8d9a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb3d54bf74afb1292540f06430f8d9a5">&#9670;&#160;</a></span>report_timer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">repeating_timer_t report_timer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00026">26</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a>.</p>
+
+</div>
+</div>
+<a id="a86d4d95a04c7666871d32b4cde61861a" name="a86d4d95a04c7666871d32b4cde61861a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86d4d95a04c7666871d32b4cde61861a">&#9670;&#160;</a></span>ring</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="structedge__event__t.html">edge_event_t</a> ring[<a class="el" href="capture_8h.html#af4ceeb71e2e2024838066743c9fa8a3b">EDGE_RING_SIZE</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00018">18</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00084">capture_pop_edge()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a930786e7c53c8fcaf2dcf122a5a4ed1e" name="a930786e7c53c8fcaf2dcf122a5a4ed1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930786e7c53c8fcaf2dcf122a5a4ed1e">&#9670;&#160;</a></span>rise_slice</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint rise_slice</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00025">25</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00071">capture_init()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a7adccde9be9fb7a6ba685e0080f9cdff" name="a7adccde9be9fb7a6ba685e0080f9cdff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7adccde9be9fb7a6ba685e0080f9cdff">&#9670;&#160;</a></span>tick_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t tick_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00023">23</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00094">capture_get_tick()</a> y <a class="el" href="capture_8c_source.html#l00049">tick_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a37da707e22fc7beb07d8378d6655a8f4" name="a37da707e22fc7beb07d8378d6655a8f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37da707e22fc7beb07d8378d6655a8f4">&#9670;&#160;</a></span>tick_t_us</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t tick_t_us</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00023">23</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00094">capture_get_tick()</a> y <a class="el" href="capture_8c_source.html#l00049">tick_isr()</a>.</p>
+
+</div>
+</div>
+<a id="a4c8a032642ccc217b8e720889b8b8e2e" name="a4c8a032642ccc217b8e720889b8b8e2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8a032642ccc217b8e720889b8b8e2e">&#9670;&#160;</a></span>w_idx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t w_idx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="capture_8c_source.html#l00019">19</a> del archivo <a class="el" href="capture_8c_source.html">capture.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="capture_8c_source.html#l00084">capture_pop_edge()</a> y <a class="el" href="capture_8c_source.html#l00029">pwm_isr()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a href="capture_8c.html">capture.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>
