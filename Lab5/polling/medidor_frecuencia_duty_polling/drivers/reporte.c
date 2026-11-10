@@ -23,7 +23,7 @@
  *  con -DREPORTE_INTERVALO_MS=200).
  */
 #ifndef REPORTE_INTERVALO_MS
-#define REPORTE_INTERVALO_MS 20
+#define REPORTE_INTERVALO_MS 100
 #endif
 
 /** Tiempo máximo sin flancos antes de declarar SIN_TRANSICIONES, en ms. */
