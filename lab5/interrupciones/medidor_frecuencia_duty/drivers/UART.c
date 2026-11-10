@@ -4,14 +4,19 @@
 #include "hardware/irq.h"
 #include "hardware/gpio.h" 
 
+/** @brief Buffer circular de transmisión. */
 static volatile char tx_buffer[TX_BUFFER_SIZE];
 
 // Contadores absolutos
 static volatile uint32_t head = 0; //Posición de lectura. Marca dónde está el espacio ocupado más antiguo
 static volatile uint32_t tail = 0; //Posición de escritura. Marca dónde está el siguiente espacio vacío
-static volatile uint32_t dropped_reports = 0;
+static volatile uint32_t dropped_reports = 0; // Cadenas descartadas por falta de espacio
 
 
+/**
+ * @brief ISR de TX: vacía el buffer circular hacia el FIFO de la UART
+ *        y desactiva la interrupción cuando no quedan datos.
+ */
 static void on_uart_tx_isr(void) {
     while (uart_is_writable(UART_ID)) {
         if (head != tail) { 
@@ -27,6 +32,7 @@ static void on_uart_tx_isr(void) {
     }
 }
 
+// Inicializa la UART (115200 8N1) y registra la ISR de TX, inicialmente desactivada.
 void uart_driver_init(void) {
     uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART); //Define la función del pin como UART
@@ -45,6 +51,7 @@ void uart_driver_init(void) {
 
 
 
+// Copia la cadena al buffer circular (todo o nada) y dispara la ISR de TX.
 bool uart_driver_send_string(const char* str) {
     uint32_t len = strlen(str); //Calcula cuántos caracteres tiene la cadena a enviar.
     
@@ -64,6 +71,7 @@ bool uart_driver_send_string(const char* str) {
     tail += len;
 
 
+    // Habilita la IRQ de TX y la fuerza para iniciar el envío
     uart_set_irq_enables(UART_ID, false, true);
     
 
@@ -73,6 +81,7 @@ bool uart_driver_send_string(const char* str) {
     return true;
 }
 
+// Devuelve el contador de cadenas descartadas.
 uint32_t uart_driver_get_dropped_count(void) {
     return dropped_reports;
 }

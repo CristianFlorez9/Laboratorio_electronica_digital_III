@@ -10,12 +10,19 @@ static volatile uint64_t t_H_us = 0;         // Tiempo en estado alto en microse
 static volatile uint64_t last_edge_time = 0; // Marca temporal de la última transición
 
 
+/** @brief Instante del flanco de subida anterior [µs]. */
 static volatile uint64_t t_rise_prev = 0;
+/** @brief true hasta recibir el primer flanco de subida (evita medidas inválidas). */
 static volatile bool first_edge = true;
 
 
 
 
+/**
+ * @brief ISR de GPIO: en subida calcula el periodo; en bajada calcula el tiempo en alto.
+ * @param gpio   Pin que generó la interrupción.
+ * @param events Máscara de eventos (flanco de subida/bajada).
+ */
 static void gpio_callback(uint gpio, uint32_t events) {
 
     uint64_t now = time_us_64(); 
@@ -42,6 +49,7 @@ static void gpio_callback(uint gpio, uint32_t events) {
 
 
 
+// Configura el pin de entrada y la interrupción por ambos flancos.
 void medicion_init(void) {
     gpio_init(SIGNAL_PIN);
     gpio_set_dir(SIGNAL_PIN, GPIO_IN);
@@ -59,6 +67,7 @@ void medicion_init(void) {
 
 
 
+// Lectura atómica: se deshabilitan las IRQ para que la ISR no modifique los datos a mitad de copia.
 void medicion_obtener_datos(uint64_t* period_us, uint64_t* time_high_us, uint64_t* last_flank_us) {
     uint32_t previous_state = save_and_disable_interrupts();
 

@@ -1,3 +1,9 @@
+/**
+ * @file medidor_frecuencia_duty.c
+ * @brief Medidor de frecuencia y duty cycle por interrupciones (RP2040).
+ *        Mide la señal en SIGNAL_PIN y reporta por UART de forma periódica.
+ */
+
 #include "pico/stdlib.h"
 #include "hardware/timer.h"
 #include "hardware/clocks.h"
@@ -7,6 +13,9 @@
 #include "drivers/reporte.h"
 #include "hardware/irq.h" 
 
+/**
+ * @brief Inicializa reloj, drivers y prioridades de interrupción; luego duerme hasta cada IRQ.
+ */
 int main() {
     // Configuración del reloj del sistema a 125 MHz
     set_sys_clock_khz(125000, true);

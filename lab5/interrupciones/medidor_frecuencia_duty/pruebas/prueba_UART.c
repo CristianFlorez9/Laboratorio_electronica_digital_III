@@ -1,3 +1,8 @@
+/**
+ * @file prueba_UART.c
+ * @brief Prueba del driver UART: envía "Hola" cada segundo.
+ */
+
 #include "pico/stdlib.h"
 #include "../drivers/UART.h"
 

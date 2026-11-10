@@ -1,0 +1,14 @@
+PROJECT_NAME           = "Medidor de frecuencia y duty"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = medidor_frecuencia_duty.c drivers pruebas
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+SOURCE_BROWSER         = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HAVE_DOT               = NO
+INPUT_ENCODING         = UTF-8
+QUIET                  = YES

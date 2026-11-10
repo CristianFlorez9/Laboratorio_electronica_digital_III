@@ -6,16 +6,24 @@
 #include <stdio.h> 
 
 
+/** @brief Temporizador periódico que dispara el reporte. */
 static struct repeating_timer timer_100ms;
 
 
-static uint32_t n_report = 0;          
-static uint64_t last_report_time_us = 0;
+static uint32_t n_report = 0;          // Número de reporte (contador)
+static uint64_t last_report_time_us = 0; // Instante del reporte anterior [µs]
 
 
+/**
+ * @brief Callback del temporizador: lee la medición y envía una línea CSV por UART.
+ *        Formato: n,dt_ms,frecuencia_hz,duty_%,estado
+ *        Estados: ESPERANDO (sin periodo aún), SIN_TRANSICIONES (>500 ms sin flancos), OK.
+ * @return true para mantener el temporizador activo.
+ */
 static bool timer_100ms_isr_callback(struct repeating_timer *t) {
     uint64_t now_us = time_us_64();
 
+    // Tiempo transcurrido desde el reporte anterior [ms]
     uint32_t dt_ms = (last_report_time_us == 0) ? 0 : (uint32_t)((now_us - last_report_time_us) / 1000);
     last_report_time_us = now_us;
 
@@ -34,7 +42,7 @@ static bool timer_100ms_isr_callback(struct repeating_timer *t) {
     } 
 
     else {
-
+        // f = 1/T ; duty = t_alto / T * 100
         float f_hz = 1000000.0f / (float)T_local_us;
         float duty = 100.0f * ((float)t_H_local_us / (float)T_local_us);
         
