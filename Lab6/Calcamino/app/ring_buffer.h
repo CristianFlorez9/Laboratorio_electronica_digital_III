@@ -1,3 +1,4 @@
+
 /**
  * @file    ring_buffer.h
  * @brief   Buffer circular de capacidad fija para pasar datos de la ISR al ciclo
