@@ -7,5 +7,5 @@
  *          indica si estima gasto total o adicional sobre el reposo.
  * @note    Funciones puras, sin hardware, verificables en PC con casos
  *          independientes.
- * @par Requisitos: REQ-21, REQ-22, REQ-23, REQ-24, REQ-25, REQ-26
+ *
  */
