@@ -6,6 +6,6 @@
  *          estados) y orquesta los módulos. Cuando no hay trabajo, espera una
  *          interrupción sin dejar eventos pendientes. Reporta los contadores de
  *          desbordamiento.
- * @note    No contiene lógica de negocio.
+ * @note    No contiene lógica de programa
  * 
  */
