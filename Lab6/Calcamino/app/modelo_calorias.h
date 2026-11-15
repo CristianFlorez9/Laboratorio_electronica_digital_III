@@ -1,4 +1,3 @@
-
 /**
  * @file    modelo_calorias.h
  * @brief   Modelo de gasto calórico al caminar.

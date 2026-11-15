@@ -1,4 +1,3 @@
-
 /**
  * @file    pantalla_oled.h
  * @brief   Driver de la pantalla gráfica con framebuffer y envío asíncrono.

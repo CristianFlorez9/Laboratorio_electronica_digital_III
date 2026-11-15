@@ -1,4 +1,3 @@
-
 /**
  * @file    acelerometro_MPU_6050.h
  * @brief   Driver del acelerómetro (mapa de registros, escalas, modos).

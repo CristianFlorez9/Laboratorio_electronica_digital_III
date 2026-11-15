@@ -1,4 +1,3 @@
-
 /**
  * @file    interfaz_grafica.h
  * @brief   Interfaz de usuario: pantallas de sesión y de configuración.

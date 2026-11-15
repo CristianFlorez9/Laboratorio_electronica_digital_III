@@ -1,4 +1,3 @@
-
 /**
  * @file    i2c_driver.h
  * @brief   Driver del bus I2C por interrupciones, dueño único del periférico.

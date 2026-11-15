@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Calcamino Calcamino.c )
+add_executable(Calcamino main.c )
 
 pico_set_program_name(Calcamino "Calcamino")
 pico_set_program_version(Calcamino "0.1")

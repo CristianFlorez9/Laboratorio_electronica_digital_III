@@ -1,4 +1,3 @@
-
 /**
  * @file    power_driver.h
  * @brief   Gestión de energía del RP2040 (SLEEP/DORMANT y despertar).

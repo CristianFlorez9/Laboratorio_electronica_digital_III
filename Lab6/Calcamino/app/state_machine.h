@@ -1,4 +1,3 @@
-
 /**
  * @file    state_machine.h
  * @brief   Máquina de estados del dispositivo.

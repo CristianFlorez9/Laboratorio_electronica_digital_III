@@ -1,4 +1,3 @@
-
 /**
  * @file    step_detector.h
  * @brief   Algoritmo de detección de marcha y conteo de pasos.
