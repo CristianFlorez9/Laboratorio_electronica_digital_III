@@ -1,6 +1,6 @@
 /**
  * @file    Calcamino.c
- * @brief   Ciclo principal: polling de flags + interrupciones, sin RTOS.
+ * @brief   Ciclo principal: polling + interrupciones
  * @details Inicializa periféricos antes de la sesión y fuera de ISR. En el bucle
  *          consulta el trabajo pendiente (muestras, pasos, batería, pantalla,
  *          estados) y orquesta los módulos. Cuando no hay trabajo, espera una
