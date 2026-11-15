@@ -1,0 +1,400 @@
+/**
+ * @file capture.c
+ * @brief Captura de flancos con slices PWM (interfaz en capture.h).
+ *
+ * @details
+ * Dos ISR que solo guardan datos: la de PWM (una por flanco) y la de la alarma (una por
+ * reporte). El ciclo principal los lee.
+ */
+
+#include "capture.h"
+#include "hardware/gpio.h"
+#include "hardware/pwm.h"
+#include "hardware/irq.h"
+#include "hardware/sync.h"
+#include "pico/time.h"
+
+/* Anillo de flancos: w_idx lo avanza la ISR, r_idx el ciclo principal. */
+static volatile edge_event_t ring[EDGE_RING_SIZE];
+static volatile uint32_t w_idx, r_idx;
+static volatile uint32_t overflow;          /* flancos perdidos por anillo lleno */
+
+/* Ticks de reporte: los escribe la ISR de la alarma. */
+static volatile uint32_t tick_count, tick_t_us;
+
+static uint rise_slice, fall_slice;
+static repeating_timer_t report_timer;
+
+/* ISR de PWM: una vez por flanco. Guarda el instante y el tipo, sin calcular. */
+static void pwm_isr(void) {
+    uint32_t t = time_us_32();
+    uint32_t pending = pwm_get_irq_status_mask();   /* ambos slices comparten la IRQ */
+
+    for (int i = 0; i < 2; i++) {
+        uint slice = i ? fall_slice : rise_slice;
+        if (!(pending & (1u << slice))) continue;
+        pwm_clear_irq(slice);
+
+        if (w_idx - r_idx >= EDGE_RING_SIZE) {      /* anillo lleno: descartar y contar */
+            overflow++;
+        } else {
+            ring[w_idx % EDGE_RING_SIZE].t_us   = t;
+            ring[w_idx % EDGE_RING_SIZE].rising = (i == 0);
+            w_idx++;
+        }
+    }
+}
+
+/* ISR de la alarma: marca "toca reporte". */
+static bool tick_isr(repeating_timer_t *rt) {
+    (void)rt;
+    tick_t_us = time_us_32();
+    tick_count++;
+    return true;
+}
+
+/* Slice que cuenta flancos del pin B; TOP = 0 para un wrap (y una IRQ) por flanco. */
+static uint counter_init(uint gpio, enum pwm_clkdiv_mode mode) {
+    gpio_set_function(gpio, GPIO_FUNC_PWM);
+    uint slice = pwm_gpio_to_slice_num(gpio);
+
+    pwm_config cfg = pwm_get_default_config();
+    pwm_config_set_clkdiv_mode(&cfg, mode);
+    pwm_config_set_wrap(&cfg, 0);
+    pwm_init(slice, &cfg, false);               /* queda detenido */
+
+    pwm_clear_irq(slice);
+    pwm_set_irq_enabled(slice, true);
+    return slice;
+}
+
+void capture_init(void) {
+    rise_slice = counter_init(CAPTURE_RISE_GPIO, PWM_DIV_B_RISING);
+    fall_slice = counter_init(CAPTURE_FALL_GPIO, PWM_DIV_B_FALLING);
+
+    irq_set_exclusive_handler(PWM_IRQ_WRAP, pwm_isr);
+    irq_set_priority(PWM_IRQ_WRAP, 0x00);       /* la más alta, para no perder flancos */
+    irq_set_enabled(PWM_IRQ_WRAP, true);
+    pwm_set_mask_enabled((1u << rise_slice) | (1u << fall_slice));
+
+    /* Retardo negativo: periodo fijo entre inicios, sin deriva. */
+    add_repeating_timer_us(-(int32_t)REPORT_PERIOD_US, tick_isr, NULL, &report_timer);
+}
+
+bool capture_pop_edge(edge_event_t *ev) {
+    if (r_idx == w_idx) return false;
+    ev->t_us   = ring[r_idx % EDGE_RING_SIZE].t_us;
+    ev->rising = ring[r_idx % EDGE_RING_SIZE].rising;
+    r_idx++;
+    return true;
+}
+
+uint32_t capture_overflow_count(void) { return overflow; }
+
+void capture_get_tick(uint32_t *count, uint32_t *t_us) {
+    uint32_t s = save_and_disable_interrupts();
+    *count = tick_count;
+    *t_us  = tick_t_us;
+    restore_interrupts(s);
+}
+/**
+ * @file capture.h
+ * @brief Captura de flancos con dos slices PWM y alarma de reporte.
+ *
+ * @details
+ * Cada slice PWM cuenta flancos de su pin con TOP = 0, así que cada flanco provoca una
+ * interrupción. La ISR solo guarda el instante y el tipo del flanco en un anillo; el
+ * cálculo lo hace measure.c en el ciclo principal.
+ *
+ * El modo de entrada del PWM solo existe en el canal B (GPIO impar). La señal se conecta
+ * a los dos pines a la vez, y deben ser de slices distintos.
+ */
+
+#ifndef CAPTURE_H
+#define CAPTURE_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#define CAPTURE_RISE_GPIO  3        /**< Pin que cuenta subidas (GPIO impar). */
+#define CAPTURE_FALL_GPIO  7        /**< Pin que cuenta bajadas (GPIO impar, otro slice). */
+#define REPORT_PERIOD_US   100000u  /**< Periodo de reporte [us]: 10 por segundo. */
+#define EDGE_RING_SIZE     1024u    /**< Capacidad del anillo [eventos]. Potencia de 2. */
+
+/** Un flanco capturado. */
+typedef struct {
+    uint32_t t_us;    /**< Instante del flanco [us]. */
+    bool     rising;  /**< true = subida, false = bajada. */
+} edge_event_t;
+
+/** @brief Configura los slices PWM, su interrupción y la alarma de reporte. */
+void capture_init(void);
+
+/** @brief Saca el flanco más antiguo del anillo. Devuelve false si está vacío. */
+bool capture_pop_edge(edge_event_t *ev);
+
+/** @brief Flancos perdidos por anillo lleno [eventos]. */
+uint32_t capture_overflow_count(void);
+
+/**
+ * @brief Lee juntos el número de ticks de reporte y el instante del último.
+ * @param[out] count Ticks desde el arranque (el primero deja count = 1).
+ * @param[out] t_us  Instante del último tick [us].
+ */
+void capture_get_tick(uint32_t *count, uint32_t *t_us);
+
+#endif/**
+ * @file measure.c
+ * @brief Cálculo de frecuencia y duty (interfaz en measure.h).
+ *
+ * @details
+ * Un periodo está completo cuando, tras una subida y su bajada, llega otra subida:
+ * T = de subida a subida, tH = de subida a bajada. Entre reportes se suman T y tH de
+ * todos los periodos completos y al reportar se promedia. Si en la ventana no hubo
+ * periodos se repite la última medición válida. Si pasan más de 500 ms sin flancos se
+ * informa SIN_TRANSICIONES.
+ */
+
+#include "measure.h"
+#include "capture.h"
+#include "UART.h"
+#include "pico/time.h"
+#include <stdio.h>
+
+#define NO_TRANSITION_TIMEOUT_US 500000     /* sin flancos por más de esto: sin medición */
+
+/* Estado del emparejamiento de flancos */
+enum { ESPERO_SUBIDA, VI_SUBIDA, VI_BAJADA };
+static int      estado = ESPERO_SUBIDA;
+static uint32_t t_subida;                   /* instante de la última subida [us] */
+static uint32_t t_alto;                     /* tiempo en alto del periodo en curso [us] */
+
+/* Acumuladores de la ventana */
+static uint64_t sum_T, sum_H;               /* [us] */
+static uint32_t n_periods;
+
+/* Última medición válida */
+static bool     have_meas;
+static double   last_f, last_d;             /* [Hz], [%] */
+
+/* Control de flancos y reportes */
+static uint32_t last_edge_t;                /* instante del último flanco [us] */
+static uint32_t seen_overflow;
+static uint32_t reports_seen, prev_tick_t, late_reports;
+
+void measure_init(void) {
+    last_edge_t = time_us_32();             /* referencia para el timeout inicial */
+}
+
+/* Un flanco: avanza el emparejamiento y acumula si se completó un periodo. */
+static void handle_edge(const edge_event_t *e) {
+    last_edge_t = e->t_us;
+
+    if (e->rising) {
+        if (estado == VI_BAJADA) {          /* periodo completo */
+            sum_T += (uint32_t)(e->t_us - t_subida);
+            sum_H += t_alto;
+            n_periods++;
+        }
+        t_subida = e->t_us;
+        estado = VI_SUBIDA;
+    } else if (estado == VI_SUBIDA) {
+        t_alto = e->t_us - t_subida;
+        estado = VI_BAJADA;
+    } else {
+        estado = ESPERO_SUBIDA;             /* bajada inesperada: reiniciar */
+    }
+}
+
+void measure_poll(void) {
+    /* 1. Procesar los flancos pendientes (si se perdieron, descartar la ventana). */
+    uint32_t ov = capture_overflow_count();
+    if (ov != seen_overflow) {
+        seen_overflow = ov;
+        estado = ESPERO_SUBIDA;
+        sum_T = sum_H = n_periods = 0;
+    }
+    edge_event_t e;
+    while (capture_pop_edge(&e)) handle_edge(&e);
+
+    /* 2. ¿Toca reporte? */
+    uint32_t cnt, tick_t;
+    capture_get_tick(&cnt, &tick_t);
+    if (cnt == reports_seen) return;
+
+    uint32_t n = cnt - 1;
+    uint32_t dt_ms = reports_seen ? (tick_t - prev_tick_t + 500u) / 1000u : 0;
+    late_reports += cnt - reports_seen - 1;
+    reports_seen = cnt;
+    prev_tick_t = tick_t;
+
+    /* 3. Calcular. */
+    bool timeout = (int32_t)(tick_t - last_edge_t) > NO_TRANSITION_TIMEOUT_US;
+    if (timeout) {
+        have_meas = false;
+        estado = ESPERO_SUBIDA;
+    } else if (n_periods > 0) {
+        last_f = n_periods * 1e6 / sum_T;
+        last_d = 100.0 * sum_H / sum_T;
+        have_meas = true;
+    }
+    sum_T = sum_H = n_periods = 0;          /* nueva ventana */
+
+    /* 4. Enviar. */
+    char line[64];
+    if (timeout)        snprintf(line, sizeof line, "%lu,%lu,NA,NA,SIN_TRANSICIONES\n",
+                                 (unsigned long)n, (unsigned long)dt_ms);
+    else if (have_meas) snprintf(line, sizeof line, "%lu,%lu,%.3f,%.1f,OK\n",
+                                 (unsigned long)n, (unsigned long)dt_ms, last_f, last_d);
+    else                snprintf(line, sizeof line, "%lu,%lu,NA,NA,ESPERANDO\n",
+                                 (unsigned long)n, (unsigned long)dt_ms);
+    uart_driver_send_string(line);
+}
+
+uint32_t measure_get_late_count(void) { return late_reports; }/**
+ * @file measure.h
+ * @brief Cálculo de frecuencia y duty y armado del reporte por UART.
+ *
+ * @details
+ * Procesamiento diferido del flujo Polling+IRQs: corre en el ciclo principal con los
+ * flancos y ticks que dejan las ISR de capture.c. Entre dos reportes promedia todos los
+ * periodos completos: f = N / suma(T) y D = 100 * suma(tH) / suma(T).
+ *
+ * Reporte, una línea ASCII terminada en LF: `n,dt,f,D,estado`, por ejemplo
+ * `17,100,1000.000,25.0,OK`.
+ *  - n: número de reporte (desde 0, avanza con cada tick aunque no se envíe).
+ *  - dt: ms desde el reporte anterior (0 en el primero).
+ *  - f en Hz con tres decimales y D en % con uno, o NA.
+ *  - estado: OK, ESPERANDO (sin periodo completo aún) o SIN_TRANSICIONES (> 500 ms).
+ */
+
+#ifndef MEASURE_H
+#define MEASURE_H
+
+#include <stdint.h>
+
+/** @brief Inicializa la medición. Llamar antes de capture_init(). */
+void measure_init(void);
+
+/** @brief Un paso del ciclo principal: procesa flancos y, si toca, envía un reporte. No bloquea. */
+void measure_poll(void);
+
+/** @brief Reportes programados que no se generaron por llegar tarde el ciclo [reportes]. */
+uint32_t measure_get_late_count(void);
+
+#endif/**
+ * @file UART.c
+ * @brief Driver de transmisión de UART0 por interrupciones (interfaz en UART.h).
+ *
+ * @details
+ * El buffer de TX es circular, con dos contadores crecientes:
+ *  - tx_tail: dónde se escribe. Solo lo avanza uart_driver_send_string().
+ *  - tx_head: dónde se lee. Solo lo avanza tx_fill_hw().
+ *
+ * tx_fill_hw() la llaman la ISR y send_string (esta con las interrupciones apagadas),
+ * así que nunca se ejecuta dos veces a la vez. La interrupción de TX solo está
+ * habilitada mientras queden datos en el buffer.
+ */
+
+#include "UART.h"
+#include <string.h>
+#include "hardware/uart.h"
+#include "hardware/gpio.h"
+#include "hardware/irq.h"
+#include "hardware/sync.h"
+
+static volatile char     tx_buffer[TX_BUFFER_SIZE];
+static volatile uint32_t tx_head = 0;
+static volatile uint32_t tx_tail = 0;
+static volatile uint32_t dropped = 0;       /* líneas descartadas por falta de espacio */
+
+/* Pasa a la FIFO de TX lo que quepa del buffer, sin esperar. */
+static void tx_fill_hw(void) {
+    uart_hw_t *u = uart_get_hw(UART_ID);
+    while (tx_head != tx_tail && !(u->fr & UART_UARTFR_TXFF_BITS)) {   /* FIFO no llena */
+        u->dr = tx_buffer[tx_head % TX_BUFFER_SIZE];
+        tx_head++;
+    }
+}
+
+/* ISR: la FIFO de TX se vació hasta el umbral; sigue con lo pendiente. */
+static void uart_isr(void) {
+    tx_fill_hw();
+    if (tx_head == tx_tail) {
+        uart_get_hw(UART_ID)->imsc = 0;     /* nada pendiente: apagar la interrupción de TX */
+    }
+}
+
+void uart_driver_init(void) {
+    uart_init(UART_ID, BAUD_RATE);          /* deja 8N1 y sin control de flujo */
+    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
+    uart_set_fifo_enabled(UART_ID, true);
+    uart_get_hw(UART_ID)->ifls = 0;         /* IRQ de TX cuando la FIFO baja a 1/8 (4 bytes) */
+
+    irq_set_exclusive_handler(UART0_IRQ, uart_isr);
+    irq_set_enabled(UART0_IRQ, true);
+}
+
+bool uart_driver_send_string(const char *str) {
+    uint32_t len = strlen(str);
+    uint32_t irq_state = save_and_disable_interrupts();   /* la ISR no entra mientras se copia */
+
+    if (len > TX_BUFFER_SIZE - (tx_tail - tx_head)) {     /* no cabe entera: descartar */
+        dropped++;
+        restore_interrupts(irq_state);
+        return false;
+    }
+
+    for (uint32_t i = 0; i < len; i++) {
+        tx_buffer[(tx_tail + i) % TX_BUFFER_SIZE] = str[i];
+    }
+    tx_tail += len;
+
+    tx_fill_hw();                                         /* a la FIFO lo que quepa ya */
+    if (tx_head != tx_tail) {
+        uart_get_hw(UART_ID)->imsc = UART_UARTIMSC_TXIM_BITS;   /* el resto lo envía la ISR */
+    }
+
+    restore_interrupts(irq_state);
+    return true;
+}
+
+uint32_t uart_driver_get_dropped_count(void) { return dropped; }/**
+ * @file UART.h
+ * @brief Driver propio de transmisión por UART0, por interrupciones.
+ *
+ * @details
+ * Enlace a 115200 bits/s, 8N1, sin control de flujo, con las FIFOs habilitadas. Solo
+ * transmite (la guía no pide recepción).
+ *
+ * El texto se copia a un buffer circular. Lo que cabe pasa de inmediato a la FIFO de
+ * hardware y el resto lo transfiere la ISR cuando la FIFO se vacía; nunca se espera a
+ * que haya espacio. Si una línea no cabe entera en el buffer, se descarta completa y se
+ * cuenta: no se transmiten líneas truncadas ni entrelazadas.
+ */
+
+#ifndef UART_DRIVER_H
+#define UART_DRIVER_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#define UART_ID         uart0   /**< Instancia de UART usada. */
+#define UART_TX_PIN     0       /**< GPIO de transmisión. */
+#define BAUD_RATE       115200  /**< Velocidad [bits/s]. */
+#define TX_BUFFER_SIZE  256u    /**< Tamaño del buffer de TX [bytes]. Potencia de 2. */
+
+/** @brief Configura UART0, el pin TX y la interrupción. Llamar desde main, antes del ciclo. */
+void uart_driver_init(void);
+
+/**
+ * @brief Encola una línea para enviarla por interrupciones, sin esperar.
+ * @param[in] str Cadena terminada en NUL (se copia).
+ * @return true si quedó encolada completa; false si no cabía (se descarta y se cuenta).
+ */
+bool uart_driver_send_string(const char *str);
+
+/** @brief Líneas descartadas por falta de espacio desde el arranque [líneas]. */
+uint32_t uart_driver_get_dropped_count(void);
+
+#endif
