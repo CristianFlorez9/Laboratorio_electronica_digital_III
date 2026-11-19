@@ -34,23 +34,36 @@ project(Calcamino C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
-
-add_executable(Calcamino Calcamino.c )
-
+add_executable(Calcamino
+    Calcamino.c
+    drivers/I2C_driver.c
+  #  drivers/acelerometro_MPU_6050.c
+    # drivers/adc_driver.c
+    # drivers/pantalla_oled.c
+    # drivers/power_driver.c
+)
 pico_set_program_name(Calcamino "Calcamino")
 pico_set_program_version(Calcamino "0.1")
 
-# Modify the below lines to enable/disable output over UART/USB
+pico_enable_stdio_usb(Calcamino 1)
 pico_enable_stdio_uart(Calcamino 0)
-pico_enable_stdio_usb(Calcamino 0)
 
 # Add the standard library to the build
 target_link_libraries(Calcamino
-        pico_stdlib)
+        pico_stdlib
+        hardware_i2c
+        hardware_gpio
+        hardware_irq
+        hardware_sync
+        hardware_timer
+        m
+        )
 
 # Add the standard include files to the build
 target_include_directories(Calcamino PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/drivers
+    ${CMAKE_CURRENT_LIST_DIR}/app
 )
 
 pico_add_extra_outputs(Calcamino)
