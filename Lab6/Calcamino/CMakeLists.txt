@@ -1,73 +1,42 @@
-# Generated Cmake Pico project file
-
 cmake_minimum_required(VERSION 3.13)
-
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Initialise pico_sdk from installed location
-# (note this can come from environment, CMake cache etc)
-
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
-if(WIN32)
-    set(USERHOME $ENV{USERPROFILE})
-else()
-    set(USERHOME $ENV{HOME})
-endif()
-set(sdkVersion 2.3.1)
-set(toolchainVersion 15_2_Rel1)
-set(picotoolVersion 2.3.1)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
-# ====================================================================================
-set(PICO_BOARD pico CACHE STRING "Board type")
-
-# Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
 project(Calcamino C CXX ASM)
-
-# Initialise the Raspberry Pi Pico SDK
+set(CMAKE_C_STANDARD 11)
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
 add_executable(Calcamino
     Calcamino.c
-    app/step_detector.c
     app/interfaz_grafica.c
+    app/modelo_bateria.c
+    app/modelo_calorias.c
+    app/ring_buffer.c
+    app/state_machine.c
+    app/step_detector.c
     drivers/I2C_driver.c
     drivers/acelerometro_MPU_6050.c
+    drivers/adc_driver.c
     drivers/pantalla_oled.c
-    # drivers/adc_driver.c
-    # drivers/power_driver.c
+    drivers/power_driver.c
 )
-pico_set_program_name(Calcamino "Calcamino")
-pico_set_program_version(Calcamino "0.1")
+
+target_include_directories(Calcamino PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/app
+    ${CMAKE_CURRENT_LIST_DIR}/drivers
+)
+
+target_link_libraries(Calcamino
+    pico_stdlib
+    hardware_i2c
+    hardware_adc
+    hardware_clocks
+    hardware_pll
+    hardware_timer
+    hardware_sync
+    m
+)
 
 pico_enable_stdio_usb(Calcamino 1)
 pico_enable_stdio_uart(Calcamino 0)
-
-# Add the standard library to the build
-target_link_libraries(Calcamino
-        pico_stdlib
-        pico_time
-        hardware_i2c
-        hardware_gpio
-        hardware_irq
-        hardware_sync
-        hardware_timer
-        m
-        )
-
-# Add the standard include files to the build
-target_include_directories(Calcamino PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/drivers
-    ${CMAKE_CURRENT_LIST_DIR}/app
-)
-
 pico_add_extra_outputs(Calcamino)
-

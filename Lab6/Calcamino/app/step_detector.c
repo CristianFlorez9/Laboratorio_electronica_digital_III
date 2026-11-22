@@ -1,73 +1,103 @@
-#include <math.h>
-#include <stdint.h>
+/**
+ * @file    step_detector.c
+ * @brief   Implementación del detector de pasos con histéresis y confirmación retroactiva.
+ */
 
-#include "pico/stdlib.h"
-#include "pico/time.h"
-#include "hardware/timer.h" 
 #include "step_detector.h"
+#include "pico/time.h"
+#include <math.h>
 
-// Variables estáticas (ocultas a otros archivos)
-// Se quita 'volatile' porque esto corre en el main, no en interrupciones.
-static uint32_t step_counter = 0;
-static bool walking = false;
-static uint32_t last_step_time = 0;
-static int cadence_rpm = 0;
-static bool was_above_threshold = false; // Para detectar el "cruce" del umbral
+/* --- Parámetros calibrables del algoritmo (MPU6050 ±2g: 1G = 16384 LSB) --- */
+#define STEP_THRESHOLD_HIGH     18800u  /* ~1.15G: disparo de pico de paso */
+#define STEP_THRESHOLD_LOW      17200u  /* ~1.05G: histéresis de liberación */
+#define STEP_MIN_INTERVAL_MS    280u    /* Máx. ~214 SPM (filtra vibraciones/rebotes) */
+#define STEP_MAX_INTERVAL_MS    1500u   /* Mín. ~40 SPM (marcha lenta) */
+#define WALKING_TIMEOUT_MS      2000u   /* Tiempo sin pasos para declarar fin de marcha */
+#define STEPS_TO_CONFIRM        3u      /* Pasos rítmicos requeridos para confirmar marcha */
 
-// --- Parámetros ajustables del algoritmo ---
-// 1G = 16384. Un paso típico genera un impacto de ~1.15G a 1.3G.
-static const uint32_t STEP_THRESHOLD = 19000; 
-// Tiempo mínimo que debe pasar entre paso y paso (4 pasos/seg = 250ms max)
-static const uint32_t STEP_DEBOUNCE_MS = 250; 
-// Si pasan 2000 ms sin pasos, consideramos que se detuvo
-static const uint32_t WALKING_TIMEOUT_MS = 2000; 
+static uint32_t step_counter = 0u;
+static bool     walking = false;
+static uint32_t last_step_time = 0u;
+static int      cadence_spm = 0;
+static bool     above_threshold = false;
 
+/* Buffer de pasos candidatos antes de confirmar marcha */
+static uint8_t  candidate_count = 0u;
+static uint32_t candidate_times[STEPS_TO_CONFIRM];
 
 void step_detector_init(void) {
-    step_counter = 0;
-    walking = false;
-    last_step_time = 0;
-    cadence_rpm = 0;
-    was_above_threshold = false;
+    step_counter    = 0u;
+    walking         = false;
+    last_step_time  = 0u;
+    cadence_spm     = 0;
+    above_threshold = false;
+    candidate_count = 0u;
 }
 
-// Inyección de datos desde el main
 void step_detector_update(int16_t accel_x, int16_t accel_y, int16_t accel_z) {
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
 
-    // Calcular magnitud del vector de aceleración
-    // Convertimos a float primero para evitar desbordamiento (overflow) al multiplicar
+    /* 1. Magnitud vectorial de aceleración (invariante a la orientación en cintura) */
     float fx = (float)accel_x;
     float fy = (float)accel_y;
     float fz = (float)accel_z;
-    float discriminant = fx*fx + fy*fy + fz*fz;
-    uint32_t magnitude = (uint32_t)sqrtf(discriminant);
+    uint32_t magnitude = (uint32_t)sqrtf((fx * fx) + (fy * fy) + (fz * fz));
 
-    // 2. Detección de picos con hiséresis/flanco
-    bool is_above = (magnitude > STEP_THRESHOLD);
-    
-    // Si cruzó el umbral hacia arriba y no estábamos ya arriba...
-    if (is_above && !was_above_threshold) {
-        
-        // ...y ha pasado suficiente tiempo desde el último paso (filtro rebote)
-        if (current_time - last_step_time > STEP_DEBOUNCE_MS) {
-            step_counter++;
-            walking = true;
-            
-            // Calcular cadencia (RPM) si no es el primer paso
-            if (last_step_time > 0) {
-                uint32_t time_diff = current_time - last_step_time;
-                cadence_rpm = 60000 / time_diff; 
+    /* 2. Detección de flanco con histéresis */
+    bool pico_detectado = false;
+    if (!above_threshold && (magnitude > STEP_THRESHOLD_HIGH)) {
+        above_threshold = true;
+        pico_detectado = true;
+    } else if (above_threshold && (magnitude < STEP_THRESHOLD_LOW)) {
+        above_threshold = false;
+    }
+
+    /* 3. Validación temporal y confirmación rítmica */
+    if (pico_detectado) {
+        if (walking) {
+            uint32_t dt = current_time - last_step_time;
+            if (dt >= STEP_MIN_INTERVAL_MS) {
+                step_counter++;
+                if (dt <= STEP_MAX_INTERVAL_MS) {
+                    cadence_spm = (int)(60000u / dt);
+                }
+                last_step_time = current_time;
             }
-            last_step_time = current_time;
+        } else {
+            if (candidate_count == 0u) {
+                candidate_times[0] = current_time;
+                candidate_count = 1u;
+            } else {
+                uint32_t dt = current_time - candidate_times[candidate_count - 1u];
+
+                if (dt > STEP_MAX_INTERVAL_MS) {
+                    /* Movimiento aislado previo descartado; iniciar nueva secuencia */
+                    candidate_times[0] = current_time;
+                    candidate_count = 1u;
+                } else if (dt >= STEP_MIN_INTERVAL_MS) {
+                    candidate_times[candidate_count] = current_time;
+                    candidate_count++;
+
+                    if (candidate_count >= STEPS_TO_CONFIRM) {
+                        uint32_t span_ms = current_time - candidate_times[0];
+                        walking = true;
+                        step_counter += STEPS_TO_CONFIRM;
+                        if (span_ms > 0u) {
+                            cadence_spm = (int)((60000u * (STEPS_TO_CONFIRM - 1u)) / span_ms);
+                        }
+                        last_step_time = current_time;
+                        candidate_count = 0u;
+                    }
+                }
+            }
         }
     }
-    was_above_threshold = is_above; // Guardar estado para la próxima iteración
 
-    // 3. Verificar si el usuario se detuvo
+    /* 4. Verificar detención de la marcha */
     if (walking && ((current_time - last_step_time) > WALKING_TIMEOUT_MS)) {
         walking = false;
-        cadence_rpm = 0; // Si te detienes, la cadencia cae a 0
+        cadence_spm = 0;
+        candidate_count = 0u;
     }
 }
 
@@ -80,5 +110,9 @@ bool is_walking(void) {
 }
 
 int cadence(void) {
-    return cadence_rpm;
+    return cadence_spm;
+}
+
+uint32_t step_last_time_ms(void) {
+    return last_step_time;
 }

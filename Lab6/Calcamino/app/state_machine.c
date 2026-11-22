@@ -65,6 +65,11 @@ void sm_evento(sm_t *sm, sm_evento_t ev, uint32_t t_ms)
                 sm->estado               = SM_ESTADO_INACTIVO;
                 sm->t_ref_inactividad_ms = t_ms;
             }
+            else if (ev == SM_EV_BOTON_CONFIG)
+            {
+                /* Pulsación larga de ENTER: volver a editar los parámetros. */
+                sm->estado = SM_ESTADO_CONFIG;
+            }
             else if (ev == SM_EV_BOTON_REINICIAR)
             {
                 sm->acciones |= SM_ACCION_REINICIAR_SESION;

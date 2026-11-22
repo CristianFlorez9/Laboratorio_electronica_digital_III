@@ -1,64 +1,56 @@
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
+/**
+ * @file    interfaz_grafica.c
+ * @brief   Implementación de las pantallas de configuración y sesión en OLED.
+ */
+
 #include "interfaz_grafica.h"
 #include "drivers/pantalla_oled.h"
+#include <stdio.h>
 
+void interfaz_cnfg(uint32_t kcal, uint32_t peso, uint32_t altura, uint32_t bateria, uint8_t campo) {
+    char buffer[32];
 
+    oled_clear();
 
-void interfaz_cnfg(uint32_t kcal, uint32_t peso, uint32_t altura, uint32_t bateria){
-    char buffer[32]; // Un lienzo temporal de texto (caben 31 letras)
+    snprintf(buffer, sizeof(buffer), "CONFIG USUARIO");
+    oled_escribir_texto(0, 0, buffer);
 
-    oled_clear(); // Limpiamos el framebuffer en RAM
+    snprintf(buffer, sizeof(buffer), "Bat:%lu%%", (unsigned long)bateria);
+    oled_escribir_texto(86, 0, buffer);
 
-    // Formateamos y dibujamos las kcal
-    // snprintf junta el texto "Kcal: " con la variable entera (%lu para uint32_t)
-    snprintf(buffer, sizeof(buffer), "kcal: %lu kcal", kcal);
-    oled_escribir_texto(0, 10, buffer); // Lo dibujamos arriba a la izquierda
+    snprintf(buffer, sizeof(buffer), "%cPeso: %lu kg",
+             (campo == 0u) ? '>' : ' ', (unsigned long)peso);
+    oled_escribir_texto(0, 16, buffer);
 
-    // Formateamos y dibujamos el peso
-    snprintf(buffer, sizeof(buffer), "Peso: %lu Kg", peso);
-    oled_escribir_texto(0, 20, buffer); // Lo dibujamos un poco más abajo (Y=20)
+    snprintf(buffer, sizeof(buffer), "%cEstatura: %lu cm",
+             (campo == 1u) ? '>' : ' ', (unsigned long)altura);
+    oled_escribir_texto(0, 28, buffer);
 
-    // Formateamos y dibujamos la Altura
-    snprintf(buffer, sizeof(buffer), "Altura: %lu m", altura);
-    oled_escribir_texto(0, 30, buffer); // Lo dibujamos un poco más abajo (Y=30)
+    snprintf(buffer, sizeof(buffer), " Kcal: %lu kcal", (unsigned long)kcal);
+    oled_escribir_texto(0, 40, buffer);
 
-    // Formateamos y dibujamos la BATERÍA (Alineado a la derecha, aprox X=100)
-    snprintf(buffer, sizeof(buffer), "Bat:%lu%%", bateria);
-    oled_escribir_texto(100, 0, buffer); 
-
-    // Enviamos el mapa de píxeles terminado a la pantalla real
-    oled_show(); 
+    oled_show();
 }
 
 void interfaz_sesion(uint32_t pasos, float estado, int cadence, uint32_t kcal, uint32_t bateria) {
-    char buffer[32]; // Un lienzo temporal de texto (caben 31 letras)
+    char buffer[32];
 
-    oled_clear(); // Limpiamos el framebuffer en RAM
+    oled_clear();
 
-    // Formateamos y dibujamos los PASOS
-    // snprintf junta el texto "Pasos: " con la variable entera (%lu para uint32_t)
-    snprintf(buffer, sizeof(buffer), "Pasos: %lu", pasos);
-    oled_escribir_texto(0, 10, buffer); // Lo dibujamos arriba a la izquierda
+    snprintf(buffer, sizeof(buffer), "Est:%d", (int)estado);
+    oled_escribir_texto(0, 0, buffer);
 
-    // Formateamos y dibujamos las KCAL
-    snprintf(buffer, sizeof(buffer), "Kcal: %lu kcal", kcal);
-    oled_escribir_texto(0, 20, buffer); // Lo dibujamos un poco más abajo (Y=20)
+    snprintf(buffer, sizeof(buffer), "Bat:%lu%%", (unsigned long)bateria);
+    oled_escribir_texto(86, 0, buffer);
 
-    // Formateamos y dibujamos la cadencia
-    snprintf(buffer, sizeof(buffer), "Cadence: %lu SPM", cadence);
-    oled_escribir_texto(0, 30, buffer); // Lo dibujamos un poco más abajo (Y=30)
+    snprintf(buffer, sizeof(buffer), "Pasos: %lu", (unsigned long)pasos);
+    oled_escribir_texto(0, 16, buffer);
 
-    // Formateamos y dibujamos el ESTADO (float usa %.1f para un decimal)
-    snprintf(buffer, sizeof(buffer), "Est: %.1f", estado);
+    snprintf(buffer, sizeof(buffer), "Kcal: %lu kcal", (unsigned long)kcal);
+    oled_escribir_texto(0, 28, buffer);
+
+    snprintf(buffer, sizeof(buffer), "Cadencia: %d SPM", cadence);
     oled_escribir_texto(0, 40, buffer);
 
-    // Formateamos y dibujamos la BATERÍA (Alineado a la derecha, aprox X=100)
-    snprintf(buffer, sizeof(buffer), "Bat:%lu%%", bateria);
-    oled_escribir_texto(100, 0, buffer); 
-
-    // Enviamos el mapa de píxeles terminado a la pantalla real
-    oled_show(); 
+    oled_show();
 }
