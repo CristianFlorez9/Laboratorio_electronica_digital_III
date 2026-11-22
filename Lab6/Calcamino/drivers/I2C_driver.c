@@ -380,3 +380,21 @@ void i2c_drv_get_stats(i2c_inst_t *i2c, i2c_drv_stats_t *out) {
     *out = b->stats; /* Copia atómica para evitar lecturas parciales frente a la ISR */
     restore_interrupts(irq_state);
 }
+
+
+
+
+/*enable: Habilita (1) o pausa (0) el controlador I2C para permitir cambios de configuración */
+/*con: Registro de control general del I2C (modo maestro, velocidad y Repeated START) */
+/*tar: Dirección esclava de 7 bits del dispositivo destino (requiere enable = 0 para cambiarla) */
+
+/*data_cmd: Ventanilla a las FIFOs: escribir mete comandos/datos en TX FIFO; leer extrae bytes de RX FIFO */
+/*txflr: Cantidad actual de elementos pendientes por enviar en la TX FIFO (0..16) */
+/*rxflr: Cantidad actual de bytes recibidos disponibles para leer en la RX FIFO (0..16) */
+/*tx_tl: Umbral de TX FIFO: dispara la interrupción TX_EMPTY cuando quedan <= N bytes por enviar */
+
+/*intr_mask: Máscara de interrupciones: habilita (1) o bloquea (0) qué eventos I2C disparan la ISR */
+/*intr_stat: Estado de interrupciones activas y habilitadas: indica a la ISR qué evento ocurrió */
+/*clr_intr: Lectura de limpieza (read-to-clear): borra todas las banderas de interrupción pendientes */
+/*clr_stop_det: Lectura de limpieza (read-to-clear): borra la bandera de fin de trama (STOP_DET) */
+/*clr_tx_abrt: Lectura de limpieza (read-to-clear): borra la bandera de error/aborto de bus (TX_ABRT) */
