@@ -36,10 +36,12 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 add_executable(Calcamino
     Calcamino.c
+    app/step_detector.c
+    app/interfaz_grafica.c
     drivers/I2C_driver.c
-  #  drivers/acelerometro_MPU_6050.c
+    drivers/acelerometro_MPU_6050.c
+    drivers/pantalla_oled.c
     # drivers/adc_driver.c
-    # drivers/pantalla_oled.c
     # drivers/power_driver.c
 )
 pico_set_program_name(Calcamino "Calcamino")
@@ -51,6 +53,7 @@ pico_enable_stdio_uart(Calcamino 0)
 # Add the standard library to the build
 target_link_libraries(Calcamino
         pico_stdlib
+        pico_time
         hardware_i2c
         hardware_gpio
         hardware_irq
