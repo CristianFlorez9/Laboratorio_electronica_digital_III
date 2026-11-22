@@ -1,0 +1,164 @@
+/**
+ * @file    Calcamino.c
+ * @brief   Ciclo principal: orquestador de eventos, polling + interrupciones.
+ * @details Inicializa periféricos antes de la sesión. En el bucle consulta el
+ *          trabajo pendiente (muestras, pasos, batería, pantalla) usando banderas
+ *          (flags). Cuando no hay trabajo, suspende la CPU (__wfi) para ahorrar 
+ *          energía.
+ */
+
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "hardware/sync.h"
+#include "hardware/timer.h"
+
+// Módulos del sistema
+#include "drivers/I2C_driver.h"
+#include "drivers/acelerometro_MPU_6050.h"
+#include "app/step_detector.h"
+#include "drivers/pantalla_oled.h"
+#include "interfaz_grafica.h"
+
+// Configuración de Hardware
+#define I2C_SDA_PIN 4
+#define I2C_SCL_PIN 5
+#define MPU_INT_PIN 15 // Ajusta este pin según tu hardware
+
+// ====================================================================
+// BANDERAS DE EVENTOS (Comunicación entre ISR y Main)
+// ====================================================================
+volatile bool event_mpu_motion   = false; // El acelerómetro detectó movimiento
+volatile bool event_mpu_data_rx  = false; // I2C terminó de leer el acelerómetro
+volatile bool event_update_ui    = false; // Timer pide refrescar la pantalla OLED
+// Agrega banderas para el botón (event_button_press) o la batería.
+
+// ====================================================================
+// CALLBACKS (Rutinas de Servicio de Interrupción - ISR)
+// ====================================================================
+
+// 1. Interrupción externa del pin INT del MPU6050
+void mpu_gpio_callback(uint gpio, uint32_t events) {
+    if (gpio == MPU_INT_PIN) {
+        event_mpu_motion = true;
+    }
+}
+
+// 2. Callback del driver I2C al finalizar una lectura exitosa
+void mpu_read_done_callback(i2c_drv_status_t status) {
+    if (status == I2C_DRV_OK) {
+        event_mpu_data_rx = true;
+    }
+}
+
+// 3. Callback de un temporizador de hardware (Ej: cada 500ms) para la UI
+bool timer_ui_callback(repeating_timer_t *rt) {
+    event_update_ui = true;
+    return true; // true para que el timer se siga repitiendo
+}
+
+// ====================================================================
+// FUNCIÓN PRINCIPAL
+// ====================================================================
+int main(void) {
+    // 1. INICIALIZACIÓN DE SISTEMA Y PUERTOS
+    stdio_init_all();
+    sleep_ms(2000); 
+    printf("Iniciando Calcamino...\n");
+
+    // 2. INICIALIZACIÓN DE BUSES Y DRIVERS
+    i2c_drv_init(i2c0, I2C_SDA_PIN, I2C_SCL_PIN, 400000); // 400kHz Fast Mode
+
+    // Inicializar Pantalla OLED (comparte el i2c0)
+    oled_init(i2c0);
+
+    // Inicializar MPU6050
+    mpu_init_non_blocking(i2c0);
+    printf("Configurando sensor MPU6050");
+    while (!mpu_is_init_complete()) {
+        printf(".");
+        sleep_ms(10);
+    }
+    printf("\n¡MPU6050 configurado!\n");
+
+    // 3. INICIALIZACIÓN DE MÓDULOS DE APLICACIÓN
+    step_detector_init();
+    
+    // Inicializar módulo de batería y sistema de archivos/flash (si aplica)
+
+    // 4. CONFIGURACIÓN DE INTERRUPCIONES Y TIMERS
+    gpio_init(MPU_INT_PIN);
+    gpio_set_dir(MPU_INT_PIN, GPIO_IN);
+    gpio_set_irq_enabled_with_callback(MPU_INT_PIN, GPIO_IRQ_EDGE_RISE, true, &mpu_gpio_callback);
+
+    // Configurar timer para refrescar la pantalla 2 veces por segundo (500ms)
+    repeating_timer_t timer_ui;
+    add_repeating_timer_ms(500, timer_ui_callback, NULL, &timer_ui);
+
+    // Variables de estado de la aplicación
+    uint32_t kcal_quemadas = 0;
+    uint32_t bateria_pct = 100;
+    // Cargar datos previos de usuario (peso, altura) si están guardados en memoria
+
+    // ====================================================================
+    // BUCLE PRINCIPAL (EVENT LOOP)
+    // ====================================================================
+    while (1) {
+        
+        // EVENTO: El MPU avisó por el pin INT que hay un dato nuevo
+        if (event_mpu_motion) {
+            event_mpu_motion = false;
+            // TODO: [COMPAÑERO] Llama a la función de tu driver MPU que inicie 
+            // la lectura asíncrona por I2C (ej. mpu_request_read_non_blocking())
+        }
+
+        // EVENTO: El driver I2C terminó de traer los datos del MPU a la RAM
+        if (event_mpu_data_rx) {
+            event_mpu_data_rx = false;
+            
+            uint8_t buffer[6];
+            mpu_get_last_data(buffer); // Leer de la caché local del driver
+
+            int16_t accel_x = (buffer[0] << 8) | buffer[1];
+            int16_t accel_y = (buffer[2] << 8) | buffer[3];
+            int16_t accel_z = (buffer[4] << 8) | buffer[5];
+
+            // Actualizar lógica de pasos
+            step_detector_update(accel_x, accel_y, accel_z);
+            
+            // Actualizar cálculo de Kcal basado en peso y pasos
+        }
+
+        // EVENTO: Es hora de actualizar la pantalla (Tick del Timer)
+        if (event_update_ui) {
+            event_update_ui = false;
+
+            // Leer módulo de batería real (ADC) para actualizar bateria_pct
+
+            //  Crear una máquina de estados para saber qué pantalla mostrar.
+            // if(estado_sistema == MOSTRAR_SESION) { ... } else if (...) { ... }
+            
+            // Por ahora, mostramos la interfaz de sesión:
+            interfaz_sesion(
+                step_count(),           // Pasos (del módulo step_detector)
+                is_walking() ? 1.0 : 0.0, // Estado (ej: 1.0 activo, 0.0 reposo)
+                cadence(),              // Cadencia
+                kcal_quemadas,          // Kcal 
+                bateria_pct             // Batería
+            );
+        }
+
+
+        // ====================================================================
+        // GESTIÓN DE ENERGÍA (Modo Sleep)
+        // ====================================================================
+        uint32_t irq_status = save_and_disable_interrupts();
+        
+        // Si no hay tareas pendientes en ninguna bandera, y el I2C no está ocupado, dormir.
+        if (!event_mpu_motion && !event_mpu_data_rx && !event_update_ui && !i2c_drv_is_busy(i2c0)) {
+            __wfi(); // Wait For Interrupt: Suspende la CPU, ahorra batería
+        }
+        
+        restore_interrupts(irq_status);
+    }
+
+}
