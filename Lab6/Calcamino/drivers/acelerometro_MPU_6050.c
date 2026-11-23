@@ -23,8 +23,8 @@ static const mpu_cfg_step_t mpu_init_sequence[] = {
     {PWR_STBY,   0x07u}, /* Giroscopio en standby para ahorrar energía */
     {SMPLRT_DIV, 19u  }, /* Tasa de muestreo = 50 Hz */
     {ACCEL_CFG,  0x01u}, /* ±2g, filtro paso alto a 5 Hz para detección de movimiento */
-    {MOT_THR,    15u  }, /* Umbral de movimiento WOM */
-    {MOT_DUR,    2u   }, /* Duración mínima de movimiento */
+    {MOT_THR,    20u  }, /* Umbral de movimiento WOM */
+    {MOT_DUR,    3u   }, /* Duración mínima de movimiento */
     {IRQ_CFG,    0x20u}, /* Pin INT activo alto con latch hasta lectura */
     {IRQ_EN,     0x00u}  /* Interrupción WOM deshabilitada durante muestreo activo */
 };

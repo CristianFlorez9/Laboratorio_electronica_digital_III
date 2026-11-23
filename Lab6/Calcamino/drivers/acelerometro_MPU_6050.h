@@ -14,20 +14,20 @@
 #include "drivers/I2C_driver.h"
 
 /* Configuraciones de hardware */
-#define MPU_ADDR        0x68u
-#define INT_PIN         4u
+#define MPU_ADDR        0x68u /*Dirección I2C estándar del MPU6050 (cuando el pin AD0 está conectado a GND).*/
+#define INT_PIN         4u /*Pin físico del microcontrolador conectado a la salida de interrupción (INT) del sensor*/
 
 /* Mapa de registros principales */
-#define SMPLRT_DIV      0x19u
-#define ACCEL_CFG       0x1Cu
-#define MOT_THR         0x1Fu
-#define MOT_DUR         0x20u
-#define IRQ_CFG         0x37u
-#define IRQ_EN          0x38u
-#define INT_STATUS      0x3Au
-#define ACCEL_XOUT_H    0x3Bu
-#define PWR_MGMT        0x6Bu
-#define PWR_STBY        0x6Cu
+#define SMPLRT_DIV      0x19u  // Divisor de la tasa de muestreo (ajusta la frecuencia de trabajo del sensor)
+#define ACCEL_CFG       0x1Cu  // Configuración del acelerómetro (rango de escala: ±2g, ±4g, ±8g o ±16g)
+#define MOT_THR         0x1Fu  // Umbral de aceleración para la detección de movimiento (Wake-on-Motion)
+#define MOT_DUR         0x20u  // Duración mínima que debe mantenerse el movimiento para confirmar la interrupción
+#define IRQ_CFG         0x37u  // Configuración física del pin de interrupción (nivel activo, tipo de pin)
+#define IRQ_EN          0x38u  // Habilitación de interrupciones específicas (ej. habilitar Wake-on-Motion)
+#define INT_STATUS      0x3Au  // Estado de las interrupciones (su lectura limpia el latch del pin INT)
+#define ACCEL_XOUT_H    0x3Bu  // Registro inicial de datos (ráfaga de 6 bytes consecutivos: X, Y y Z)
+#define PWR_MGMT        0x6Bu  // Control de energía 1 (sacar de modo suspensión, fuente de reloj)
+#define PWR_STBY        0x6Cu  // Control de energía 2 (poner en standby ejes individuales para ahorrar energía)
 
 /**
  * @brief Inicia la secuencia de configuración activa del MPU6050 (50 Hz) sin bloquear.
